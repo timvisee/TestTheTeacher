@@ -10,8 +10,11 @@ public class QuestionForm extends JFrame {
     /** Number of answers to show. */
     private static final int ANSWER_COUNT = 4;
 
+    /** App instance. */
+    private App app;
+
     /** The question label. */
-    private JLabel lblQuestion = new JLabel("Question");
+    private JLabel lblQuestion = new JLabel("<Question>");
     /** The answer buttons. */
     private JButton[] answerBtns = new JButton[ANSWER_COUNT];
     /** The answer labels. */
@@ -68,6 +71,7 @@ public class QuestionForm extends JFrame {
         c.gridy = 0;
         c.insets = new Insets(3, 5, 15, 5);
         c.weightx = 1.0;
+        lblQuestion.setText("Question");
         pnlQuestion.add(lblQuestion, c);
 
         // Configure the placement of the questions panel and add it to the main panel
@@ -122,5 +126,19 @@ public class QuestionForm extends JFrame {
         c.gridy = 0;
         c.insets = new Insets(10, 10, 10, 10);
         this.add(pnlMain, c);
+    }
+
+    /**
+     * Set the question that is shown.
+     *
+     * @param question Question.
+     */
+    public void setQuestion(Question question) {
+        // Set the question label
+        lblQuestion.setText(question.getQuestion());
+
+        // Set the labels
+        for(int i = 0; i < ANSWER_COUNT; i++)
+            answerLbls[i] = new JLabel(question.getAnswer(i));
     }
 }
