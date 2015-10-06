@@ -1,5 +1,7 @@
 package com.ttt;
 
+import com.ttt.util.WindowUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +33,9 @@ public class App {
     public void init() {
         // Application has started, show a status message
         System.out.println(App.APP_NAME + " started!");
+
+        // Use the system's GUI look and feel, not the Java one
+        WindowUtils.useNativeLookAndFeel();
 
         // Add all questions
         addQuestions();
