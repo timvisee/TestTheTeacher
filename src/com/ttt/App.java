@@ -14,7 +14,10 @@ public class App {
     private List<Question> questions = new ArrayList<>();
 
     /** The current question. */
-    int currentQuestion = 0;
+    private int currentQuestion = 0;
+
+    /** The question form instance. */
+    private QuestionForm questionForm;
 
     /**
      * Constructor.
@@ -41,10 +44,10 @@ public class App {
         addQuestions();
 
         // Create and open the question form
-        QuestionForm questionForm = new QuestionForm();
+        this.questionForm = new QuestionForm();
 
         // Set the question
-        questionForm.setQuestion(getQuestion(getCurrentQuestion()));
+        this.questionForm.setQuestion(getCurrentQuestion());
     }
 
     /**
@@ -56,8 +59,26 @@ public class App {
 
         // Add the first question
         this.questions.add(new Question(
-                "Antwoord B is goed",
+                "Wat is je mood vandaag?",
+                new String[]{
+                        "Stout",
+                        "Aardig",
+                        "Antwoord C",
+                        "Antwoord D"
+                },
+                1));
+        this.questions.add(new Question(
+                "Questions",
                 new String[] {
+                        "Antwoord A",
+                        "Antwoord B",
+                        "Antwoord C",
+                        "Antwoord D"
+                },
+                1));
+        this.questions.add(new Question(
+                "Questions",
+                new String[]{
                         "Antwoord A",
                         "Antwoord B",
                         "Antwoord C",
@@ -82,7 +103,7 @@ public class App {
      *
      * @return The question.
      */
-    public Question getQuestion(int i) {
+    public Question getQuestionById(int i) {
         return this.questions.get(i);
     }
 
@@ -91,7 +112,21 @@ public class App {
      *
      * @return The current question index.
      */
-    public int getCurrentQuestion() {
+    public int getCurrentQuestionId() {
         return this.currentQuestion;
+    }
+
+    /**
+     * Get the current question.
+     *
+     * @return Current question.
+     */
+    public Question getCurrentQuestion() {
+        return getQuestionById(getCurrentQuestionId());
+    }
+
+    public void nextQuestion() {
+        currentQuestion = currentQuestion + 1;
+        this.questionForm.setQuestion(getCurrentQuestion());
     }
 }

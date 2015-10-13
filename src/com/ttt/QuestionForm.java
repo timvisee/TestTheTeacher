@@ -139,6 +139,7 @@ public class QuestionForm extends JFrame {
 
         // Set the labels
         for(int i = 0; i < ANSWER_COUNT; i++)
-            answerLbls[i] = new JLabel(question.getAnswer(i));
+            answerLbls [i] .setText(question.getAnswer(i));
+
     }
 }
