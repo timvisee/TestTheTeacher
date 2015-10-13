@@ -7,16 +7,24 @@ import java.util.List;
 
 public class App {
 
-    /** App name. */
+    /**
+     * App name.
+     */
     public static final String APP_NAME = "Test The Teacher";
 
-    /** List of all questions. */
+    /**
+     * List of all questions.
+     */
     private List<Question> questions = new ArrayList<>();
 
-    /** The current question. */
+    /**
+     * The current question.
+     */
     private int currentQuestion = 0;
 
-    /** The question form instance. */
+    /**
+     * The question form instance.
+     */
     private QuestionForm questionForm;
 
     /**
@@ -26,7 +34,7 @@ public class App {
      */
     public App(boolean init) {
         // Initialize
-        if(init)
+        if (init)
             init();
     }
 
@@ -63,21 +71,21 @@ public class App {
                 new String[]{
                         "Stout",
                         "Aardig",
-                        "Antwoord C",
-                        "Antwoord D"
+                        "kut",
+                        "?!"
                 },
                 1));
         this.questions.add(new Question(
-                "Questions",
-                new String[] {
+                "vraag 2",
+                new String[]{
                         "Antwoord A",
                         "Antwoord B",
                         "Antwoord C",
                         "Antwoord D"
                 },
-                1));
+                3));
         this.questions.add(new Question(
-                "Questions",
+                "Questions 3",
                 new String[]{
                         "Antwoord A",
                         "Antwoord B",
@@ -100,7 +108,6 @@ public class App {
      * Get a specific question by index.
      *
      * @param i The index of the question.
-     *
      * @return The question.
      */
     public Question getQuestionById(int i) {
@@ -141,5 +148,11 @@ public class App {
     public void selectedAnswer(int i) {
         // Print the answer in the console
         System.out.println("Answered: " + getCurrentQuestion().getAnswer(i));
+
+
+        if (getCurrentQuestion().isCorrectAnswerIndex(i)) {
+
+            nextQuestion();
+        }
     }
 }
