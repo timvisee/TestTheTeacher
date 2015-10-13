@@ -2,6 +2,8 @@ package com.ttt;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class QuestionForm extends JFrame {
 
@@ -23,9 +25,12 @@ public class QuestionForm extends JFrame {
     /**
      * Constructor.
      */
-    public QuestionForm() {
+    public QuestionForm(App app) {
         // Construct the form
         super(FORM_TITLE);
+
+        // Store the app instance
+        this.app = app;
 
         // Create the form UI
         createUIComponents();
@@ -86,6 +91,9 @@ public class QuestionForm extends JFrame {
 
         // Create and add answer buttons to the answers panel
         for(int i = 0; i < ANSWER_COUNT; i++) {
+            // Specify the question index as final
+            final int iFinal = i;
+
             // Create the buttons
             answerBtns[i] = new JButton(String.valueOf((char) ('A' + i))); // A, B, C, D ...
 
@@ -97,6 +105,14 @@ public class QuestionForm extends JFrame {
 
             // Add the button
             answersPnl.add(answerBtns[i], c);
+
+            // Create an action listener for the button
+            answerBtns[i].addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    app.selectedAnswer(iFinal);
+                }
+            });
         }
 
         // Create and add answer labels to the answers panel

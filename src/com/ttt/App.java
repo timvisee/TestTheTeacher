@@ -44,7 +44,7 @@ public class App {
         addQuestions();
 
         // Create and open the question form
-        this.questionForm = new QuestionForm();
+        this.questionForm = new QuestionForm(this);
 
         // Set the question
         this.questionForm.setQuestion(getCurrentQuestion());
@@ -131,5 +131,15 @@ public class App {
     public void nextQuestion() {
         currentQuestion = currentQuestion + 1;
         this.questionForm.setQuestion(getCurrentQuestion());
+    }
+
+    /**
+     * This method is called when a question is selected.
+     *
+     * @param i The answer index.
+     */
+    public void selectedAnswer(int i) {
+        // Print the answer in the console
+        System.out.println("Answered: " + getCurrentQuestion().getAnswer(i));
     }
 }
