@@ -53,7 +53,7 @@ public class QuestionForm extends JFrame {
         this.setLayout(new GridBagLayout());
 
         // Set the frame size
-        this.setSize(350, 215);
+        this.setSize(400, 215);
 
         // Make the frame non-resizable
         this.setResizable(true);

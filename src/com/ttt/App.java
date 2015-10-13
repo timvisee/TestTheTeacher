@@ -67,30 +67,60 @@ public class App {
 
         // Add the first question
         this.questions.add(new Question(
-                "Wat is je mood vandaag?",
+                "Welk volgende types zijn geldig in Java?",
                 new String[]{
-                        "Stout",
-                        "Aardig",
-                        "kut",
-                        "?!"
+                        "int, string, Double, Boolean",
+                        "boolean, int, String, double",
+                        "String, Int, double, boolean",
+                        "double, boolean, String, Int"
                 },
                 1));
         this.questions.add(new Question(
-                "vraag 2",
+                "Wat is de waarde van a? int a =(int)19,6",
                 new String[]{
-                        "Antwoord A",
-                        "Antwoord B",
-                        "Antwoord C",
-                        "Antwoord D"
+                        "19",
+                        "19,6",
+                        "20",
+                        "18"
                 },
-                3));
+                0));
         this.questions.add(new Question(
-                "Questions 3",
+                " Wat komt hier uit? (int)(24.768 * 100) / 100?",
                 new String[]{
-                        "Antwoord A",
-                        "Antwoord B",
-                        "Antwoord C",
-                        "Antwoord D"
+                        "25",
+                        "24,76",
+                        "24",
+                        "24,7"
+                },
+                2));
+        this.questions.add(new Question(
+                "Wat komt hier uit? 42,5 % 2,1?",
+                new String[]{
+                        "0,5",
+                        "0.5",
+                        "1",
+                        "1.0"
+                },
+                0));
+        this.questions.add(new Question(
+                "Wat komt hier uit? \n" +
+                        "    for (int i = 1; i < 10; i += 2) {\n" +
+                        "      System.out.printf(\"%1d\", i);\n" +
+                        "    }\n",
+                new String[]{
+                        "123456789",
+                        "13579",
+                        "2468",
+                        "Geen van de bovenstaande"
+                },
+                1));
+        this.questions.add(new Question(
+                "vraag 6",
+                new String[]{
+                        "0",
+                        "1",
+                        "2",
+                        "3"
                 },
                 1));
     }
