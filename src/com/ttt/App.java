@@ -125,6 +125,9 @@ public class App {
         return getQuestionById(getCurrentQuestionId());
     }
 
+    /**
+     * Load and show the next question.
+     */
     public void nextQuestion() {
         currentQuestion = currentQuestion + 1;
         this.questionForm.setQuestion(getCurrentQuestion());
