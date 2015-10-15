@@ -89,6 +89,9 @@ public class QuestionForm extends JFrame {
         c.insets = new Insets(3, 5, 15, 5);
         c.weightx = 1.0;
         lblQuestion.setText("<question>");
+        lblQuestion.setFixedWidth(350);
+        lblQuestion.setFixedHeight(55);
+        lblQuestion.setVerticalAlignment(SwingConstants.TOP);
         pnlQuestion.add(lblQuestion, c);
 
         // Configure the placement of the questions panel and add it to the main panel
@@ -163,6 +166,8 @@ public class QuestionForm extends JFrame {
         // Set the labels
         for(int i = 0; i < ANSWER_COUNT; i++)
             answerLbls [i] .setText(question.getAnswer(i));
-pack();
+
+        // Pack the frame
+        pack();
     }
 }

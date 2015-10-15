@@ -15,6 +15,8 @@ import java.awt.*;
 
 public class TTTLabel extends JLabel {
 
+    /** A fixed JLabel width. */
+    private int fixedWidth = 0;
     /** A fixed JLabel height. */
     private int fixedHeight = 0;
 
@@ -25,6 +27,40 @@ public class TTTLabel extends JLabel {
      */
     public TTTLabel(String text) {
         super(text);
+    }
+
+    /**
+     * Get the fixed label width.
+     *
+     * @return Fixed label width.
+     */
+    public int getFixedWidth() {
+        return this.fixedWidth;
+    }
+
+    /**
+     * Check whether the label has a fixed width.
+     *
+     * @return True if the label has a fixed width.
+     */
+    public boolean hasFixedWidth() {
+        return getFixedWidth() != 0;
+    }
+
+    /**
+     * Set the fixed width of the label. Zero to reset the fixed width.
+     *
+     * @param fixedWidth Fixed width.
+     */
+    public void setFixedWidth(int fixedWidth) {
+        this.fixedWidth = fixedWidth;
+    }
+
+    /**
+     * Reset the fixed width of the label.
+     */
+    public void resetFixedWidth() {
+        setFixedWidth(0);
     }
 
     /**
@@ -64,21 +100,21 @@ public class TTTLabel extends JLabel {
     @Override
     public Dimension getPreferredSize() {
         Dimension d = super.getPreferredSize();
-        d.setSize(d.getWidth(), hasFixedHeight() ? getFixedHeight() : d.getHeight());
+        d.setSize(hasFixedWidth() ? getFixedWidth() : d.getWidth(), hasFixedHeight() ? getFixedHeight() : d.getHeight());
         return d;
     }
 
     @Override
     public Dimension getMaximumSize() {
         Dimension d = super.getPreferredSize();
-        d.setSize(d.getWidth(), hasFixedHeight() ? getFixedHeight() : d.getHeight());
+        d.setSize(hasFixedWidth() ? getFixedWidth() : d.getWidth(), hasFixedHeight() ? getFixedHeight() : d.getHeight());
         return d;
     }
 
     @Override
     public Dimension getMinimumSize() {
         Dimension d = super.getPreferredSize();
-        d.setSize(d.getWidth(), hasFixedHeight() ? getFixedHeight() : d.getHeight());
+        d.setSize(hasFixedWidth() ? getFixedWidth() : d.getWidth(), hasFixedHeight() ? getFixedHeight() : d.getHeight());
         return d;
     }
 }
