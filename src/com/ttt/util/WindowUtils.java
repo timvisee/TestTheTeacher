@@ -1,10 +1,18 @@
+/**
+ * TestTheTeacher.
+ * Test the teacher to see whether he or she is really good enough at basing programming.
+ * A project for a school of applied sciences.
+ *
+ * @author MingYan Li, Tim Visee
+ * @copyright Copyright (c) MingYan Li & Tim Visee 2015. All rights reserved.
+ * @license GNU GPL v3.0
+ */
+
 package com.ttt.util;
 
 import javax.swing.UIManager;
 
 public class WindowUtils {
-
-    //public static final String APP_ICON_RES = "/icon.png";
 
     /**
      * Try to use the native look and feel of the system
@@ -16,6 +24,8 @@ public class WindowUtils {
             System.out.println("Failed to set native GUI look and feel!");
         }
     }
+
+    //public static final String APP_ICON_RES = "/icon.png";
 
     /*
     /**

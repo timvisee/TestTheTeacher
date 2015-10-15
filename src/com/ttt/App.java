@@ -1,3 +1,13 @@
+/**
+ * TestTheTeacher.
+ * Test the teacher to see whether he or she is really good enough at basing programming.
+ * A project for a school of applied sciences.
+ *
+ * @author MingYan Li, Tim Visee
+ * @copyright Copyright (c) MingYan Li & Tim Visee 2015. All rights reserved.
+ * @license GNU GPL v3.0
+ */
+
 package com.ttt;
 
 import com.ttt.form.QuestionForm;
@@ -57,7 +67,7 @@ public class App {
         // Create and open the question form
         this.questionForm = new QuestionForm(this);
 
-        // Set the question
+        // Show the first question in the frame
         this.questionForm.setQuestion(getCurrentQuestion());
     }
 
@@ -71,7 +81,7 @@ public class App {
         // Add the first question
         this.questions.add(new Question(
                 "Welk volgende types zijn geldig in Java?",
-                new String[]{
+                new String[] {
                         "int, string, Double, Boolean",
                         "boolean, int, String, double",
                         "String, Int, double, boolean",
@@ -80,49 +90,49 @@ public class App {
                 1));
         this.questions.add(new Question(
                 "<html>Wat is de waarde van a?<br />" +
-                        StringUtils.indentHtmlSpaces(4) + "int a =(int)19,6",
-                new String[]{
+                        StringUtils.indentHtmlSpaces(4) + "int a = (int) 19.6",
+                new String[] {
                         "19",
-                        "19,6",
+                        "19.6",
                         "20",
                         "18"
                 },
                 0));
         this.questions.add(new Question(
                 "<html>Wat komt hier uit?<br />" +
-                        "(int)(24.768 * 100) / 100?",
-                new String[]{
+                        "(int) (24.768 * 100) / 100",
+                new String[] {
                         "25",
-                        "24,76",
+                        "24.76",
                         "24",
-                        "24,7"
+                        "24.7"
                 },
                 2));
         this.questions.add(new Question(
                 "<html>Wat komt hier uit?<br />" +
-                        "42,5 % 2,1?",
-                new String[]{
+                        "42.5 % 2.1?",
+                new String[] {
                         "0.5",
                         "1.0",
                         "1.25",
-                        "error"
+                        "<html><i>Error</i>"
                 },
                 0));
         this.questions.add(new Question(
                 "<html>Wat komt hier uit?<br />" +
-                        StringUtils.indentHtmlSpaces(4) + "for (int i = 1; i < 10; i += 2) {<br />" +
+                        StringUtils.indentHtmlSpaces(4) + "for(int i = 1; i < 10; i += 2) {<br />" +
                         StringUtils.indentHtmlSpaces(8) + "System.out.printf(\"%1d\", i);<br />" +
                         StringUtils.indentHtmlSpaces(4) + "}",
-                new String[]{
+                new String[] {
                         "123456789",
                         "13579",
                         "2468",
-                        "Geen van de bovenstaande"
+                        "<html><i>Geen van de bovenstaande"
                 },
                 1));
         this.questions.add(new Question(
-                "vraag 6",
-                new String[]{
+                "<html>vraag 6",
+                new String[] {
                         "0",
                         "1",
                         "2",
@@ -172,7 +182,10 @@ public class App {
      * Load and show the next question.
      */
     public void nextQuestion() {
-        currentQuestion = currentQuestion + 1;
+        // Increase the current question index by one
+        currentQuestion++;
+
+        // Show the next question in the frame
         this.questionForm.setQuestion(getCurrentQuestion());
     }
 
@@ -185,10 +198,8 @@ public class App {
         // Print the answer in the console
         System.out.println("Answered: " + getCurrentQuestion().getAnswer(i));
 
-
-        if (getCurrentQuestion().isCorrectAnswerIndex(i)) {
-
+        // Go to the next question if the answer is correct
+        if (getCurrentQuestion().isCorrectAnswerIndex(i))
             nextQuestion();
-        }
     }
 }
