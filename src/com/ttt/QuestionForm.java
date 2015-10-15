@@ -77,8 +77,6 @@ public class QuestionForm extends JFrame {
         c.insets = new Insets(3, 5, 15, 5);
         c.weightx = 1.0;
         lblQuestion.setText("<question>");
-        lblQuestion.setSize(new Dimension(lblQuestion.getPreferredSize().width, 500));
-        lblQuestion.setSize
         pnlQuestion.add(lblQuestion, c);
 
         // Configure the placement of the questions panel and add it to the main panel
