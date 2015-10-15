@@ -15,6 +15,9 @@ import java.awt.*;
 
 public class TTTLabel extends JLabel {
 
+    /** A fixed JLabel height. */
+    private int fixedHeight = 0;
+
     /**
      * Constructor.
      *
@@ -24,24 +27,58 @@ public class TTTLabel extends JLabel {
         super(text);
     }
 
+    /**
+     * Get the fixed label height.
+     *
+     * @return Fixed label height.
+     */
+    public int getFixedHeight() {
+        return this.fixedHeight;
+    }
+
+    /**
+     * Check whether the label has a fixed height.
+     *
+     * @return True if the label has a fixed height.
+     */
+    public boolean hasFixedHeight() {
+        return getFixedHeight() != 0;
+    }
+
+    /**
+     * Set the fixed height of the label. Zero to reset the fixed height.
+     *
+     * @param fixedHeight Fixed height.
+     */
+    public void setFixedHeight(int fixedHeight) {
+        this.fixedHeight = fixedHeight;
+    }
+
+    /**
+     * Reset the fixed height of the label.
+     */
+    public void resetFixedHeight() {
+        setFixedHeight(0);
+    }
+
     @Override
     public Dimension getPreferredSize() {
         Dimension d = super.getPreferredSize();
-        d.setSize(d.getWidth(), 500);
+        d.setSize(d.getWidth(), hasFixedHeight() ? getFixedHeight() : d.getHeight());
         return d;
     }
 
     @Override
     public Dimension getMaximumSize() {
         Dimension d = super.getPreferredSize();
-        d.setSize(d.getWidth(), 500);
+        d.setSize(d.getWidth(), hasFixedHeight() ? getFixedHeight() : d.getHeight());
         return d;
     }
 
     @Override
     public Dimension getMinimumSize() {
         Dimension d = super.getPreferredSize();
-        d.setSize(d.getWidth(), 500);
+        d.setSize(d.getWidth(), hasFixedHeight() ? getFixedHeight() : d.getHeight());
         return d;
     }
 }
