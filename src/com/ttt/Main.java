@@ -13,8 +13,13 @@ package com.ttt;
 public class Main {
 
     public static void main(String[] args) {
-	    // Construct and initialize the app
+	    // Construct the application
         App app = new App(false);
+
+        // Initialize the application
         app.init();
+
+        // Start the application
+        app.start();
     }
 }

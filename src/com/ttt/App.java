@@ -55,8 +55,8 @@ public class App {
      * Initialize the application.
      */
     public void init() {
-        // Application has started, show a status message
-        System.out.println(App.APP_NAME + " started!");
+        // Application initializing, show a message
+        System.out.println("Initializing " + App.APP_NAME + "...");
 
         // Use the system's GUI look and feel, not the Java one
         WindowUtils.useNativeLookAndFeel();
@@ -65,10 +65,25 @@ public class App {
         addQuestions();
 
         // Create and open the question form
-        this.questionForm = new QuestionForm(this);
+        this.questionForm = new QuestionForm(this, false);
 
         // Show the first question in the frame
         this.questionForm.setQuestion(getCurrentQuestion());
+
+        // Application initialized, show a message
+        System.out.println("Initialized " + App.APP_NAME + " successfully! Cave Johnson here!");
+    }
+
+    /**
+     * Start the application, after it has been initialized.
+     */
+    public void start() {
+        // Start the application
+        System.out.println("Starting " + App.APP_NAME + "...");
+
+        // Show the question form
+        System.out.println("Showing questions dialog...");
+        this.questionForm.setVisible(true);
     }
 
     /**

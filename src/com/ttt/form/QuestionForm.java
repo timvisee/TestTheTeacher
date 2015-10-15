@@ -36,8 +36,11 @@ public class QuestionForm extends JFrame {
 
     /**
      * Constructor.
+     *
+     * @param app App instance.
+     * @param show True to show the frame once it has been initialized.
      */
-    public QuestionForm(App app) {
+    public QuestionForm(App app, boolean show) {
         // Construct the form
         super(FORM_TITLE);
 
@@ -51,7 +54,7 @@ public class QuestionForm extends JFrame {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         // Show the form
-        this.setVisible(true);
+        this.setVisible(show);
     }
 
     /**
