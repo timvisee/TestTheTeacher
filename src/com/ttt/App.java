@@ -103,10 +103,10 @@ public class App {
                 },
                 0));
         this.questions.add(new Question(
-                "Wat komt hier uit? \n" +
-                        "    for (int i = 1; i < 10; i += 2) {\n" +
-                        "      System.out.printf(\"%1d\", i);\n" +
-                        "    }\n",
+                "<html>Wat komt hier uit?<br />" +
+                        "    for (int i = 1; i < 10; i += 2) {<br />" +
+                        "      System.out.printf(\"%1d\", i);<br />" +
+                        "    }",
                 new String[]{
                         "123456789",
                         "13579",
