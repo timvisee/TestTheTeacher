@@ -1,4 +1,4 @@
-package com.ttt;
+package com.ttt.question;
 
 import java.util.ArrayList;
 import java.util.Arrays;

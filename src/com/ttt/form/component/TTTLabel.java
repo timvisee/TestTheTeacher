@@ -1,4 +1,4 @@
-package com.ttt;
+package com.ttt.form.component;
 
 import javax.swing.*;
 import java.awt.*;

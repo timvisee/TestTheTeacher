@@ -1,9 +1,11 @@
-package com.ttt;
+package com.ttt.form;
+
+import com.ttt.App;
+import com.ttt.question.Question;
+import com.ttt.form.component.TTTLabel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class QuestionForm extends JFrame {
 
