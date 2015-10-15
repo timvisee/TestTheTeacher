@@ -16,11 +16,11 @@ public class QuestionForm extends JFrame {
     private App app;
 
     /** The question label. */
-    private JLabel lblQuestion = new JLabel("<Question>");
+    private TTTLabel lblQuestion = new TTTLabel("<Question>");
     /** The answer buttons. */
     private JButton[] answerBtns = new JButton[ANSWER_COUNT];
     /** The answer labels. */
-    private JLabel[] answerLbls = new JLabel[ANSWER_COUNT];
+    private TTTLabel[] answerLbls = new TTTLabel[ANSWER_COUNT];
 
     /**
      * Constructor.
@@ -113,7 +113,7 @@ public class QuestionForm extends JFrame {
         // Create and add answer labels to the answers panel
         for(int i = 0; i < ANSWER_COUNT; i++) {
             // Create the label
-            answerLbls[i] = new JLabel("<answer " + i + ">");
+            answerLbls[i] = new TTTLabel("<answer " + i + ">");
 
             // Configure the label placement
             c.fill = GridBagConstraints.HORIZONTAL;
