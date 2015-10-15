@@ -97,10 +97,10 @@ public class App {
         this.questions.add(new Question(
                 "Wat komt hier uit? 42,5 % 2,1?",
                 new String[]{
-                        "0,5",
                         "0.5",
-                        "1",
-                        "1.0"
+                        "1.0",
+                        "1.25",
+                        "error"
                 },
                 0));
         this.questions.add(new Question(
