@@ -80,8 +80,8 @@ public class App {
 
         // Add the first question
         this.questions.add(new Question(
-                "Welk volgende types zijn geldig in Java?",
-                new String[] {
+                "<html><b>Welk volgende types zijn geldig in Java?</b>",
+                new String[]{
                         "int, string, Double, Boolean",
                         "boolean, int, String, double",
                         "String, Int, double, boolean",
@@ -89,9 +89,9 @@ public class App {
                 },
                 1));
         this.questions.add(new Question(
-                "<html>Wat is de waarde van a?<br />" +
-                        StringUtils.indentHtmlSpaces(4) + "int a = (int) 19.6",
-                new String[] {
+                "<html><b>Wat is de waarde van a?</b><br />" +
+                        StringUtils.indentHtmlSpaces(4) + "int a =(int)19,6",
+                new String[]{
                         "19",
                         "19.6",
                         "20",
@@ -99,9 +99,9 @@ public class App {
                 },
                 0));
         this.questions.add(new Question(
-                "<html>Wat komt hier uit?<br />" +
-                        "(int) (24.768 * 100) / 100",
-                new String[] {
+                "<html><b>Wat komt hier uit?</b><br />" +
+                        "(int)(24.768 * 100) / 100?",
+                new String[]{
                         "25",
                         "24.76",
                         "24",
@@ -109,9 +109,9 @@ public class App {
                 },
                 2));
         this.questions.add(new Question(
-                "<html>Wat komt hier uit?<br />" +
-                        "42.5 % 2.1?",
-                new String[] {
+                "<html><b>Wat komt hier uit?</b><br />" +
+                        "42,5 % 2,1?",
+                new String[]{
                         "0.5",
                         "1.0",
                         "1.25",
@@ -119,8 +119,8 @@ public class App {
                 },
                 0));
         this.questions.add(new Question(
-                "<html>Wat komt hier uit?<br />" +
-                        StringUtils.indentHtmlSpaces(4) + "for(int i = 1; i < 10; i += 2) {<br />" +
+                "<html><b>Wat komt hier uit?</b><br />" +
+                        StringUtils.indentHtmlSpaces(4) + "for (int i = 1; i < 10; i += 2) {<br />" +
                         StringUtils.indentHtmlSpaces(8) + "System.out.printf(\"%1d\", i);<br />" +
                         StringUtils.indentHtmlSpaces(4) + "}",
                 new String[] {
@@ -131,8 +131,8 @@ public class App {
                 },
                 1));
         this.questions.add(new Question(
-                "<html>vraag 6",
-                new String[] {
+                "<html><b>vraag 6</b>",
+                new String[]{
                         "0",
                         "1",
                         "2",
@@ -198,8 +198,9 @@ public class App {
         // Print the answer in the console
         System.out.println("Answered: " + getCurrentQuestion().getAnswer(i));
 
-        // Go to the next question if the answer is correct
-        if (getCurrentQuestion().isCorrectAnswerIndex(i))
+
+        if (getCurrentQuestion().isCorrectAnswerIndex(i)) {
+
             nextQuestion();
     }
 }
