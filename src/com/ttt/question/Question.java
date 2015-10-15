@@ -26,7 +26,7 @@ public class Question {
     /**
      * Constructor.
      *
-     * @param question Quetion.
+     * @param question Question.
      * @param answers Four answers in a list.
      * @param correctAnswer The index of the correct answer.
      */
