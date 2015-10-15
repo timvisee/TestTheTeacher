@@ -168,5 +168,8 @@ public class QuestionForm extends JFrame {
 
         // Pack the frame
         pack();
+
+        // Force the whole frame to repaint, to prevent graphical artifacts on some operating systems
+        this.repaint();
     }
 }
