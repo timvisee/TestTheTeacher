@@ -28,11 +28,11 @@ public class QuestionForm extends JFrame {
     private App app;
 
     /** The question label. */
-    private TTTLabel lblQuestion = new TTTLabel("<Question>");
+    private TTTLabel questionLabel = new TTTLabel("<question>");
     /** The answer buttons. */
-    private JButton[] answerBtns = new JButton[ANSWER_COUNT];
+    private JButton[] answerButtons = new JButton[ANSWER_COUNT];
     /** The answer labels. */
-    private TTTLabel[] answerLbls = new TTTLabel[ANSWER_COUNT];
+    private TTTLabel[] answerLabels = new TTTLabel[ANSWER_COUNT];
 
     /**
      * Constructor.
@@ -88,11 +88,10 @@ public class QuestionForm extends JFrame {
         c.gridy = 0;
         c.insets = new Insets(3, 5, 15, 5);
         c.weightx = 1.0;
-        lblQuestion.setText("<question>");
-        lblQuestion.setFixedWidth(350);
-        lblQuestion.setFixedHeight(55);
-        lblQuestion.setVerticalAlignment(SwingConstants.TOP);
-        pnlQuestion.add(lblQuestion, c);
+        questionLabel.setFixedWidth(350);
+        questionLabel.setFixedHeight(55);
+        questionLabel.setVerticalAlignment(SwingConstants.TOP);
+        pnlQuestion.add(questionLabel, c);
 
         // Configure the placement of the questions panel and add it to the main panel
         c.gridx = 0;
@@ -110,7 +109,7 @@ public class QuestionForm extends JFrame {
             final int iFinal = i;
 
             // Create the buttons
-            answerBtns[i] = new JButton(String.valueOf((char) ('A' + i))); // A, B, C, D ...
+            answerButtons[i] = new JButton(String.valueOf((char) ('A' + i))); // A, B, C, D ...
 
             // Configure the button placement
             c.gridx = 0;
@@ -119,16 +118,16 @@ public class QuestionForm extends JFrame {
             c.weightx = 0.0;
 
             // Add the button
-            answersPnl.add(answerBtns[i], c);
+            answersPnl.add(answerButtons[i], c);
 
             // Create an action listener for the button
-            answerBtns[i].addActionListener(e -> app.selectedAnswer(iFinal));
+            answerButtons[i].addActionListener(e -> app.selectedAnswer(iFinal));
         }
 
         // Create and add answer labels to the answers panel
         for(int i = 0; i < ANSWER_COUNT; i++) {
             // Create the label
-            answerLbls[i] = new TTTLabel("<answer " + i + ">");
+            answerLabels[i] = new TTTLabel("<answer " + i + ">");
 
             // Configure the label placement
             c.fill = GridBagConstraints.HORIZONTAL;
@@ -138,7 +137,7 @@ public class QuestionForm extends JFrame {
             c.weightx = 1.0;
 
             // Add the answer label to the panel
-            answersPnl.add(answerLbls[i], c);
+            answersPnl.add(answerLabels[i], c);
         }
 
         // Configure the answers panel placement and add it to the main frame
@@ -161,11 +160,11 @@ public class QuestionForm extends JFrame {
      */
     public void setQuestion(Question question) {
         // Set the question label
-        lblQuestion.setText(question.getQuestion());
+        questionLabel.setText(question.getQuestion());
 
         // Set the labels
         for(int i = 0; i < ANSWER_COUNT; i++)
-            answerLbls [i] .setText(question.getAnswer(i));
+            answerLabels[i] .setText(question.getAnswer(i));
 
         // Pack the frame
         pack();
