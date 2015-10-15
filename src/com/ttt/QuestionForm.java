@@ -107,12 +107,7 @@ public class QuestionForm extends JFrame {
             answersPnl.add(answerBtns[i], c);
 
             // Create an action listener for the button
-            answerBtns[i].addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    app.selectedAnswer(iFinal);
-                }
-            });
+            answerBtns[i].addActionListener(e -> app.selectedAnswer(iFinal));
         }
 
         // Create and add answer labels to the answers panel
