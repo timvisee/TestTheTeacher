@@ -1,5 +1,6 @@
 package com.ttt;
 
+import com.ttt.util.StringUtils;
 import com.ttt.util.WindowUtils;
 
 import java.util.ArrayList;
@@ -104,9 +105,9 @@ public class App {
                 0));
         this.questions.add(new Question(
                 "<html>Wat komt hier uit?<br />" +
-                        "    for (int i = 1; i < 10; i += 2) {<br />" +
-                        "      System.out.printf(\"%1d\", i);<br />" +
-                        "    }",
+                        StringUtils.indentHtmlSpaces(4) + "for (int i = 1; i < 10; i += 2) {<br />" +
+                        StringUtils.indentHtmlSpaces(8) + "System.out.printf(\"%1d\", i);<br />" +
+                        StringUtils.indentHtmlSpaces(4) + "}",
                 new String[]{
                         "123456789",
                         "13579",
