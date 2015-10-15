@@ -76,7 +76,9 @@ public class QuestionForm extends JFrame {
         c.gridy = 0;
         c.insets = new Insets(3, 5, 15, 5);
         c.weightx = 1.0;
-        lblQuestion.setText("Question");
+        lblQuestion.setText("<question>");
+        lblQuestion.setSize(new Dimension(lblQuestion.getPreferredSize().width, 500));
+        lblQuestion.setSize
         pnlQuestion.add(lblQuestion, c);
 
         // Configure the placement of the questions panel and add it to the main panel
@@ -113,7 +115,7 @@ public class QuestionForm extends JFrame {
         // Create and add answer labels to the answers panel
         for(int i = 0; i < ANSWER_COUNT; i++) {
             // Create the label
-            answerLbls[i] = new JLabel("Answer " + i);
+            answerLbls[i] = new JLabel("<answer " + i + ">");
 
             // Configure the label placement
             c.fill = GridBagConstraints.HORIZONTAL;

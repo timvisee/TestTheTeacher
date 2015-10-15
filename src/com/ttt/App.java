@@ -77,7 +77,8 @@ public class App {
                 },
                 1));
         this.questions.add(new Question(
-                "Wat is de waarde van a? int a =(int)19,6",
+                "<html>Wat is de waarde van a?<br />" +
+                        StringUtils.indentHtmlSpaces(4) + "int a =(int)19,6",
                 new String[]{
                         "19",
                         "19,6",
@@ -86,7 +87,8 @@ public class App {
                 },
                 0));
         this.questions.add(new Question(
-                " Wat komt hier uit? (int)(24.768 * 100) / 100?",
+                "<html>Wat komt hier uit?<br />" +
+                        "(int)(24.768 * 100) / 100?",
                 new String[]{
                         "25",
                         "24,76",
@@ -95,7 +97,8 @@ public class App {
                 },
                 2));
         this.questions.add(new Question(
-                "Wat komt hier uit? 42,5 % 2,1?",
+                "<html>Wat komt hier uit?<br />" +
+                        "42,5 % 2,1?",
                 new String[]{
                         "0.5",
                         "1.0",
