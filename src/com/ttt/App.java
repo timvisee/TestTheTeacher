@@ -199,8 +199,8 @@ public class App {
         System.out.println("Answered: " + getCurrentQuestion().getAnswer(i));
 
 
-        if (getCurrentQuestion().isCorrectAnswerIndex(i)) {
-
+        // Go to the next question if the answer is correct
+        if(getCurrentQuestion().isCorrectAnswerIndex(i))
             nextQuestion();
     }
 }
