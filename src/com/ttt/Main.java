@@ -12,6 +12,12 @@ package com.ttt;
 
 public class Main {
 
+    /**
+     * Main method.
+     * This method starts an application instance.
+     *
+     * @param args Startup arguments.
+     */
     public static void main(String[] args) {
 	    // Construct the application
         App app = new App(false);
