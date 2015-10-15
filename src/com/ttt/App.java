@@ -81,62 +81,66 @@ public class App {
         // Add the first question
         this.questions.add(new Question(
                 "<html><b>Welk volgende types zijn geldig in Java?</b>",
-                new String[]{
-                        "int, string, Double, Boolean",
-                        "boolean, int, String, double",
-                        "String, Int, double, boolean",
-                        "double, boolean, String, Int"
+                new String[] {
+                        "<html>int, string, Double, Boolean",
+                        "<html>boolean, int, String, double",
+                        "<html>String, Int, double, boolean",
+                        "<html>double, boolean, String, Int"
                 },
                 1));
         this.questions.add(new Question(
-                "<html><b>Wat is de waarde van a?</b><br />" +
-                        StringUtils.indentHtmlSpaces(4) + "int a =(int)19,6",
-                new String[]{
-                        "19",
-                        "19.6",
-                        "20",
-                        "18"
+                "<html><b>Wat is de waarde van <i>a</i>?</b><br />" +
+                        "<br />" +
+                        StringUtils.indentHtmlSpaces(4) + "int a = (int) 19.6",
+                new String[] {
+                        "<html>19",
+                        "<html>19.6",
+                        "<html>20",
+                        "<html>18"
                 },
                 0));
         this.questions.add(new Question(
                 "<html><b>Wat komt hier uit?</b><br />" +
-                        "(int)(24.768 * 100) / 100?",
-                new String[]{
-                        "25",
-                        "24.76",
-                        "24",
-                        "24.7"
+                        "<br />" +
+                        StringUtils.indentHtmlSpaces(4) + "(int) (24.768 * 100) / 100",
+                new String[] {
+                        "<html>25",
+                        "<html>24.76",
+                        "<html>24",
+                        "<html>24.7"
                 },
                 2));
         this.questions.add(new Question(
                 "<html><b>Wat komt hier uit?</b><br />" +
-                        "42,5 % 2,1?",
-                new String[]{
-                        "0.5",
-                        "1.0",
-                        "1.25",
-                        "<html><i>Error</i>"
+                        "<br />" +
+                        StringUtils.indentHtmlSpaces(4) + "42.5 % 2.1",
+                new String[] {
+                        "<html>0.5",
+                        "<html>1.0",
+                        "<html>1.25",
+                        "<html><i>Deze expressie geeft een error</i>"
                 },
                 0));
         this.questions.add(new Question(
                 "<html><b>Wat komt hier uit?</b><br />" +
-                        StringUtils.indentHtmlSpaces(4) + "for (int i = 1; i < 10; i += 2) {<br />" +
+                        "<br />" +
+                        StringUtils.indentHtmlSpaces(4) + "for(int i = 1; i < 10; i += 2) {<br />" +
                         StringUtils.indentHtmlSpaces(8) + "System.out.printf(\"%1d\", i);<br />" +
                         StringUtils.indentHtmlSpaces(4) + "}",
                 new String[] {
-                        "123456789",
-                        "13579",
-                        "2468",
-                        "<html><i>Geen van de bovenstaande"
+                        "<html>123456789",
+                        "<html>13579",
+                        "<html>2468",
+                        "<html><i>Geen van de bovenstaande</i>"
                 },
                 1));
         this.questions.add(new Question(
-                "<html><b>vraag 6</b>",
-                new String[]{
-                        "0",
-                        "1",
-                        "2",
-                        "3"
+                "<html><b>Vraag 6?</b>",
+                new String[] {
+                        "<html>Antwoord 0",
+                        "<html>Antwoord 1",
+                        "<html>Antwoord 2",
+                        "<html>Antwoord 3"
                 },
                 1));
     }
@@ -197,7 +201,6 @@ public class App {
     public void selectedAnswer(int i) {
         // Print the answer in the console
         System.out.println("Answered: " + getCurrentQuestion().getAnswer(i));
-
 
         // Go to the next question if the answer is correct
         if(getCurrentQuestion().isCorrectAnswerIndex(i))
