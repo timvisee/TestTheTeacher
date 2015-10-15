@@ -93,6 +93,8 @@ public class QuestionForm extends JFrame {
         c.weightx = 1.0;
         questionLabel.setFixedWidth(350);
         questionLabel.setFixedHeight(55);
+        questionLabel.setResizeWidthIfLarger(true);
+        questionLabel.setResizeHeightIfLarger(true);
         questionLabel.setVerticalAlignment(SwingConstants.TOP);
         pnlQuestion.add(questionLabel, c);
 

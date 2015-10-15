@@ -19,6 +19,10 @@ public class TTTLabel extends JLabel {
     private int fixedWidth = 0;
     /** A fixed JLabel height. */
     private int fixedHeight = 0;
+    /** Resize the width if the component width is larger than the fixed width. */
+    private boolean resizeWidthIfLarger = false;
+    /** Resize the height if the component height is larger than the fixed height. */
+    private boolean resizeHeightIfLarger = false;
 
     /**
      * Constructor.
@@ -45,6 +49,42 @@ public class TTTLabel extends JLabel {
      */
     public boolean hasFixedWidth() {
         return getFixedWidth() != 0;
+    }
+
+    /**
+     * Check whether the width of the label resizes if the label's width is larger than the fixed width.
+     *
+     * @return True if resizes, false if not.
+     */
+    public boolean isResizeWidthIfLarger() {
+        return resizeWidthIfLarger;
+    }
+
+    /**
+     * Set whether the width of the label resizes if the label's width is larger than the fixed width.
+     *
+     * @param resizeWidthIfLarger True to resize, false otherwise.
+     */
+    public void setResizeWidthIfLarger(boolean resizeWidthIfLarger) {
+        this.resizeWidthIfLarger = resizeWidthIfLarger;
+    }
+
+    /**
+     * Check whether the height of the label resizes if the label's height is larger than the fixed height.
+     *
+     * @return True if resizes, false if not.
+     */
+    public boolean isResizeHeightIfLarger() {
+        return resizeHeightIfLarger;
+    }
+
+    /**
+     * Set whether the height of the label resizes if the label's height is larger than the fixed height.
+     *
+     * @param resizeHeightIfLarger True to resize, false otherwise.
+     */
+    public void setResizeHeightIfLarger(boolean resizeHeightIfLarger) {
+        this.resizeHeightIfLarger = resizeHeightIfLarger;
     }
 
     /**
@@ -100,21 +140,30 @@ public class TTTLabel extends JLabel {
     @Override
     public Dimension getPreferredSize() {
         Dimension d = super.getPreferredSize();
-        d.setSize(hasFixedWidth() ? getFixedWidth() : d.getWidth(), hasFixedHeight() ? getFixedHeight() : d.getHeight());
+        d.setSize(
+                !hasFixedWidth() || (getFixedWidth() < d.getWidth() && resizeWidthIfLarger) ? d.getWidth() : getFixedWidth(),
+                !hasFixedHeight() || (getFixedHeight() < d.getHeight() && resizeHeightIfLarger) ? d.getHeight() : getFixedHeight()
+        );
         return d;
     }
 
     @Override
     public Dimension getMaximumSize() {
         Dimension d = super.getPreferredSize();
-        d.setSize(hasFixedWidth() ? getFixedWidth() : d.getWidth(), hasFixedHeight() ? getFixedHeight() : d.getHeight());
+        d.setSize(
+                !hasFixedWidth() || (getFixedWidth() < d.getWidth() && resizeWidthIfLarger) ? d.getWidth() : getFixedWidth(),
+                !hasFixedHeight() || (getFixedHeight() < d.getHeight() && resizeHeightIfLarger) ? d.getHeight() : getFixedHeight()
+        );
         return d;
     }
 
     @Override
     public Dimension getMinimumSize() {
         Dimension d = super.getPreferredSize();
-        d.setSize(hasFixedWidth() ? getFixedWidth() : d.getWidth(), hasFixedHeight() ? getFixedHeight() : d.getHeight());
+        d.setSize(
+                !hasFixedWidth() || (getFixedWidth() < d.getWidth() && resizeWidthIfLarger) ? d.getWidth() : getFixedWidth(),
+                !hasFixedHeight() || (getFixedHeight() < d.getHeight() && resizeHeightIfLarger) ? d.getHeight() : getFixedHeight()
+        );
         return d;
     }
 }
