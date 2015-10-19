@@ -231,11 +231,17 @@ public class App {
      * Load and show the next question.
      */
     public void nextQuestion() {
-        // Increase the current question index by one
-        currentQuestion++;
+        // TODO: Check whether there is a new question, THEN continue
 
-        // Show the next question in the frame
-        this.questionForm.setQuestion(getCurrentQuestion());
+        if(currentQuestion < questions.size() - 1) {
+            // Increase the current question index by one
+            currentQuestion++;
+
+            // Show the next question in the frame
+            this.questionForm.setQuestion(getCurrentQuestion());
+        } else {
+            System.out.println(" Go to next question");
+        }
     }
 
     /**
@@ -252,6 +258,7 @@ public class App {
             addScore();
         }
 
+        System.out.println("Uw score is: " + getScore());
         // Go to next question
         nextQuestion();
     }
