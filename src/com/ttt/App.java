@@ -15,6 +15,7 @@ import com.ttt.question.Question;
 import com.ttt.util.StringUtils;
 import com.ttt.util.WindowUtils;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -240,7 +241,7 @@ public class App {
             this.questionForm.setQuestion(getCurrentQuestion());
 
         } else {
-            System.out.println(" Go to next question");
+            JOptionPane.showMessageDialog(questionForm, "Uw score is: " + getScore());
         }
     }
 
