@@ -20,7 +20,7 @@ import java.awt.*;
 public class QuestionForm extends JFrame {
 
     /** Frame title. */
-    private static final String FORM_TITLE = App.APP_NAME;
+    private static final String FORM_TITLE = App.APP_NAME + " - Quiz";
     /** Number of answers to show. */
     private static final int ANSWER_COUNT = 4;
 
@@ -51,6 +51,7 @@ public class QuestionForm extends JFrame {
         createUIComponents();
 
         // Close application when closing form
+        // TODO: Should we keep this?
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         // Show the form

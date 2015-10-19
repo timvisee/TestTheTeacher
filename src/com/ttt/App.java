@@ -10,6 +10,7 @@
 
 package com.ttt;
 
+import com.ttt.form.MainForm;
 import com.ttt.form.QuestionForm;
 import com.ttt.question.Question;
 import com.ttt.util.StringUtils;
@@ -94,6 +95,10 @@ public class App {
 
         // Add all questions
         addQuestions();
+
+        // TODO: Test code!
+        MainForm form = new MainForm(this, true);
+        // TODO: Test code!
 
         // Create and open the question form
         this.questionForm = new QuestionForm(this, false);
