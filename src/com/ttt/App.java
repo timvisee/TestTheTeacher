@@ -231,14 +231,14 @@ public class App {
      * Load and show the next question.
      */
     public void nextQuestion() {
-        // TODO: Check whether there is a new question, THEN continue
-
+        // Check whether the current question is the last
         if(currentQuestion < questions.size() - 1) {
             // Increase the current question index by one
             currentQuestion++;
 
             // Show the next question in the frame
             this.questionForm.setQuestion(getCurrentQuestion());
+
         } else {
             System.out.println(" Go to next question");
         }
