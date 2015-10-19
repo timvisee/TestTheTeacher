@@ -295,6 +295,10 @@ public class App {
      * Show the question form.
      */
     public void showQuestionForm() {
+        // Show a status message
+        System.out.println("Showing the question form...");
+
+        // Show the question form, hide the others
         questionForm.setVisible(true);
         mainForm.setVisible(false);
     }
@@ -303,6 +307,10 @@ public class App {
      * Show the main form.
      */
     public void showMainForm(){
+        // Show a status message
+        System.out.println("Showing the main form...");
+
+        // Show the main form, hide the others
         questionForm.setVisible(false);
         mainForm.setVisible(true);
     }
