@@ -262,8 +262,10 @@ public class App {
             this.questionForm.setQuestion(getCurrentQuestion());
 
         } else {
+            // Show the current score to the player
             JOptionPane.showMessageDialog(questionForm, "Uw score is: " + getScore());
 
+            // Show the main form, hide the quiz form
             showMainForm();
         }
     }
