@@ -94,5 +94,4 @@ public class MainForm extends JFrame {
         // Pack the frame
         pack();
     }
-
 }

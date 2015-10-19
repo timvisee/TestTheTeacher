@@ -12,7 +12,9 @@ package com.ttt;
 
 import com.ttt.form.MainForm;
 import com.ttt.form.QuestionForm;
+import com.ttt.form.QuizManagerForm;
 import com.ttt.question.Question;
+import com.ttt.quiz.QuizManager;
 import com.ttt.util.StringUtils;
 import com.ttt.util.WindowUtils;
 
@@ -26,6 +28,11 @@ public class App {
      * App name.
      */
     public static final String APP_NAME = "Test The Teacher";
+
+    /**
+     * Quiz manager instance.
+     */
+    private QuizManager quizManager = new QuizManager();
 
     /**
      * List of all questions.
@@ -126,6 +133,9 @@ public class App {
 
         // Show the main form
         this.mainForm.setVisible(true);
+
+        // TODO: Test for the question manager form
+        QuizManagerForm form = new QuizManagerForm(this, true);
     }
 
     /**
@@ -138,7 +148,7 @@ public class App {
         // Add the first question
         this.questions.add(new Question(
                 "<b>Welk volgende types zijn geldig in Java?</b>",
-                new String[] {
+                new String[]{
                         "int, string, Double, Boolean",
                         "boolean, int, String, double",
                         "String, Int, double, boolean",
@@ -191,6 +201,15 @@ public class App {
                         "<i>Geen van de bovenstaande</i>"
                 },
                 1));
+    }
+
+    /**
+     * Get the quiz manager instance.
+     *
+     * @return Quiz manager instance.
+     */
+    public QuizManager getQuizManager() {
+        return this.quizManager;
     }
 
     /**
@@ -268,11 +287,17 @@ public class App {
         nextQuestion();
     }
 
+    /**
+     * Show the question form.
+     */
     public void showQuestionForm() {
         questionForm.setVisible(true);
         mainForm.setVisible(false);
     }
 
+    /**
+     * Show the main form.
+     */
     public void showMainForm(){
         questionForm.setVisible(false);
         mainForm.setVisible(true);
