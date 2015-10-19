@@ -58,6 +58,7 @@ public class App {
         this.score = score;
     }
     public void addScore(){
+        this.score++;
 
     }
     /**
@@ -226,8 +227,11 @@ public class App {
         // Print the answer in the console
         System.out.println("Answered: " + getCurrentQuestion().getAnswer(i));
 
-        // Go to the next question if the answer is correct
-        if(getCurrentQuestion().isCorrectAnswerIndex(i))
-            nextQuestion();
+        // increase the score if answer is correct
+        if(getCurrentQuestion().isCorrectAnswerIndex(i)) {
+            addScore();
+        }
+        // go to next question
+        nextQuestion();
     }
 }
