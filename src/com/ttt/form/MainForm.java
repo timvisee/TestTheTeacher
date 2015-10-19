@@ -26,6 +26,9 @@ public class MainForm extends JFrame {
     /** The question label. */
     private JLabel mainLabel = new JLabel("<html><b>Welcome to our awesome quiz app!</b>");
 
+    private JButton startQuizButton = new JButton("start");
+    private JButton createQuizButton = new JButton("Create quiz");
+
     /**
      * Constructor.
      *
@@ -54,31 +57,32 @@ public class MainForm extends JFrame {
      * Create all UI components for the frame.
      */
     private void createUIComponents() {
-        // Construct a grid bag constraints object to specify the placement of all components
-        GridBagConstraints c = new GridBagConstraints();
-
+        JPanel mainPanel = new JPanel();
         // Set the frame layout
-        this.setLayout(new GridBagLayout());
-
-        // Set the frame size
-        // TODO: Set proper size here!
-        //this.setSize(400, 215);
+        mainPanel.setLayout(new GridLayout(3, 1, 5, 5));
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 
         // Make the frame non-resizable
-        this.setResizable(false);
+        this.setResizable(true);
 
         // Set the window location to the system's default
         this.setLocationByPlatform(true);
         this.setLocationRelativeTo(null);
 
         // Configure the placement of the questions label, and add it to the questions panel
-        add(mainLabel, c);
+        mainPanel.add(mainLabel);
 
         // TODO: Add a button to start the main quiz.
+        mainPanel.add(startQuizButton);
+        startQuizButton.addActionListener(e -> app.showQuestionForm());
 
         // TODO: Add a button to create custom quizzes.
+        mainPanel.add(createQuizButton);
+
+        add(mainPanel);
 
         // Pack the frame
         pack();
     }
+
 }
