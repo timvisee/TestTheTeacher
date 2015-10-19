@@ -35,11 +35,11 @@ public class App {
      */
     private int currentQuestion = 0;
 
+    private int score = 0;
     /**
      * The question form instance.
      */
     private QuestionForm questionForm;
-
     /**
      * Constructor.
      *
@@ -50,7 +50,16 @@ public class App {
         if (init)
             init();
     }
+    public int getScore() {
+        return score;
+    }
 
+    public void setScore(int score) {
+        this.score = score;
+    }
+    public void addScore(){
+
+    }
     /**
      * Initialize the application.
      */
