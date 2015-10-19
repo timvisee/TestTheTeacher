@@ -95,7 +95,7 @@ public class QuestionForm extends JFrame {
         questionLabel.setFixedHeight(55);
         questionLabel.setResizeWidthIfLarger(true);
         questionLabel.setResizeHeightIfLarger(true);
-        questionLabel.setVerticalAlignment(SwingConstants.TOP);
+        questionLabel.setVerticalAlignment(SwingConstants.CENTER);
         pnlQuestion.add(questionLabel, c);
 
         // Configure the placement of the questions panel and add it to the main panel
