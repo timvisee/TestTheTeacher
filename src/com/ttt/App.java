@@ -35,7 +35,11 @@ public class App {
      */
     private int currentQuestion = 0;
 
+    /**
+     * The current score. Number of correct answers.
+     */
     private int score = 0;
+
     /**
      * The question form instance.
      */
@@ -50,17 +54,32 @@ public class App {
         if (init)
             init();
     }
+
+    /**
+     * Get the current score.
+     *
+     * @return Score.
+     */
     public int getScore() {
         return score;
     }
 
+    /**
+     * Set the current score.
+     *
+     * @param score Current score.
+     */
     public void setScore(int score) {
         this.score = score;
     }
+
+    /**
+     * Increase the score by one.
+     */
     public void addScore(){
         this.score++;
-
     }
+
     /**
      * Initialize the application.
      */
@@ -227,11 +246,12 @@ public class App {
         // Print the answer in the console
         System.out.println("Answered: " + getCurrentQuestion().getAnswer(i));
 
-        // increase the score if answer is correct
+        // Increase the score if answer is correct
         if(getCurrentQuestion().isCorrectAnswerIndex(i)) {
             addScore();
         }
-        // go to next question
+
+        // Go to next question
         nextQuestion();
     }
 }
