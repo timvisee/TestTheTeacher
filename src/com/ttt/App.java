@@ -44,6 +44,7 @@ public class App {
      * The question form instance.
      */
     private QuestionForm questionForm;
+
     /**
      * Constructor.
      *
