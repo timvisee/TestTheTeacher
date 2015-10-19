@@ -54,8 +54,6 @@ public class App {
         // Initialize
         if (init)
             init();
-
-
     }
 
     /**
