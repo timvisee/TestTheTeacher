@@ -12,7 +12,6 @@ package com.ttt;
 
 import com.ttt.form.MainForm;
 import com.ttt.form.QuestionForm;
-import com.ttt.form.QuizManagerForm;
 import com.ttt.question.Question;
 import com.ttt.quiz.QuizManager;
 import com.ttt.util.StringUtils;
@@ -135,7 +134,7 @@ public class App {
         this.mainForm.setVisible(true);
 
         // TODO: Test for the question manager form
-        QuizManagerForm form = new QuizManagerForm(this, true);
+        //QuizManagerForm form = new QuizManagerForm(this, true);
     }
 
     /**
