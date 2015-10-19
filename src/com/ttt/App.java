@@ -244,6 +244,8 @@ public class App {
 
         } else {
             JOptionPane.showMessageDialog(questionForm, "Uw score is: " + getScore());
+
+            showMainForm();
         }
     }
 
@@ -265,7 +267,14 @@ public class App {
         // Go to next question
         nextQuestion();
     }
+
     public void showQuestionForm() {
-    questionForm.setVisible(true);
+        questionForm.setVisible(true);
+        mainForm.setVisible(false);
+    }
+
+    public void showMainForm(){
+        questionForm.setVisible(false);
+        mainForm.setVisible(true);
     }
 }
