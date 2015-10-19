@@ -121,9 +121,8 @@ public class App {
         // Start the application
         System.out.println("Starting " + App.APP_NAME + "...");
 
-        // Show the question form
-        System.out.println("Showing questions dialog...");
-        this.questionForm.setVisible(true);
+        // hide questionForm
+        this.questionForm.setVisible(false);
 
         // Show the main form
         this.mainForm.setVisible(true);
