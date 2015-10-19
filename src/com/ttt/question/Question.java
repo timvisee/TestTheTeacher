@@ -92,4 +92,13 @@ public class Question {
     public boolean isCorrectAnswerIndex(int i) {
         return getCorrectAnswerIndex() == i;
     }
+
+    /**
+     * Get the question representation as a string.
+     *
+     * @return Question as a string.
+     */
+    public String toString() {
+        return getQuestion(true);
+    }
 }
