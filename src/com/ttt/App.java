@@ -96,10 +96,6 @@ public class App {
         // Add all questions
         addQuestions();
 
-        // TODO: Test code!
-        MainForm form = new MainForm(this, true);
-        // TODO: Test code!
-
         // Create and open the question form
         this.questionForm = new QuestionForm(this, false);
 
@@ -108,6 +104,10 @@ public class App {
 
         // Application initialized, show a message
         System.out.println("Initialized " + App.APP_NAME + " successfully! Cave Johnson here!");
+
+        // TODO: Test code!
+        MainForm form = new MainForm(this, true);
+        // TODO: Test code!
     }
 
     /**
