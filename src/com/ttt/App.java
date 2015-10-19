@@ -282,7 +282,9 @@ public class App {
             addScore();
         }
 
-        System.out.println("Uw score is: " + getScore());
+        // Show the current score
+        System.out.println("Current score: " + getScore());
+
         // Go to next question
         nextQuestion();
     }
