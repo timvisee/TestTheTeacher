@@ -43,6 +43,11 @@ public class App {
     private int score = 0;
 
     /**
+     * The main form instance.
+     */
+    private MainForm mainForm;
+
+    /**
      * The question form instance.
      */
     private QuestionForm questionForm;
@@ -96,6 +101,9 @@ public class App {
         // Add all questions
         addQuestions();
 
+        // Initialize the main form
+        this.mainForm = new MainForm(this, false);
+
         // Create and open the question form
         this.questionForm = new QuestionForm(this, false);
 
@@ -104,10 +112,6 @@ public class App {
 
         // Application initialized, show a message
         System.out.println("Initialized " + App.APP_NAME + " successfully! Cave Johnson here!");
-
-        // TODO: Test code!
-        MainForm form = new MainForm(this, true);
-        // TODO: Test code!
     }
 
     /**
@@ -120,6 +124,9 @@ public class App {
         // Show the question form
         System.out.println("Showing questions dialog...");
         this.questionForm.setVisible(true);
+
+        // Show the main form
+        this.mainForm.setVisible(true);
     }
 
     /**
