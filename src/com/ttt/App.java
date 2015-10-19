@@ -185,15 +185,6 @@ public class App {
                         "<i>Geen van de bovenstaande</i>"
                 },
                 1));
-        this.questions.add(new Question(
-                "<b>Vraag 6?</b>",
-                new String[] {
-                        "Antwoord 0",
-                        "Antwoord 1",
-                        "Antwoord 2",
-                        "Antwoord 3"
-                },
-                1));
     }
 
     /**
