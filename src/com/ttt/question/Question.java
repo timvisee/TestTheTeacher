@@ -16,6 +16,9 @@ import java.util.List;
 
 public class Question {
 
+    /** HTML prefix for returned HTML values. */
+    public static final String HTML_PREFIX = "<html>";
+
     /** The question. */
     private String question;
     /** List of answers. */
@@ -50,21 +53,24 @@ public class Question {
     /**
      * Get the question.
      *
+     * @param html True to return as HTML.
+     *
      * @return The question.
      */
-    public String getQuestion() {
-        return this.question;
+    public String getQuestion(boolean html) {
+        return (html ? HTML_PREFIX : "") + this.question;
     }
 
     /**
      * Get the answer by it's index.
      *
      * @param i Answer index.
+     * @param html True to return as HTML.
      *
      * @return The answer.
      */
-    public String getAnswer(int i) {
-        return this.answers.get(i);
+    public String getAnswer(int i, boolean html) {
+        return (html ? HTML_PREFIX : "") + this.answers.get(i);
     }
 
     /**

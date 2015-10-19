@@ -165,11 +165,11 @@ public class QuestionForm extends JFrame {
      */
     public void setQuestion(Question question) {
         // Set the question label
-        questionLabel.setText(question.getQuestion());
+        questionLabel.setText(question.getQuestion(true));
 
         // Set the labels
         for(int i = 0; i < ANSWER_COUNT; i++)
-            answerLabels[i] .setText(question.getAnswer(i));
+            answerLabels[i] .setText(question.getAnswer(i, true));
 
         // Pack the frame
         pack();
