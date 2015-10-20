@@ -120,11 +120,12 @@ public class QuizManagerForm extends JFrame {
         listPnl.setLayout(new BorderLayout());
 
         // Create a list model for the quizzes
-        // TODO: Add quizzes here instead of questions!
+        // TODO: Dynamically add all quizzes!
         DefaultListModel<Question> questionModel = new DefaultListModel<>();
-        questionModel.addElement(this.app.getQuestionById(0));
-        questionModel.addElement(this.app.getQuestionById(1));
-        questionModel.addElement(this.app.getQuestionById(2));
+
+        // Add all quizzes
+        for(int i = 0; i < this.app.getQuestionCount(); i++)
+            questionModel.addElement(this.app.getQuestion(i));
 
         // Create the list
         JList<Question> quizList = new JList<>(questionModel);
