@@ -372,7 +372,7 @@ public class QuestionEditForm extends JDialog {
         // Only ask to save if there are any unsaved changes
         if(hasUnsavedChanges()) {
             // Ask whether the user wants to save the questions
-            switch(JOptionPane.showConfirmDialog(this, "Wilt u deze vraag opslaan?", "Vraag", JOptionPane.YES_NO_CANCEL_OPTION)) {
+            switch(JOptionPane.showConfirmDialog(this, "Wilt ik de wijzigingen opslaan?", "Vraag gewijzigd", JOptionPane.YES_NO_CANCEL_OPTION)) {
             case JOptionPane.YES_OPTION:
                 // Save the changes
                 if(!applyQuestion())
