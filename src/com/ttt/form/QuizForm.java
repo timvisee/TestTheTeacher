@@ -17,6 +17,8 @@ import com.ttt.quiz.Quiz;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
@@ -33,7 +35,7 @@ public class QuizForm extends JDialog {
     private App app;
 
     /** The quiz manager label. */
-    private JLabel mainLabel = new JLabel("<html>Create, manage or delete a question using sing the buttons on the side.");
+    private JLabel mainLabel = new JLabel("<html>Maak, wijzig of verwijder een vraag. Gebruik de knoppen aan de rechterzijde.");
 
     /**
      * Question list model instance.
@@ -237,6 +239,16 @@ public class QuizForm extends JDialog {
         // Update the button panel on selection change
         this.questionList.addListSelectionListener(e -> updateButtons());
 
+        this.questionList.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                if (evt.getClickCount() == 2) {
+                    editQuiz();
+                }
+            }
+
+        });
+
+
         // Create a scroll pane with the quiz list and return it
         return new JScrollPane(this.questionList);
     }
@@ -263,11 +275,11 @@ public class QuizForm extends JDialog {
         buttonPanel.setLayout(new GridLayout(5, 1, 10, 10));
 
         // Create the buttons to add to the panel
-        this.createButton = new JButton("Create");
-        this.editButton = new JButton("Edit");
-        this.moveUpButton = new JButton("Move up");
-        this.moveDownButton = new JButton("Move down");
-        this.deleteButton = new JButton("Delete");
+        this.createButton = new JButton("Toevoegen");
+        this.editButton = new JButton("Wijzigen");
+        this.moveUpButton = new JButton("Omhoog");
+        this.moveDownButton = new JButton("Omlaag");
+        this.deleteButton = new JButton("Verwijder");
 
         // Add the buttons to the panel
         buttonPanel.add(createButton);
@@ -297,8 +309,8 @@ public class QuizForm extends JDialog {
 
         // Create the buttons to add to the panel
         JButton okButton = new JButton("Ok");
-        JButton applyButton = new JButton("Apply");
-        JButton cancelButton = new JButton("Cancel");
+        JButton applyButton = new JButton("Toepassen");
+        JButton cancelButton = new JButton("Annuleren");
         okButton.addActionListener(e -> {
             // Save the questions
             applyQuestions();
@@ -478,7 +490,7 @@ public class QuizForm extends JDialog {
             return;
 
         // Ask whether the user wants to delete the questions
-        switch(JOptionPane.showConfirmDialog(this, "Are you sure you want to delete the selected questions? This action can't be reverted.", "Delete questions", JOptionPane.YES_NO_OPTION)) {
+        switch(JOptionPane.showConfirmDialog(this, "Weet u zeker dat u de geselecteerde vragen wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.", "Verwijder vragen", JOptionPane.YES_NO_OPTION)) {
             case JOptionPane.NO_OPTION:
             case JOptionPane.CANCEL_OPTION:
             case JOptionPane.CLOSED_OPTION:
@@ -519,7 +531,7 @@ public class QuizForm extends JDialog {
     public void closeFrame() {
         // Ask whether the user wants to save the questions
         // TODO: Set frame instance
-        switch(JOptionPane.showConfirmDialog(null, "Would you like to save the questions?", "Closing quiz manager", JOptionPane.YES_NO_CANCEL_OPTION)) {
+        switch(JOptionPane.showConfirmDialog(null, "Wilt u de vragen opslaan?", "Sluit quiz manager", JOptionPane.YES_NO_CANCEL_OPTION)) {
             case JOptionPane.YES_OPTION:
                 // Save the changes
                 applyQuestions();

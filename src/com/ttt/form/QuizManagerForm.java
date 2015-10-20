@@ -16,6 +16,8 @@ import com.ttt.quiz.Quiz;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
@@ -225,6 +227,14 @@ public class QuizManagerForm extends JDialog {
 
         // Update the button panel on selection change
         this.quizList.addListSelectionListener(e -> updateButtons());
+        this.quizList.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                if (evt.getClickCount() == 2) {
+                 editQuiz();
+                }
+            }
+
+        });
 
         // Create a scroll pane with the quiz list and return it
         return new JScrollPane(this.quizList);
@@ -511,7 +521,7 @@ public class QuizManagerForm extends JDialog {
     public void closeFrame() {
         // Ask whether the user wants to save the quizzes
         // TODO: Set frame instance
-        switch(JOptionPane.showConfirmDialog(null, "Would you like to save the quizzes?", "Closing quiz manager", JOptionPane.YES_NO_CANCEL_OPTION)) {
+        switch(JOptionPane.showConfirmDialog(null, "Wilt u uw quiz opslaan", "Sluit quiz manager", JOptionPane.YES_NO_CANCEL_OPTION)) {
             case JOptionPane.YES_OPTION:
                 // Save the changes
                 applyQuizzes();
