@@ -62,7 +62,7 @@ public class QuizManagerForm extends JFrame {
         this.setLayout(new GridBagLayout());
 
         // Set the frame size
-        this.setSize(325, 400);
+        this.setSize(350, 400);
 
         // Make the frame non-resizable
         this.setResizable(true);
@@ -79,7 +79,7 @@ public class QuizManagerForm extends JFrame {
         pnlMain.add(mainLabel, c);
 
         // Create the quiz manager list and add it to the main panel
-        JComponent quizList = createQuizList();
+        JScrollPane quizList = createQuizList();
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 0;
         c.gridy = 1;
@@ -88,9 +88,23 @@ public class QuizManagerForm extends JFrame {
         c.insets = new Insets(0, 0, 0, 0);
         pnlMain.add(quizList, c);
 
+        // Create a button panel and add it to the list
+        JPanel buttonPanel = createButtonPanel();
+        c.fill = GridBagConstraints.NONE;
+        c.gridx = 1;
+        c.gridy = 1;
+        c.weightx = 0.0;
+        c.weighty = 0.0;
+        c.insets = new Insets(0, 10, 0, 0);
+        c.anchor = GridBagConstraints.NORTH;
+        pnlMain.add(buttonPanel, c);
+
         // Configure the main panel placement and add it to the frame
+        c.fill = GridBagConstraints.BOTH;
         c.gridx = 0;
         c.gridy = 0;
+        c.weightx = 1.0;
+        c.weighty = 1.0;
         c.insets = new Insets(10, 10, 10, 10);
         this.add(pnlMain, c);
 
@@ -99,13 +113,12 @@ public class QuizManagerForm extends JFrame {
         this.setLocationRelativeTo(null);
     }
 
-    // TODO: Handle quizzes, instead of questions here!
     /**
      * Create a list to manage the quizzes in.
      *
-     * @return Panel with the list.
+     * @return Scroll pane with list.
      */
-    public JComponent createQuizList() {
+    public JScrollPane createQuizList() {
         // Create a list model for the quizzes
         // TODO: Dynamically add all quizzes!
         DefaultListModel<Question> questionModel = new DefaultListModel<>();
@@ -119,5 +132,33 @@ public class QuizManagerForm extends JFrame {
 
         // Create a scroll pane with the quiz list and return it
         return new JScrollPane(quizList);
+    }
+
+    /**
+     * Create the button panel to manage the quizzes.
+     *
+     * @return Button panel.
+     */
+    public JPanel createButtonPanel() {
+        // Create a panel to put the buttons in and set it's layout
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(5, 1, 10, 10));
+
+        // Create the buttons to add to the panel
+        JButton createButton = new JButton("Create");
+        JButton editButton = new JButton("Edit");
+        JButton moveUpButton = new JButton("Move up");
+        JButton moveDownButton = new JButton("Move down");
+        JButton deleteButton = new JButton("Delete");
+
+        // Add the buttons to the panel
+        buttonPanel.add(createButton);
+        buttonPanel.add(editButton);
+        buttonPanel.add(moveUpButton);
+        buttonPanel.add(moveDownButton);
+        buttonPanel.add(deleteButton);
+
+        // Return the button panel
+        return buttonPanel;
     }
 }
