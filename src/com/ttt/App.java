@@ -84,9 +84,6 @@ public class App {
         // Use the system's GUI look and feel, not the Java one
         WindowUtils.useNativeLookAndFeel();
 
-        // Set the current quiz
-        setCurrentQuiz(getMainQuiz());
-
         // Add all questions
         setUpMainQuiz();
 
@@ -95,6 +92,9 @@ public class App {
 
         // Create and open the question form
         this.questionForm = new QuestionForm(this, false);
+
+        // Set the current quiz
+        setCurrentQuiz(getMainQuiz());
 
         // Show the first question in the frame
         this.questionForm.setQuestion(getCurrentQuestion());
@@ -124,6 +124,10 @@ public class App {
      * Set up the main quiz and add it's questions.
      */
     public void setUpMainQuiz() {
+        // Set the quiz name
+        // TODO: Move this line to a better place, and think of a better name!
+        this.mainQuiz.setName("Main quiz");
+
         // Clear the main quiz
         this.mainQuiz.clearQuestions();
 
@@ -200,7 +204,11 @@ public class App {
      * @param current The current quiz.
      */
     public void setCurrentQuiz(Quiz current) {
+        // Set the current quiz
         this.currentQuiz = current;
+
+        // Set the current quiz in the form
+        this.questionForm.setQuiz(current);
     }
 
     /**

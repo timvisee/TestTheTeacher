@@ -13,6 +13,7 @@ package com.ttt.form;
 import com.ttt.App;
 import com.ttt.question.Question;
 import com.ttt.form.component.TTTLabel;
+import com.ttt.quiz.Quiz;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,12 +21,21 @@ import java.awt.*;
 public class QuestionForm extends JFrame {
 
     /** Frame title. */
-    private static final String FORM_TITLE = App.APP_NAME + " - Quiz";
+    private static final String FORM_TITLE = App.APP_NAME;
     /** Number of answers to show. */
     private static final int ANSWER_COUNT = 4;
 
     /** App instance. */
     private App app;
+
+    /**
+     * Current quiz instance.
+     */
+    private Quiz currentQuiz;
+    /**
+     * Current question instance.
+     */
+    private Question currentQuestion;
 
     /** The question label. */
     private TTTLabel questionLabel = new TTTLabel("<question>");
@@ -177,5 +187,27 @@ public class QuestionForm extends JFrame {
 
         // Force the whole frame to repaint, to prevent graphical artifacts on some operating systems
         this.repaint();
+    }
+
+    /**
+     * Get the current quiz instance.
+     *
+     * @return Quiz.
+     */
+    public Quiz getQuiz() {
+        return this.currentQuiz;
+    }
+
+    /**
+     * Set the current quiz instance.
+     *
+     * @param quiz Quiz.
+     */
+    public void setQuiz(Quiz quiz) {
+        // Set the current quiz
+        this.currentQuiz = quiz;
+
+        // Set the frame title
+        this.setTitle(FORM_TITLE + " - " + quiz.getName());
     }
 }
