@@ -371,9 +371,11 @@ public class QuizForm extends JDialog {
         // Enable the edit button if one item is selected
         editButton.setEnabled(selected == 1);
 
-        // Enable the move up, move down, and delete button if one or more items are selected
-        moveUpButton.setEnabled(selected > 0);
-        moveDownButton.setEnabled(selected > 0);
+        // Enable the move buttons if at least one quiz is selected and if the quizzes can move in that direction
+        moveUpButton.setEnabled(canMoveQuestionsUp());
+        moveDownButton.setEnabled(canMoveQuestionsDown());
+
+        // Enable the delete button if at least one quiz is selected
         deleteButton.setEnabled(selected > 0);
     }
 
@@ -442,6 +444,20 @@ public class QuizForm extends JDialog {
     }
 
     /**
+     * Check whether the selected questions can move up.
+     *
+     * @return True if they can move up, false otherwise.
+     */
+    public boolean canMoveQuestionsUp() {
+        // Make sure at least one quiz is selected
+        if(getSelectedCount() <= 0)
+            return false;
+
+        // Check whether the selected questions can move up, return the result
+        return canMoveQuestions(this.questionList.getSelectedIndices(), -1);
+    }
+
+    /**
      * Move the selected questions down.
      */
     public void moveQuestionsDown() {
@@ -465,6 +481,20 @@ public class QuizForm extends JDialog {
     }
 
     /**
+     * Check whether the selected questions can move down.
+     *
+     * @return True if they can move down, false otherwise.
+     */
+    public boolean canMoveQuestionsDown() {
+        // Make sure at least one quiz is selected
+        if(getSelectedCount() <= 0)
+            return false;
+
+        // Check whether the selected questions can move down, return the result
+        return canMoveQuestions(this.questionList.getSelectedIndices(), 1);
+    }
+
+    /**
      * Move the questions.
      *
      * @param questionIndexes Indexes of questions to move.
@@ -473,18 +503,8 @@ public class QuizForm extends JDialog {
      * @return True if any item was moved, false if not.
      */
     private boolean moveQuestions(int[] questionIndexes, int move) {
-        // Get the lowest and highest new index
-        int lowest = questionIndexes[0] + move;
-        int highest = questionIndexes[0] + move;
-
-        // Loop through the quiz indexes and update the lowest and highest values
-        for(int i = 1; i < questionIndexes.length; i++) {
-            lowest = Math.min(questionIndexes[i] + move, lowest);
-            highest = Math.max(questionIndexes[i] + move, highest);
-        }
-
-        // Make sure the questions can be moved to that position
-        if(lowest < 0 || highest >= this.questions.size())
+        // Make sure the questions can be moved
+        if(!canMoveQuestions(questionIndexes, move))
             return false;
 
         // Sort the array with indexes
@@ -505,6 +525,29 @@ public class QuizForm extends JDialog {
 
         // Return the result
         return true;
+    }
+
+    /**
+     * Check whether the specified questions can move to the specified relative position.
+     *
+     * @param questionIndexes Question indexes to move.
+     * @param move Relative move.
+     *
+     * @return True if they can move, false otherwise.
+     */
+    private boolean canMoveQuestions(int[] questionIndexes, int move) {
+        // Get the lowest and highest new index
+        int lowest = questionIndexes[0] + move;
+        int highest = questionIndexes[0] + move;
+
+        // Loop through the quiz indexes and update the lowest and highest values
+        for(int i = 1; i < questionIndexes.length; i++) {
+            lowest = Math.min(questionIndexes[i] + move, lowest);
+            highest = Math.max(questionIndexes[i] + move, highest);
+        }
+
+        // Make sure the questions can be moved to that position
+        return !(lowest < 0 || highest >= this.questions.size());
     }
 
     /**
