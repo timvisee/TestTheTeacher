@@ -356,6 +356,15 @@ public class App {
     }
 
     /**
+     * Get the main form instance.
+     *
+     * @return Main form.
+     */
+    public MainForm getMainForm() {
+        return this.mainForm;
+    }
+
+    /**
      * Show the main form.
      */
     public void showMainForm() {

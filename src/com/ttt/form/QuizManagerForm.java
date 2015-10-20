@@ -16,8 +16,10 @@ import com.ttt.quiz.Quiz;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class QuizManagerForm extends JFrame {
+public class QuizManagerForm extends JDialog {
 
     /** Frame title. */
     private static final String FORM_TITLE = App.APP_NAME + " - Quiz Manager";
@@ -29,6 +31,11 @@ public class QuizManagerForm extends JFrame {
     private JLabel mainLabel = new JLabel("<html>Create, manage or delete a custom quiz using the buttons on the side.");
 
     /**
+     * List of the quizzes being shown.
+     */
+    private List<Quiz> quizzes = new ArrayList<>();
+
+    /**
      * Constructor.
      *
      * @param app App instance.
@@ -36,17 +43,13 @@ public class QuizManagerForm extends JFrame {
      */
     public QuizManagerForm(App app, boolean show) {
         // Construct the form
-        super(FORM_TITLE);
+        super(app.getMainForm(), FORM_TITLE, true);
 
         // Store the app instance
         this.app = app;
 
         // Create the form UI
         createUIComponents();
-
-        // Close application when closing form
-        // TODO: Should we keep this?
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         // Show the form
         this.setVisible(show);
@@ -174,6 +177,7 @@ public class QuizManagerForm extends JFrame {
         buttonPanel.add(moveUpButton);
         buttonPanel.add(moveDownButton);
         buttonPanel.add(deleteButton);
+        createButton.addActionListener(e -> JOptionPane.showInputDialog(this, "Quiz name"));
 
         // Return the button panel
         return buttonPanel;
