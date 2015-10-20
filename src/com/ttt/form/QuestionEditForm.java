@@ -102,13 +102,7 @@ public class QuestionEditForm extends JDialog {
         c.gridy = 0;
         c.insets = new Insets(0, 0, 16, 0);
         c.weightx = 1.0;
-        // TODO: Set the textfield size
-        /*questionField.setFixedWidth(350);
-        questionField.setFixedHeight(55);
-        questionField.setResizeWidthIfLarger(true);
-        questionField.setResizeHeightIfLarger(true);
-        questionField.setVerticalAlignment(SwingCons8tants.CENTER);*/
-        pnlQuestion.add(questionField, c);
+        pnlQuestion.add(new JScrollPane(this.questionField), c);
 
         // Configure the placement of the questions panel and add it to the main panel
         c.gridx = 0;
