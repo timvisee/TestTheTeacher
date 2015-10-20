@@ -125,6 +125,11 @@ public class QuizManagerForm extends JDialog {
             public void windowDeactivated(WindowEvent e) { }
         });
 
+        // Set the frame sizes
+        this.setMinimumSize(new Dimension(275, 365));
+        this.setPreferredSize(new Dimension(325, 400));
+        this.setSize(new Dimension(325, 400));
+
         // Set the window location to the system's default
         this.setLocationByPlatform(true);
         this.setLocationRelativeTo(app.getMainForm());
@@ -142,9 +147,6 @@ public class QuizManagerForm extends JDialog {
 
         // Set the frame layout
         this.setLayout(new GridBagLayout());
-
-        // Set the frame size
-        this.setSize(325, 400);
 
         // Make the frame non-resizable
         this.setResizable(true);
