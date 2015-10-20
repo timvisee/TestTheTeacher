@@ -117,8 +117,8 @@ public class App {
         // Show the main form
         this.mainForm.setVisible(true);
 
-        // TODO: Test for the question manager form
-        QuizManagerForm form = new QuizManagerForm(this, true);
+
+
     }
 
     /**
@@ -135,7 +135,7 @@ public class App {
         // Add the first question
         this.mainQuiz.addQuestion(new Question(
                 "<b>Welk volgende types zijn geldig in Java?</b>",
-                new String[] {
+                new String[]{
                         "int, string, Double, Boolean",
                         "boolean, int, String, double",
                         "String, Int, double, boolean",
@@ -146,7 +146,7 @@ public class App {
                 "<b>Wat is de waarde van <i>a</i>?</b><br />" +
                         "<br />" +
                         StringUtils.indentHtmlSpaces(4) + "int a = (int) 19.6",
-                new String[] {
+                new String[]{
                         "19",
                         "19.6",
                         "20",
@@ -157,7 +157,7 @@ public class App {
                 "<b>Wat komt hier uit?</b><br />" +
                         "<br />" +
                         StringUtils.indentHtmlSpaces(4) + "(int) (24.768 * 100) / 100",
-                new String[] {
+                new String[]{
                         "25",
                         "24.76",
                         "24",
@@ -168,7 +168,7 @@ public class App {
                 "<b>Wat komt hier uit?</b><br />" +
                         "<br />" +
                         StringUtils.indentHtmlSpaces(4) + "42.5 % 2.1",
-                new String[] {
+                new String[]{
                         "0.5",
                         "1.0",
                         "1.25",
@@ -181,7 +181,7 @@ public class App {
                         StringUtils.indentHtmlSpaces(4) + "for(int i = 1; i < 10; i += 2) {<br />" +
                         StringUtils.indentHtmlSpaces(8) + "System.out.printf(\"%1d\", i);<br />" +
                         StringUtils.indentHtmlSpaces(4) + "}",
-                new String[] {
+                new String[]{
                         "123456789",
                         "13579",
                         "2468",
@@ -233,7 +233,7 @@ public class App {
     /**
      * Increase the score by one.
      */
-    public void addScore(){
+    public void addScore() {
         this.score++;
     }
 
@@ -306,7 +306,7 @@ public class App {
      */
     public void nextQuestion() {
         // Check whether the current question is the last
-        if(currentQuestion < getQuestionCount() - 1) {
+        if (currentQuestion < getQuestionCount() - 1) {
             // Increase the current question index by one
             currentQuestion++;
 
@@ -332,7 +332,7 @@ public class App {
         System.out.println("Answered: " + getCurrentQuestion().getAnswer(i, false));
 
         // Increase the score if answer is correct
-        if(getCurrentQuestion().isCorrectAnswerIndex(i)) {
+        if (getCurrentQuestion().isCorrectAnswerIndex(i)) {
             addScore();
         }
 
@@ -358,12 +358,18 @@ public class App {
     /**
      * Show the main form.
      */
-    public void showMainForm(){
+    public void showMainForm() {
         // Show a status message
         System.out.println("Showing the main form...");
 
         // Show the main form, hide the others
         mainForm.setVisible(true);
         questionForm.setVisible(false);
+    }
+
+    public void showQuizManagerForm() {
+        // show QuizManagerForm, hide other
+        new QuizManagerForm(this, true);
+
     }
 }
