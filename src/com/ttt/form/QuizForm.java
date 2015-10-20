@@ -11,6 +11,7 @@
 package com.ttt.form;
 
 import com.ttt.App;
+import com.ttt.question.Question;
 import com.ttt.quiz.Quiz;
 
 import javax.swing.*;
@@ -23,26 +24,26 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class QuizManagerForm extends JDialog {
+public class QuizForm extends JDialog {
 
     /** Frame title. */
-    private static final String FORM_TITLE = App.APP_NAME + " - Quiz Manager";
+    private static final String FORM_TITLE = App.APP_NAME + " - Quiz";
 
     /** App instance. */
     private App app;
 
     /** The quiz manager label. */
-    private JLabel mainLabel = new JLabel("<html>Create, manage or delete a custom quiz using the buttons on the side.");
+    private JLabel mainLabel = new JLabel("<html>Create, manage or delete a question using sing the buttons on the side.");
 
     /**
-     * Quiz list model instance.
+     * Question list model instance.
      */
-    private DefaultListModel<Quiz> quizListModel;
+    private DefaultListModel<Question> questionListModel;
 
     /**
-     * Quiz list instance.
+     * Question list instance.
      */
-    private JList quizList;
+    private JList questionList;
 
     /**
      * Create button instance.
@@ -70,26 +71,36 @@ public class QuizManagerForm extends JDialog {
     private JButton deleteButton;
 
     /**
-     * List of the quizzes being shown.
+     * The quiz instance.
      */
-    private List<Quiz> quizzes = new ArrayList<>();
+    private Quiz quiz;
+
+    /**
+     * List of the questions being shown.
+     */
+    private List<Question> questions = new ArrayList<>();
 
     /**
      * Constructor.
      *
+     * @param parent The quiz manager form as parent.
      * @param app App instance.
+     * @param quiz Quiz instance.
      * @param show True to show the frame once it has been initialized.
      */
-    public QuizManagerForm(App app, boolean show) {
+    public QuizForm(QuizManagerForm parent, App app, Quiz quiz, boolean show) {
         // Construct the form
-        super(app.getMainForm(), FORM_TITLE, true);
+        super(parent, FORM_TITLE, true);
 
         // Store the app instance
         this.app = app;
 
-        // Load the quizzes
+        // Set the quiz instance
+        this.quiz = quiz;
+
+        // Load the questions
         // TODO: Do we need to copy the list?
-        this.quizzes = this.app.getQuizManager().getQuizzes();
+        this.questions = this.quiz.getQuestions();
 
         // Create the form UI
         createUIComponents();
@@ -156,7 +167,7 @@ public class QuizManagerForm extends JDialog {
         pnlMain.add(mainLabel, c);
 
         // Create the quiz manager list and add it to the main panel
-        JScrollPane quizList = createQuizList();
+        JScrollPane quizList = createQuestionList();
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 0;
         c.gridy = 1;
@@ -208,41 +219,41 @@ public class QuizManagerForm extends JDialog {
     }
 
     /**
-     * Create a list to manage the quizzes in.
+     * Create a list to manage the questions in.
      *
      * @return Scroll pane with list.
      */
-    public JScrollPane createQuizList() {
+    public JScrollPane createQuestionList() {
         // Create the default list model
-        this.quizListModel = new DefaultListModel<>();
+        this.questionListModel = new DefaultListModel<>();
 
-        // Refresh the list of quizzes to add them to the list model
+        // Refresh the list of questions to add them to the list model
         refreshList();
 
         // Create the list and create an empty border
-        this.quizList = new JList<>(this.quizListModel);
-        this.quizList.setBorder(new EmptyBorder(5, 5, 5, 5));
+        this.questionList = new JList<>(this.questionListModel);
+        this.questionList.setBorder(new EmptyBorder(5, 5, 5, 5));
 
         // Update the button panel on selection change
-        this.quizList.addListSelectionListener(e -> updateButtons());
+        this.questionList.addListSelectionListener(e -> updateButtons());
 
         // Create a scroll pane with the quiz list and return it
-        return new JScrollPane(this.quizList);
+        return new JScrollPane(this.questionList);
     }
 
     /**
-     * Refresh the list of quizzes.
+     * Refresh the list of questions.
      */
     public void refreshList() {
         // Clear all current items
-        this.quizListModel.clear();
+        this.questionListModel.clear();
 
         // Add the items
-        this.quizzes.forEach(this.quizListModel::addElement);
+        this.questions.forEach(this.questionListModel::addElement);
     }
 
     /**
-     * Create the button panel to manage the quizzes.
+     * Create the button panel to manage the questions.
      *
      * @return Button panel.
      */
@@ -266,9 +277,9 @@ public class QuizManagerForm extends JDialog {
         buttonPanel.add(deleteButton);
         createButton.addActionListener(e -> createQuiz());
         editButton.addActionListener(e -> editQuiz());
-        moveUpButton.addActionListener(e -> moveQuizzesUp());
-        moveDownButton.addActionListener(e -> moveQuizzesDown());
-        deleteButton.addActionListener(e -> deleteQuizzes());
+        moveUpButton.addActionListener(e -> moveQuestionsUp());
+        moveDownButton.addActionListener(e -> moveQuestionsDown());
+        deleteButton.addActionListener(e -> deleteQuestions());
 
         // Return the button panel
         return buttonPanel;
@@ -289,13 +300,13 @@ public class QuizManagerForm extends JDialog {
         JButton applyButton = new JButton("Apply");
         JButton cancelButton = new JButton("Cancel");
         okButton.addActionListener(e -> {
-            // Save the quizzes
-            applyQuizzes();
+            // Save the questions
+            applyQuestions();
 
             // Close the frame
             dispose();
         });
-        applyButton.addActionListener(e -> applyQuizzes());
+        applyButton.addActionListener(e -> applyQuestions());
         cancelButton.addActionListener(e -> closeFrame());
 
         // Add the buttons to the panel
@@ -327,7 +338,7 @@ public class QuizManagerForm extends JDialog {
      * Create a new quiz, ask for the name.
      */
     public void createQuiz() {
-        // Ask for the quiz name
+        /* // Ask for the quiz name
         String quizName = JOptionPane.showInputDialog(this, "Enter a name for the quiz:", "Create quiz", JOptionPane.INFORMATION_MESSAGE);
 
         // Make sure a name was entered
@@ -344,14 +355,14 @@ public class QuizManagerForm extends JDialog {
         }
 
         // Create the quiz
-        Quiz quiz = new Quiz();
-        quiz.setName(quizName);
+        Question question = new Question(quizName);
+        question.setName(quizName);
 
         // Add the quiz to the list
-        this.quizzes.add(quiz);
+        this.questions.add(question);
 
-        // Refresh the list of quizzes
-        refreshList();
+        // Refresh the list of questions
+        refreshList();*/
     }
 
     /**
@@ -362,122 +373,122 @@ public class QuizManagerForm extends JDialog {
         if(getSelectedCount() != 1)
             return;
 
-        // Get the selected quiz
-        Quiz selected = (Quiz) this.quizList.getSelectedValue();
+        // Get the selected question
+        Question selected = (Question) this.questionList.getSelectedValue();
 
-        // Show the quiz edit panel
-        new QuizForm(this, this.app, selected, true);
+        // TODO: Edit quiz here!
+        JOptionPane.showMessageDialog(this, "Edit quiz: " + selected.getQuestion(true));
     }
 
     /**
-     * Move the selected quizzes up.
+     * Move the selected questions up.
      */
-    public void moveQuizzesUp() {
+    public void moveQuestionsUp() {
         // Make sure at least one quiz is selected
         if(getSelectedCount() <= 0)
             return;
 
         // Get the indices
-        int[] indices = this.quizList.getSelectedIndices();
+        int[] indices = this.questionList.getSelectedIndices();
 
-        // Move the quizzes
-        if(moveQuizzes(this.quizList.getSelectedIndices(), -1))
+        // Move the questions
+        if(moveQuestions(this.questionList.getSelectedIndices(), -1))
             for(int i = 0; i < indices.length; i++)
                 indices[i]--;
 
         // Set the selected indices
-        this.quizList.setSelectedIndices(indices);
+        this.questionList.setSelectedIndices(indices);
 
         // Update the list
         refreshList();
     }
 
     /**
-     * Move the selected quizzes down.
+     * Move the selected questions down.
      */
-    public void moveQuizzesDown() {
+    public void moveQuestionsDown() {
         // Make sure at least one quiz is selected
         if(getSelectedCount() <= 0)
             return;
 
         // Get the indices
-        int[] indices = this.quizList.getSelectedIndices();
+        int[] indices = this.questionList.getSelectedIndices();
 
-        // Move the quizzes
-        if(moveQuizzes(this.quizList.getSelectedIndices(), 1))
+        // Move the questions
+        if(moveQuestions(this.questionList.getSelectedIndices(), 1))
             for(int i = 0; i < indices.length; i++)
                 indices[i]++;
 
         // Set the selected indices
-        this.quizList.setSelectedIndices(indices);
+        this.questionList.setSelectedIndices(indices);
 
         // Update the list
         refreshList();
     }
 
     /**
-     * Move the quizzes.
+     * Move the questions.
      *
-     * @param quizIndexes Indexes of quizzes to move.
+     * @param questionIndexes Indexes of questions to move.
      * @param move How much to move.
      *
      * @return True if any item was moved, false if not.
      */
-    private boolean moveQuizzes(int[] quizIndexes, int move) {
+    private boolean moveQuestions(int[] questionIndexes, int move) {
         // Get the lowest and highest new index
-        int lowest = quizIndexes[0] + move;
-        int highest = quizIndexes[0] + move;
+        int lowest = questionIndexes[0] + move;
+        int highest = questionIndexes[0] + move;
 
         // Loop through the quiz indexes and update the lowest and highest values
-        for(int i = 1; i < quizIndexes.length; i++) {
-            lowest = Math.min(quizIndexes[i] + move, lowest);
-            highest = Math.max(quizIndexes[i] + move, highest);
+        for(int i = 1; i < questionIndexes.length; i++) {
+            lowest = Math.min(questionIndexes[i] + move, lowest);
+            highest = Math.max(questionIndexes[i] + move, highest);
         }
 
-        // Make sure the quizzes can be moved to that position
-        if(lowest < 0 || highest >= this.quizzes.size())
+        // Make sure the questions can be moved to that position
+        if(lowest < 0 || highest >= this.questions.size())
             return false;
 
         // Sort the array with indexes
-        Arrays.sort(quizIndexes);
+        Arrays.sort(questionIndexes);
 
         // Inverse the list if they should be moved upwards
         if(move > 0) {
-            for(int i = 0; i < quizIndexes.length / 2; i++) {
-                int temp = quizIndexes[i];
-                quizIndexes[i] = quizIndexes[quizIndexes.length - i - 1];
-                quizIndexes[quizIndexes.length - i - 1] = temp;
+            for(int i = 0; i < questionIndexes.length / 2; i++) {
+                int temp = questionIndexes[i];
+                questionIndexes[i] = questionIndexes[questionIndexes.length - i - 1];
+                questionIndexes[questionIndexes.length - i - 1] = temp;
             }
         }
 
-        // Move all the quizzes
-        for(int i : quizIndexes)
-            Collections.swap(this.quizzes, i, i + move);
+        // Move all the questions
+        for(int i : questionIndexes)
+            Collections.swap(this.questions, i, i + move);
 
         // Return the result
         return true;
     }
 
     /**
-     * Delete the selected quizzes.
+     * Delete the selected questions.
      */
-    public void deleteQuizzes() {
+    public void deleteQuestions() {
         // Make sure at least one item is selected
         if(getSelectedCount() <= 0)
             return;
 
-        // Ask whether the user wants to delete the quizzes
-        switch(JOptionPane.showConfirmDialog(this, "Are you sure you want to delete the selected quizzes? This action can't be reverted.", "Delete quizzes", JOptionPane.YES_NO_OPTION)) {
-        case JOptionPane.NO_OPTION:
-        case JOptionPane.CANCEL_OPTION:
-        case JOptionPane.CLOSED_OPTION:
-            return;
+        // Ask whether the user wants to delete the questions
+        switch(JOptionPane.showConfirmDialog(this, "Are you sure you want to delete the selected questions? This action can't be reverted.", "Delete questions", JOptionPane.YES_NO_OPTION)) {
+            case JOptionPane.NO_OPTION:
+            case JOptionPane.CANCEL_OPTION:
+            case JOptionPane.CLOSED_OPTION:
+                return;
         }
 
-        // Delete the selected quizzes
-        for(Object quiz : this.quizList.getSelectedValuesList())
+        // Delete the selected questions
+        for(Object question : this.questionList.getSelectedValuesList())
             //noinspection RedundantCast
-            this.quizzes.remove((Quiz) quiz);
+            this.questions.remove((Question) question);
 
         // Refresh the list
         refreshList();
@@ -489,29 +500,29 @@ public class QuizManagerForm extends JDialog {
      * @return Number of selected items.
      */
     public int getSelectedCount() {
-        return this.quizList.getSelectedValuesList().size();
+        return this.questionList.getSelectedValuesList().size();
     }
 
     /**
-     * Apply and save the quizzes.
+     * Apply and save the questions.
      */
-    public void applyQuizzes() {
-        // Store the quizzes
-        this.app.getQuizManager().setQuizzes(this.quizzes);
+    public void applyQuestions() {
+        // Store the questions
+        this.quiz.setQuestions(this.questions);
 
-        // TODO: Save the quizzes to a file?
+        // TODO: Save the questions to a file?
     }
 
     /**
      * Close the frame. Ask whether the user wants to save the changes.
      */
     public void closeFrame() {
-        // Ask whether the user wants to save the quizzes
+        // Ask whether the user wants to save the questions
         // TODO: Set frame instance
-        switch(JOptionPane.showConfirmDialog(null, "Would you like to save the quizzes?", "Closing quiz manager", JOptionPane.YES_NO_CANCEL_OPTION)) {
+        switch(JOptionPane.showConfirmDialog(null, "Would you like to save the questions?", "Closing quiz manager", JOptionPane.YES_NO_CANCEL_OPTION)) {
             case JOptionPane.YES_OPTION:
                 // Save the changes
-                applyQuizzes();
+                applyQuestions();
 
             case JOptionPane.NO_OPTION:
                 // Dispose the frame
