@@ -31,37 +31,37 @@ public class QuizManager {
         Quiz quizOne = new Quiz();
         quizOne.setName("Quiz One!");
         quizOne.addQuestion(new Question(
-                "<b>Welk volgende types zijn geldig in Java?</b>",
+                StringUtils.encodeHtml("<b>Welk volgende types zijn geldig in Java?</b>"),
                 new String[] {
-                        "int, string, Double, Boolean",
-                        "boolean, int, String, double",
-                        "String, Int, double, boolean",
-                        "double, boolean, String, Int"
+                        StringUtils.encodeHtml("int, string, Double, Boolean"),
+                        StringUtils.encodeHtml("boolean, int, String, double"),
+                        StringUtils.encodeHtml("String, Int, double, boolean"),
+                        StringUtils.encodeHtml("double, boolean, String, Int")
                 },
                 1));
         quizOne.addQuestion(new Question(
-                "<b>Wat is de waarde van <i>a</i>?</b><br />" +
+                StringUtils.encodeHtml("<b>Wat is de waarde van <i>a</i>?</b><br />" +
                         "<br />" +
-                        StringUtils.indentHtmlSpaces(4) + "int a = (int) 19.6",
+                        StringUtils.indentHtmlSpaces(4) + "int a = (int) 19.6"),
                 new String[] {
-                        "19",
-                        "19.6",
-                        "20",
-                        "18"
+                        StringUtils.encodeHtml("19"),
+                        StringUtils.encodeHtml("19.6"),
+                        StringUtils.encodeHtml("20"),
+                        StringUtils.encodeHtml("18")
                 },
                 0));
 
         Quiz quizTwo = new Quiz();
         quizTwo.setName("Quiz Two!");
         quizTwo.addQuestion(new Question(
-                "<b>Wat komt hier uit?</b><br />" +
+                StringUtils.encodeHtml("<b>Wat komt hier uit?</b><br />" +
                         "<br />" +
-                        StringUtils.indentHtmlSpaces(4) + "(int) (24.768 * 100) / 100",
+                        StringUtils.indentHtmlSpaces(4) + "(int) (24.768 * 100) / 100"),
                 new String[] {
-                        "25",
-                        "24.76",
-                        "24",
-                        "24.7"
+                        StringUtils.encodeHtml("25"),
+                        StringUtils.encodeHtml("24.76"),
+                        StringUtils.encodeHtml("24"),
+                        StringUtils.encodeHtml("24.7")
                 },
                 2));
 
