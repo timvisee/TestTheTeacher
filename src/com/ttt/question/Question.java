@@ -113,6 +113,15 @@ public class Question {
     }
 
     /**
+     * Set the correct answer index.
+     *
+     * @param i Correct answer index.
+     */
+    public void setCorrectAnswerIndex(int i) {
+        this.correctAnswer = i;
+    }
+
+    /**
      * Get the question representation as a string.
      *
      * @return Question as a string.
