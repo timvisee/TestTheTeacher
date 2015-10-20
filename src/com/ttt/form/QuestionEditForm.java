@@ -32,7 +32,7 @@ public class QuestionEditForm extends JDialog {
     private Question question;
 
     /** The question label. */
-    private JTextField questionField = new JTextField("<question>");
+    private JTextField questionField = new JTextField("Vraag?");
     /** The answer buttons. */
     private JRadioButton[] answerRadioButtons = new JRadioButton[ANSWER_COUNT];
     /** The answer labels. */
@@ -120,6 +120,9 @@ public class QuestionEditForm extends JDialog {
         JPanel answersPnl = new JPanel();
         answersPnl.setLayout(new GridBagLayout());
 
+        // Create a radio button group
+        ButtonGroup group = new ButtonGroup();
+
         // Create and add answer buttons to the answers panel
         for(int i = 0; i < ANSWER_COUNT; i++) {
             // Specify the question index as final
@@ -139,18 +142,21 @@ public class QuestionEditForm extends JDialog {
 
             // Create an action listener for the button
             answerRadioButtons[i].addActionListener(e -> app.selectedAnswer(iFinal));
+
+            // Set the button group
+            group.add(answerRadioButtons[i]);
         }
 
         // Create and add answer labels to the answers panel
         for(int i = 0; i < ANSWER_COUNT; i++) {
             // Create the label
-            answerFields[i] = new JTextField("<answer " + i + ">");
+            answerFields[i] = new JTextField("Antwoord " + i + "");
 
             // Configure the label placement
             c.fill = GridBagConstraints.HORIZONTAL;
             c.gridx = 1;
             c.gridy = i;
-            c.insets = new Insets(0, 10, 0, 5);
+            c.insets = new Insets(0, 10, 0, 0);
             c.weightx = 1.0;
 
             // Add the answer label to the panel
@@ -202,5 +208,20 @@ public class QuestionEditForm extends JDialog {
 
         // Force the whole frame to repaint, to prevent graphical artifacts on some operating systems
         this.repaint();
+    }
+
+    /**
+     * Get the correct answer index.
+     *
+     * @return Get the correct answer index.
+     */
+    public int getCorrectAnswer() {
+        // Loop through all the radio buttons to see what the correct answer is
+        for(int i = 0; i < this.answerRadioButtons.length; i++)
+            if(this.answerRadioButtons[i].isSelected())
+                return i;
+
+        // No one selected, return the first one
+        return 0;
     }
 }
