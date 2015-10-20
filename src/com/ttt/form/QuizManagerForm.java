@@ -16,6 +16,8 @@ import com.ttt.quiz.Quiz;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,8 +85,41 @@ public class QuizManagerForm extends JDialog {
         // Store the app instance
         this.app = app;
 
+        // Load the quizzes
+        // TODO: Do we need to copy the list?
+        this.quizzes = this.app.getQuizManager().getQuizzes();
+
         // Create the form UI
         createUIComponents();
+
+        // Do not close the window when pressing the red cross
+        this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+
+        // Create a window listener
+        this.addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent e) { }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                closeFrame();
+            }
+
+            @Override
+            public void windowClosed(WindowEvent e) { }
+
+            @Override
+            public void windowIconified(WindowEvent e) { }
+
+            @Override
+            public void windowDeiconified(WindowEvent e) { }
+
+            @Override
+            public void windowActivated(WindowEvent e) { }
+
+            @Override
+            public void windowDeactivated(WindowEvent e) { }
+        });
 
         // Show the form
         this.setVisible(show);
@@ -243,13 +278,25 @@ public class QuizManagerForm extends JDialog {
     public JPanel createControlButtonPanel() {
         // Create a panel to put the buttons in and set it's layout
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(1, 1, 10, 10));
+        buttonPanel.setLayout(new GridLayout(3, 1, 10, 10));
 
         // Create the buttons to add to the panel
+        JButton okButton = new JButton("Ok");
+        JButton applyButton = new JButton("Apply");
         JButton closeButton = new JButton("Close");
-        closeButton.addActionListener(e -> this.setVisible(false));
+        okButton.addActionListener(e -> {
+            // Save the quizzes
+            applyQuizzes();
+
+            // Close the frame
+            dispose();
+        });
+        applyButton.addActionListener(e -> applyQuizzes());
+        closeButton.addActionListener(e -> closeFrame());
 
         // Add the buttons to the panel
+        buttonPanel.add(okButton);
+        buttonPanel.add(applyButton);
         buttonPanel.add(closeButton);
 
         // Return the button panel
@@ -350,5 +397,33 @@ public class QuizManagerForm extends JDialog {
      */
     public int getSelectedCount() {
         return this.quizList.getSelectedValuesList().size();
+    }
+
+    /**
+     * Apply and save the quizzes.
+     */
+    public void applyQuizzes() {
+        // Store the quizzes
+        this.app.getQuizManager().setQuizzes(this.quizzes);
+
+        // TODO: Save the quizzes to a file?
+    }
+
+    /**
+     * Close the frame. Ask whether the user wants to save the changes.
+     */
+    public void closeFrame() {
+        // Ask whether the user wants to save the quizzes
+        // TODO: Set frame instance
+        switch(JOptionPane.showConfirmDialog(null, "Would you like to save the quizzes?", "Closing quiz manager", JOptionPane.YES_NO_CANCEL_OPTION)) {
+            case JOptionPane.YES_OPTION:
+                // Save the changes
+                applyQuizzes();
+
+            case JOptionPane.NO_OPTION:
+                // Dispose the frame
+                this.dispose();
+                break;
+        }
     }
 }

@@ -100,6 +100,17 @@ public class QuizManager {
     }
 
     /**
+     * Set the current list of quizzes.
+     *
+     * @param quizzes Quizzes.
+     */
+    public void setQuizzes(List<Quiz> quizzes) {
+        this.quizzes = quizzes;
+
+        // TODO: Do we need to copy the list?
+    }
+
+    /**
      * Get the number of quizzes.
      *
      * @return Number of quizzes.
