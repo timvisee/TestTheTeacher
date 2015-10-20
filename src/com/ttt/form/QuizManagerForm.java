@@ -12,6 +12,7 @@ package com.ttt.form;
 
 import com.ttt.App;
 import com.ttt.quiz.Quiz;
+import com.ttt.quiz.QuizManager;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -519,16 +520,43 @@ public class QuizManagerForm extends JDialog {
      * Close the frame. Ask whether the user wants to save the changes.
      */
     public void closeFrame() {
-        // Ask whether the user wants to save the quizzes
-        switch(JOptionPane.showConfirmDialog(this, "Wilt u uw quiz opslaan?", "Quiz manager", JOptionPane.YES_NO_CANCEL_OPTION)) {
-        case JOptionPane.YES_OPTION:
-            // Save the changes
-            applyQuizzes();
+        // Only ask to save if there are any unsaved changes
+        if(hasUnsavedChanges()) {
+            // Ask whether the user wants to save the quizzes
+            switch(JOptionPane.showConfirmDialog(this, "Wilt u uw quiz opslaan?", "Quiz manager", JOptionPane.YES_NO_CANCEL_OPTION)) {
+                case JOptionPane.YES_OPTION:
+                    // Save the changes
+                    applyQuizzes();
 
-        case JOptionPane.NO_OPTION:
-            // Dispose the frame
+                case JOptionPane.NO_OPTION:
+                    // Dispose the frame
+                    this.dispose();
+                    break;
+            }
+
+        } else
             this.dispose();
-            break;
-        }
+    }
+
+    /**
+     * Check whether this question has unsaved changes.
+     *
+     * @return True if this question has unsaved changes, false if not.
+     */
+    public boolean hasUnsavedChanges() {
+        // Get the quiz manager
+        QuizManager quizManager = this.app.getQuizManager();
+
+        // Compare the number of quizzes
+        if(quizManager.getQuizCount() != this.quizzes.size())
+            return true;
+
+        // Compare the quizzes
+        for(int i = 0; i < this.quizzes.size(); i++)
+            if(!quizManager.getQuiz(i).equals(this.quizzes.get(i)))
+                return true;
+
+        // There don't seem to be any unsaved changes, return the result
+        return false;
     }
 }
