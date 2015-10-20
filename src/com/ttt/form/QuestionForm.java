@@ -170,11 +170,23 @@ public class QuestionForm extends JFrame {
     }
 
     /**
+     * Get the current question.
+     *
+     * @return Question.
+     */
+    public Question getQuestion() {
+        return this.currentQuestion;
+    }
+
+    /**
      * Set the question that is shown.
      *
      * @param question Question.
      */
     public void setQuestion(Question question) {
+        // Set the current question
+        this.currentQuestion = question;
+
         // Set the question label
         questionLabel.setText(question.getQuestion(true));
 
