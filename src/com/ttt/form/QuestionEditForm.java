@@ -242,15 +242,15 @@ public class QuestionEditForm extends JDialog {
         JButton okButton = new JButton("Ok");
         JButton applyButton = new JButton("Toepassen");
         JButton cancelButton = new JButton("Annuleren");
-        /*okButton.addActionListener(e -> {
+        okButton.addActionListener(e -> {
             // Save the questions
-            applyQuestions();
+            applyQuestion();
 
             // Close the frame
             dispose();
         });
-        applyButton.addActionListener(e -> applyQuestions());
-        cancelButton.addActionListener(e -> closeFrame());*/
+        applyButton.addActionListener(e -> applyQuestion());
+        cancelButton.addActionListener(e -> closeFrame());
 
         // Add the buttons to the panel
         buttonPanel.add(okButton);
@@ -308,5 +308,37 @@ public class QuestionEditForm extends JDialog {
 
         // No one selected, return the first one
         return 0;
+    }
+
+    /**
+     * Apply and save the questions.
+     */
+    public void applyQuestion() {
+        // Set the question
+        this.question.setQuestion(this.questionField.getText());
+
+        // TODO: Set the answers!
+
+        // Set the correct answer
+        this.question.setCorrectAnswerIndex(getCorrectAnswer());
+
+        // TODO: Save the questions to a file?
+    }
+
+    /**
+     * Close the frame. Ask whether the user wants to save the changes.
+     */
+    public void closeFrame() {
+        // Ask whether the user wants to save the questions
+        switch(JOptionPane.showConfirmDialog(this, "Wilt u deze vraag opslaan?", "Vraag", JOptionPane.YES_NO_CANCEL_OPTION)) {
+            case JOptionPane.YES_OPTION:
+                // Save the changes
+                applyQuestion();
+
+            case JOptionPane.NO_OPTION:
+                // Dispose the frame
+                this.dispose();
+                break;
+        }
     }
 }
