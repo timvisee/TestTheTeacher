@@ -40,6 +40,6 @@ public class StringUtils {
      * @return The fraction as HTML.
      */
     public static String createHtmlFraction(int numerator, int denominator) {
-        return "<sup>" + numerator + "</sup><font size=+1>/<font size=-1><sub>" + denominator + "</sub>";"
+        return "<sup>" + numerator + "</sup><font size=+1>/<font size=-1><sub>" + denominator + "</sub>";
     }
 }
