@@ -83,9 +83,9 @@ public class QuizManagerForm extends JFrame {
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 0;
         c.gridy = 1;
-        c.insets = new Insets(0, 5, 0, 5);
         c.weightx = 1.0;
         c.weighty = 1.0;
+        c.insets = new Insets(0, 0, 0, 0);
         pnlMain.add(quizList, c);
 
         // Configure the main panel placement and add it to the frame
