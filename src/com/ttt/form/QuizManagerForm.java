@@ -335,9 +335,11 @@ public class QuizManagerForm extends JDialog {
         // Enable the edit button if one item is selected
         editButton.setEnabled(selected == 1);
 
-        // Enable the move up, move down, and delete button if one or more items are selected
-        moveUpButton.setEnabled(selected > 0);
-        moveDownButton.setEnabled(selected > 0);
+        // Enable the move buttons if at least one quiz is selected and if the quizzes can move in that direction
+        moveUpButton.setEnabled(canMoveQuizzesUp());
+        moveDownButton.setEnabled(canMoveQuizzesDown());
+
+        // Enable the delete button if at least one quiz is selected
         deleteButton.setEnabled(selected > 0);
     }
 
@@ -417,6 +419,20 @@ public class QuizManagerForm extends JDialog {
     }
 
     /**
+     * Check whether the selected quizzes can be moved up.
+     *
+     * @return True if they can be moved up, false otherwise.
+     */
+    public boolean canMoveQuizzesUp() {
+        // Make sure at least one quiz is selected
+        if(getSelectedCount() <= 0)
+            return false;
+
+        // Check whether the selected quizzes can be moved, return the result
+        return canMoveQuizzes(this.quizList.getSelectedIndices(), -1);
+    }
+
+    /**
      * Move the selected quizzes down.
      */
     public void moveQuizzesDown() {
@@ -440,6 +456,20 @@ public class QuizManagerForm extends JDialog {
     }
 
     /**
+     * Check whether the selected quizzes can be moved down.
+     *
+     * @return True if they can be moved down, false otherwise.
+     */
+    public boolean canMoveQuizzesDown() {
+        // Make sure at least one quiz is selected
+        if(getSelectedCount() <= 0)
+            return false;
+
+        // Check whether the selected quizzes can be moved, return the result
+        return canMoveQuizzes(this.quizList.getSelectedIndices(), 1);
+    }
+
+    /**
      * Move the quizzes.
      *
      * @param quizIndexes Indexes of quizzes to move.
@@ -448,18 +478,8 @@ public class QuizManagerForm extends JDialog {
      * @return True if any item was moved, false if not.
      */
     private boolean moveQuizzes(int[] quizIndexes, int move) {
-        // Get the lowest and highest new index
-        int lowest = quizIndexes[0] + move;
-        int highest = quizIndexes[0] + move;
-
-        // Loop through the quiz indexes and update the lowest and highest values
-        for(int i = 1; i < quizIndexes.length; i++) {
-            lowest = Math.min(quizIndexes[i] + move, lowest);
-            highest = Math.max(quizIndexes[i] + move, highest);
-        }
-
-        // Make sure the quizzes can be moved to that position
-        if(lowest < 0 || highest >= this.quizzes.size())
+        // Check whether the quizzes can be moved
+        if(!canMoveQuizzes(quizIndexes, move))
             return false;
 
         // Sort the array with indexes
@@ -483,6 +503,29 @@ public class QuizManagerForm extends JDialog {
     }
 
     /**
+     * Check whether the specified quizzes can be moved.
+     *
+     * @param quizIndexes Quiz indexes.
+     * @param move Relative move.
+     *
+     * @return True if they can move, false if not.
+     */
+    private boolean canMoveQuizzes(int[] quizIndexes, int move) {
+        // Get the lowest and highest new index
+        int lowest = quizIndexes[0] + move;
+        int highest = quizIndexes[0] + move;
+
+        // Loop through the quiz indexes and update the lowest and highest values
+        for(int i = 1; i < quizIndexes.length; i++) {
+            lowest = Math.min(quizIndexes[i] + move, lowest);
+            highest = Math.max(quizIndexes[i] + move, highest);
+        }
+
+        // Make sure the quizzes can be moved to that position
+        return !(lowest < 0 || highest >= this.quizzes.size());
+    }
+
+    /**
      * Delete the selected quizzes.
      */
     public void deleteQuizzes() {
@@ -491,7 +534,7 @@ public class QuizManagerForm extends JDialog {
             return;
 
         // Ask whether the user wants to delete the quizzes
-        switch(JOptionPane.showConfirmDialog(this, "Weet u zeker dat u het wilt verwijderen? De actie kan niet ongedaan worden gemaakt.", "Verwijderen", JOptionPane.YES_NO_OPTION)) {
+        switch(JOptionPane.showConfirmDialog(this, "Weet u zeker dat u het wilt verwijderen? De actie kan niet ongedaan worden gemaakt.", "Quiz verwijderen", JOptionPane.YES_NO_OPTION)) {
         case JOptionPane.NO_OPTION:
         case JOptionPane.CANCEL_OPTION:
         case JOptionPane.CLOSED_OPTION:
