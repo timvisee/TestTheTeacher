@@ -62,7 +62,7 @@ public class QuizManagerForm extends JFrame {
         this.setLayout(new GridBagLayout());
 
         // Set the frame size
-        this.setSize(350, 400);
+        this.setSize(325, 400);
 
         // Make the frame non-resizable
         this.setResizable(true);
