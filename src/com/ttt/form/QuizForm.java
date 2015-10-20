@@ -13,7 +13,6 @@ package com.ttt.form;
 import com.ttt.App;
 import com.ttt.question.Question;
 import com.ttt.quiz.Quiz;
-import com.ttt.util.StringUtils;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -143,6 +142,10 @@ public class QuizForm extends JDialog {
         // Set the window location to the system's default
         this.setLocationByPlatform(true);
         this.setLocationRelativeTo(parent);
+
+        // Create a new question if there isn't any question yet
+        if(this.questions.size() <= 0)
+            createQuestion();
 
         // Show the form
         this.setVisible(show);
@@ -287,7 +290,7 @@ public class QuizForm extends JDialog {
         buttonPanel.add(moveUpButton);
         buttonPanel.add(moveDownButton);
         buttonPanel.add(deleteButton);
-        createButton.addActionListener(e -> createQuiz());
+        createButton.addActionListener(e -> createQuestion());
         editButton.addActionListener(e -> editQuestion());
         moveUpButton.addActionListener(e -> moveQuestionsUp());
         moveDownButton.addActionListener(e -> moveQuestionsDown());
@@ -347,9 +350,9 @@ public class QuizForm extends JDialog {
     }
 
     /**
-     * Create a new quiz, ask for the name.
+     * Create a new question.
      */
-    public void createQuiz() {
+    public void createQuestion() {
         /* // Ask for the quiz name
         String quizName = JOptionPane.showInputDialog(this, "Enter a name for the quiz:", "Create quiz", JOptionPane.INFORMATION_MESSAGE);
 
