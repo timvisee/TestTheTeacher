@@ -127,9 +127,6 @@ public class App {
 
         // Show the main form
         this.mainForm.setVisible(true);
-
-
-
     }
 
     /**
