@@ -29,7 +29,7 @@ public class QuizManager {
     public QuizManager() {
         // TODO: Remove this, this is debug code!
         Quiz quizOne = new Quiz();
-        quizOne.setName("Quiz One!");
+        quizOne.setName("Eerste quiz");
         quizOne.addQuestion(new Question(
                 StringUtils.encodeHtml("<b>Welk volgende types zijn geldig in Java?</b>"),
                 new String[] {
@@ -52,7 +52,7 @@ public class QuizManager {
                 0));
 
         Quiz quizTwo = new Quiz();
-        quizTwo.setName("Quiz Two!");
+        quizTwo.setName("Een andere quiz");
         quizTwo.addQuestion(new Question(
                 StringUtils.encodeHtml("<b>Wat komt hier uit?</b><br />" +
                         "<br />" +
