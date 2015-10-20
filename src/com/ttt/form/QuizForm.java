@@ -376,8 +376,8 @@ public class QuizForm extends JDialog {
         // Get the selected question
         Question selected = (Question) this.questionList.getSelectedValue();
 
-        // TODO: Edit quiz here!
-        JOptionPane.showMessageDialog(this, "Edit quiz: " + selected.getQuestion(true));
+        // Edit the selected question
+        new QuestionEditForm(this, this.app, selected, true);
     }
 
     /**
