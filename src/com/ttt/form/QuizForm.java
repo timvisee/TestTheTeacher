@@ -13,6 +13,7 @@ package com.ttt.form;
 import com.ttt.App;
 import com.ttt.question.Question;
 import com.ttt.quiz.Quiz;
+import com.ttt.util.StringUtils;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -531,16 +532,44 @@ public class QuizForm extends JDialog {
      * Close the frame. Ask whether the user wants to save the changes.
      */
     public void closeFrame() {
-        // Ask whether the user wants to save the questions
-        switch(JOptionPane.showConfirmDialog(this, "Wilt u de vragen opslaan?", "Quiz", JOptionPane.YES_NO_CANCEL_OPTION)) {
-        case JOptionPane.YES_OPTION:
-            // Save the changes
-            applyQuestions();
+        // Only ask to save if there are unsaved changes
+        if(hasUnsavedChanges()) {
+            // Ask whether the user wants to save the questions
+            switch(JOptionPane.showConfirmDialog(this, "Wilt u de vragen opslaan?", "Quiz", JOptionPane.YES_NO_CANCEL_OPTION)) {
+                case JOptionPane.YES_OPTION:
+                    // Save the changes
+                    applyQuestions();
 
-        case JOptionPane.NO_OPTION:
-            // Dispose the frame
+                case JOptionPane.NO_OPTION:
+                    // Dispose the frame
+                    this.dispose();
+                    break;
+            }
+
+        } else
             this.dispose();
-            break;
-        }
+    }
+
+    /**
+     * Check whether this question has unsaved changes.
+     *
+     * @return True if this question has unsaved changes, false if not.
+     */
+    public boolean hasUnsavedChanges() {
+        // Compare the quiz name
+        /*if(!this.quiz.getName().equals(NAME_FIELD_HERE))
+            return true;*/
+
+        // Compare the number of questions
+        if(this.quiz.getQuestionCount() != this.questions.size())
+            return true;
+
+        // Compare the questions
+        for(int i = 0; i < this.questions.size(); i++)
+            if(!this.quiz.getQuestion(i).equals(this.questions.get(i)))
+                return true;
+
+        // There don't seem to be any unsaved changes, return the result
+        return false;
     }
 }

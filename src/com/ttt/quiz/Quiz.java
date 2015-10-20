@@ -38,7 +38,7 @@ public class Quiz {
      * @return Quiz name.
      */
     public String getName() {
-        return name;
+        return this.name;
     }
 
     /**
