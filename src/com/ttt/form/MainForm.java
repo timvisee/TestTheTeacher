@@ -68,8 +68,8 @@ public class MainForm extends JFrame {
         JPanel mainPanel = new JPanel();
 
         // Set the frame layout
-        mainPanel.setLayout(new GridLayout(3, 1, 5, 5));
-        mainPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+        mainPanel.setLayout(new GridLayout(3, 1, 10, 10));
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         // Make the frame non-resizable
         this.setResizable(true);

@@ -149,7 +149,7 @@ public class QuestionForm extends JFrame {
             c.fill = GridBagConstraints.HORIZONTAL;
             c.gridx = 1;
             c.gridy = i;
-            c.insets = new Insets(0, 5, 0, 5);
+            c.insets = new Insets(0, 10, 0, 5);
             c.weightx = 1.0;
 
             // Add the answer label to the panel
