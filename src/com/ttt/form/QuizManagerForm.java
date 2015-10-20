@@ -31,6 +31,36 @@ public class QuizManagerForm extends JDialog {
     private JLabel mainLabel = new JLabel("<html>Create, manage or delete a custom quiz using the buttons on the side.");
 
     /**
+     * Quiz list instance.
+     */
+    private JList quizList;
+
+    /**
+     * Create button instance.
+     */
+    private JButton createButton;
+
+    /**
+     * Edit button instance.
+     */
+    private JButton editButton;
+
+    /**
+     * Move up button instance.
+     */
+    private JButton moveUpButton;
+
+    /**
+     * Move down button instance.
+     */
+    private JButton moveDownButton;
+
+    /**
+     * Delete button instance.
+     */
+    private JButton deleteButton;
+
+    /**
      * List of the quizzes being shown.
      */
     private List<Quiz> quizzes = new ArrayList<>();
@@ -130,6 +160,9 @@ public class QuizManagerForm extends JDialog {
         // Set the window location to the system's default
         this.setLocationByPlatform(true);
         this.setLocationRelativeTo(null);
+
+        // Update the button panel
+        updateButtons();
     }
 
     /**
@@ -147,11 +180,14 @@ public class QuizManagerForm extends JDialog {
             quizModel.addElement(this.app.getQuizManager().getQuiz(i));
 
         // Create the list and create an empty border
-        JList<Quiz> quizList = new JList<>(quizModel);
-        quizList.setBorder(new EmptyBorder(5, 5, 5, 5));
+        this.quizList = new JList<>(quizModel);
+        this.quizList.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+        // Update the button panel on selection change
+        this.quizList.addListSelectionListener(e -> updateButtons());
 
         // Create a scroll pane with the quiz list and return it
-        return new JScrollPane(quizList);
+        return new JScrollPane(this.quizList);
     }
 
     /**
@@ -165,11 +201,11 @@ public class QuizManagerForm extends JDialog {
         buttonPanel.setLayout(new GridLayout(5, 1, 10, 10));
 
         // Create the buttons to add to the panel
-        JButton createButton = new JButton("Create");
-        JButton editButton = new JButton("Edit");
-        JButton moveUpButton = new JButton("Move up");
-        JButton moveDownButton = new JButton("Move down");
-        JButton deleteButton = new JButton("Delete");
+        this.createButton = new JButton("Create");
+        this.editButton = new JButton("Edit");
+        this.moveUpButton = new JButton("Move up");
+        this.moveDownButton = new JButton("Move down");
+        this.deleteButton = new JButton("Delete");
 
         // Add the buttons to the panel
         buttonPanel.add(createButton);
@@ -177,7 +213,7 @@ public class QuizManagerForm extends JDialog {
         buttonPanel.add(moveUpButton);
         buttonPanel.add(moveDownButton);
         buttonPanel.add(deleteButton);
-        createButton.addActionListener(e -> JOptionPane.showInputDialog(this, "Quiz name"));
+        createButton.addActionListener(e -> createQuiz());
 
         // Return the button panel
         return buttonPanel;
@@ -202,5 +238,40 @@ public class QuizManagerForm extends JDialog {
 
         // Return the button panel
         return buttonPanel;
+    }
+
+    /**
+     * Update the state of buttons in the button panel.
+     */
+    public void updateButtons() {
+        // Get the number of selected items
+        int selected = this.quizList.getSelectedValuesList().size();
+
+        // Enable the edit button if one item is selected
+        editButton.setEnabled(selected == 1);
+
+        // Enable the move up, move down, and delete button if one or more items are selected
+        moveUpButton.setEnabled(selected > 0);
+        moveDownButton.setEnabled(selected > 0);
+        deleteButton.setEnabled(selected > 0);
+    }
+
+    /**
+     * Create a new quiz, ask for the name.
+     */
+    public void createQuiz() {
+        // Ask for the quiz name
+        String quizName = JOptionPane.showInputDialog(this, "Enter a name for the quiz");
+
+        // Make sure a name was entered
+        if(quizName == null)
+            return;
+
+        // Create the quiz
+        Quiz quiz = new Quiz();
+        quiz.setName(quizName);
+
+        // Add the quiz to the list
+        this.quizzes.add(quiz);
     }
 }
