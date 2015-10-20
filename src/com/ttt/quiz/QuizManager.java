@@ -100,6 +100,23 @@ public class QuizManager {
     }
 
     /**
+     * Get a clone of all quizzes
+     *
+     * @return Cloned quizzes.
+     */
+    public List<Quiz> getQuizzesClone() {
+        // Create a list to put the clones in
+        List<Quiz> clones = new ArrayList<>();
+
+        // Put a clone of all quizzes in the list
+        for(Quiz quiz : this.quizzes)
+            clones.add(quiz.copy());
+
+        // Return the clones
+        return clones;
+    }
+
+    /**
      * Set the current list of quizzes.
      *
      * @param quizzes Quizzes.

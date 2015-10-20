@@ -105,9 +105,8 @@ public class QuizForm extends JDialog {
         // Set the quiz instance
         this.quiz = quiz;
 
-        // Load the questions
-        // TODO: Do we need to copy the list?
-        this.questions = this.quiz.getQuestions();
+        // Get a clone of all the questions
+        this.questions = this.quiz.getQuestionsClone();
 
         // Create the form UI
         createUIComponents();

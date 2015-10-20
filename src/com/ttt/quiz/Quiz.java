@@ -14,6 +14,7 @@ import com.ttt.question.Question;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Quiz {
 
@@ -122,14 +123,13 @@ public class Quiz {
      */
     public List<Question> getQuestionsClone() {
         // Create a new list with questions
-        List<Question> questions = new ArrayList<>();
+        List<Question> clones = new ArrayList<>();
 
         // Clone all questions
-        for(Question question : this.questions)
-            questions.add(question.copy());
+        clones.addAll(this.questions.stream().map(Question::copy).collect(Collectors.toList()));
 
         // Return the list of cloned questions
-        return questions;
+        return clones;
     }
 
     /**

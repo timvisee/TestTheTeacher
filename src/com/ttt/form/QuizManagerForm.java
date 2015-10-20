@@ -91,8 +91,7 @@ public class QuizManagerForm extends JDialog {
         this.app = app;
 
         // Load the quizzes
-        // TODO: Do we need to copy the list?
-        this.quizzes = this.app.getQuizManager().getQuizzes();
+        this.quizzes = this.app.getQuizManager().getQuizzesClone();
 
         // Create the form UI
         createUIComponents();

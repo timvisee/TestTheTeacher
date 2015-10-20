@@ -13,6 +13,7 @@ package com.ttt.question;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Question {
 
@@ -78,6 +79,31 @@ public class Question {
     }
 
     /**
+     * Get all answers.
+     *
+     * @return Answers.
+     */
+    public List<String> getAnswers() {
+        return this.answers;
+    }
+
+    /**
+     * Get a clone of all answers.
+     *
+     * @return Cloned answers.
+     */
+    public List<String> getAnswerClones() {
+        // Create a list to put the clones in
+        List<String> clones = new ArrayList<>();
+
+        // Clone all answers
+        clones.addAll(this.answers.stream().collect(Collectors.toList()));
+
+        // Return the list of clones
+        return clones;
+    }
+
+    /**
      * Get the answer by it's index.
      *
      * @param i Answer index.
@@ -134,9 +160,7 @@ public class Question {
      * @return Question copy.
      */
     public Question copy() {
-        // TODO: Validate that this method works!
-        //noinspection unchecked
-        return new Question(getQuestion(false), (List<String>) ((ArrayList<String>) this.answers).clone(), getCorrectAnswerIndex());
+        return new Question(getQuestion(false), getAnswerClones(), getCorrectAnswerIndex());
     }
 
     /**
