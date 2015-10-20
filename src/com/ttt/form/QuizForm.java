@@ -530,8 +530,7 @@ public class QuizForm extends JDialog {
      */
     public void closeFrame() {
         // Ask whether the user wants to save the questions
-        // TODO: Set frame instance
-        switch(JOptionPane.showConfirmDialog(null, "Wilt u de vragen opslaan?", "Quiz", JOptionPane.YES_NO_CANCEL_OPTION)) {
+        switch(JOptionPane.showConfirmDialog(this, "Wilt u de vragen opslaan?", "Quiz", JOptionPane.YES_NO_CANCEL_OPTION)) {
             case JOptionPane.YES_OPTION:
                 // Save the changes
                 applyQuestions();
