@@ -64,6 +64,11 @@ public class QuestionEditForm extends JDialog {
         // TODO: Should we keep this?
         //this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
+        // Set the frame sizes
+        this.setMinimumSize(new Dimension(350, 290));
+        this.setPreferredSize(new Dimension(600, 350));
+        this.setSize(new Dimension(600, 350));
+
         // Set the window location to the system's default
         this.setLocationByPlatform(true);
         this.setLocationRelativeTo(parent);
@@ -97,20 +102,50 @@ public class QuestionEditForm extends JDialog {
         pnlQuestion.setLayout(new GridBagLayout());
 
         // Configure the placement of the questions label, and add it to the questions panel
-        c.fill = GridBagConstraints.BOTH;
+        c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = 0;
-        c.insets = new Insets(0, 0, 16, 0);
+        c.gridwidth = 2;
+        c.insets = new Insets(0, 0, 16, 10);
+        /*c.weightx = 0.0;
+        c.weighty = 0.0;
+        c.anchor = GridBagConstraints.WEST;*/
+        pnlMain.add(new JLabel("Vul de vraag en de antwoorden in de onderstaande velden in."), c);
+
+        c.fill = GridBagConstraints.VERTICAL;
+        c.gridx = 0;
+        c.gridy = 1;
+        c.gridwidth = 1;
+        c.insets = new Insets(0, 0, 16, 10);
+        c.weightx = 0.0;
+        c.weighty = 0.0;
+        c.anchor = GridBagConstraints.WEST;
+        pnlMain.add(new JLabel("Vraag:"), c);
+
+        c.fill = GridBagConstraints.VERTICAL;
+        c.gridx = 0;
+        c.gridy = 2;
+        c.insets = new Insets(0, 0, 0, 10);
+        c.weightx = 0.0;
+        c.weighty = 0.0;
+        c.anchor = GridBagConstraints.WEST;
+        pnlMain.add(new JLabel("Antwoorden:"), c);
+
+        // Configure the placement of the questions label, and add it to the questions panel
+        c.fill = GridBagConstraints.BOTH;
+        c.gridx = 1;
+        c.gridy = 0;
+        c.insets = new Insets(0, 0, 0, 0);
         c.weightx = 1.0;
         c.weighty = 1.0;
         pnlQuestion.add(new JScrollPane(this.questionField), c);
 
         // Configure the placement of the questions panel and add it to the main panel
-        c.gridx = 0;
-        c.gridy = 0;
+        c.gridx = 1;
+        c.gridy = 1;
         c.weightx = 1.0;
         c.weighty = 1.0;
-        c.insets = new Insets(0, 0, 0, 0);
+        c.insets = new Insets(0, 0, 16, 0);
         pnlMain.add(pnlQuestion, c);
 
         // Create the answers panel, to put the answers in
@@ -163,8 +198,8 @@ public class QuestionEditForm extends JDialog {
         }
 
         // Configure the answers panel placement and add it to the main panel
-        c.gridx = 0;
-        c.gridy = 1;
+        c.gridx = 1;
+        c.gridy = 2;
         c.weightx = 1.0;
         c.weighty = 0.0;
         c.insets = new Insets(0, 0, 0, 0);
@@ -174,7 +209,8 @@ public class QuestionEditForm extends JDialog {
         JPanel controlsPanel = createControlButtonPanel();
         c.fill = GridBagConstraints.VERTICAL;
         c.gridx = 0;
-        c.gridy = 2;
+        c.gridy = 3;
+        c.gridwidth = 2;
         c.weightx = 0.0;
         c.weighty = 0.0;
         c.insets = new Insets(10, 0, 0, 0);
@@ -185,6 +221,7 @@ public class QuestionEditForm extends JDialog {
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 0;
         c.gridy = 0;
+        c.gridwidth = 1;
         c.weightx = 1.0;
         c.weighty = 1.0;
         c.insets = new Insets(10, 10, 10, 10);
@@ -252,7 +289,7 @@ public class QuestionEditForm extends JDialog {
         }
 
         // Pack the frame
-        pack();
+        //pack();
 
         // Force the whole frame to repaint, to prevent graphical artifacts on some operating systems
         this.repaint();
