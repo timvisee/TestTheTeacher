@@ -32,7 +32,7 @@ public class QuestionEditForm extends JDialog {
     private Question question;
 
     /** The question label. */
-    private JTextField questionField = new JTextField("Vraag?");
+    private JTextArea questionField = new JTextArea("Vraag?");
     /** The answer buttons. */
     private JRadioButton[] answerRadioButtons = new JRadioButton[ANSWER_COUNT];
     /** The answer labels. */
