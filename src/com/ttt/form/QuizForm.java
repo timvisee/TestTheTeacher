@@ -241,15 +241,14 @@ public class QuizForm extends JDialog {
         // Update the button panel on selection change
         this.questionList.addListSelectionListener(e -> updateButtons());
 
+        // Edit a question if it's double clicked
         this.questionList.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
-                if (evt.getClickCount() == 2) {
-                    editQuiz();
+                if(evt.getClickCount() == 2) {
+                    editQuestion();
                 }
             }
-
         });
-
 
         // Create a scroll pane with the quiz list and return it
         return new JScrollPane(this.questionList);
@@ -290,7 +289,7 @@ public class QuizForm extends JDialog {
         buttonPanel.add(moveDownButton);
         buttonPanel.add(deleteButton);
         createButton.addActionListener(e -> createQuiz());
-        editButton.addActionListener(e -> editQuiz());
+        editButton.addActionListener(e -> editQuestion());
         moveUpButton.addActionListener(e -> moveQuestionsUp());
         moveDownButton.addActionListener(e -> moveQuestionsDown());
         deleteButton.addActionListener(e -> deleteQuestions());
@@ -380,9 +379,9 @@ public class QuizForm extends JDialog {
     }
 
     /**
-     * Edit the selected quiz.
+     * Edit the selected question.
      */
-    public void editQuiz() {
+    public void editQuestion() {
         // Make sure just one item is selected
         if(getSelectedCount() != 1)
             return;
@@ -392,6 +391,9 @@ public class QuizForm extends JDialog {
 
         // Edit the selected question
         new QuestionEditForm(this, this.app, selected, true);
+
+        // Refresh the list
+        refreshList();
     }
 
     /**
