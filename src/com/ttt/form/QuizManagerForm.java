@@ -14,6 +14,7 @@ import com.ttt.App;
 import com.ttt.quiz.Quiz;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class QuizManagerForm extends JFrame {
@@ -142,8 +143,9 @@ public class QuizManagerForm extends JFrame {
         for(int i = 0; i < this.app.getQuizManager().getQuizCount(); i++)
             quizModel.addElement(this.app.getQuizManager().getQuiz(i));
 
-        // Create the list
+        // Create the list and create an empty border
         JList<Quiz> quizList = new JList<>(quizModel);
+        quizList.setBorder(new EmptyBorder(5, 5, 5, 5));
 
         // Create a scroll pane with the quiz list and return it
         return new JScrollPane(quizList);
