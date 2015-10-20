@@ -19,6 +19,8 @@ import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class QuizManagerForm extends JDialog {
@@ -264,6 +266,8 @@ public class QuizManagerForm extends JDialog {
         buttonPanel.add(deleteButton);
         createButton.addActionListener(e -> createQuiz());
         editButton.addActionListener(e -> editQuiz());
+        moveUpButton.addActionListener(e -> moveQuizzesUp());
+        moveDownButton.addActionListener(e -> moveQuizzesDown());
         deleteButton.addActionListener(e -> deleteQuizzes());
 
         // Return the button panel
@@ -363,6 +367,95 @@ public class QuizManagerForm extends JDialog {
 
         // TODO: Edit quiz here!
         JOptionPane.showMessageDialog(this, "Edit quiz: " + selected.getName());
+    }
+
+    /**
+     * Move the selected quizzes up.
+     */
+    public void moveQuizzesUp() {
+        // Make sure at least one quiz is selected
+        if(getSelectedCount() <= 0)
+            return;
+
+        // Get the indices
+        int[] indices = this.quizList.getSelectedIndices();
+
+        // Move the quizzes
+        if(moveQuizzes(this.quizList.getSelectedIndices(), -1))
+            for(int i = 0; i < indices.length; i++)
+                indices[i]--;
+
+        // Set the selected indices
+        this.quizList.setSelectedIndices(indices);
+
+        // Update the list
+        refreshList();
+    }
+
+    /**
+     * Move the selected quizzes down.
+     */
+    public void moveQuizzesDown() {
+        // Make sure at least one quiz is selected
+        if(getSelectedCount() <= 0)
+            return;
+
+        // Get the indices
+        int[] indices = this.quizList.getSelectedIndices();
+
+        // Move the quizzes
+        if(moveQuizzes(this.quizList.getSelectedIndices(), 1))
+            for(int i = 0; i < indices.length; i++)
+                indices[i]++;
+
+        // Set the selected indices
+        this.quizList.setSelectedIndices(indices);
+
+        // Update the list
+        refreshList();
+    }
+
+    /**
+     * Move the quizzes.
+     *
+     * @param quizIndexes Indexes of quizzes to move.
+     * @param move How much to move.
+     *
+     * @return True if any item was moved, false if not.
+     */
+    private boolean moveQuizzes(int[] quizIndexes, int move) {
+        // Get the lowest and highest new index
+        int lowest = quizIndexes[0] + move;
+        int highest = quizIndexes[0] + move;
+
+        // Loop through the quiz indexes and update the lowest and highest values
+        for(int i = 1; i < quizIndexes.length; i++) {
+            lowest = Math.min(quizIndexes[i] + move, lowest);
+            highest = Math.max(quizIndexes[i] + move, highest);
+        }
+
+        // Make sure the quizzes can be moved to that position
+        if(lowest < 0 || highest >= this.quizzes.size())
+            return false;
+
+        // Sort the array with indexes
+        Arrays.sort(quizIndexes);
+
+        // Inverse the list if they should be moved upwards
+        if(move > 0) {
+            for(int i = 0; i < quizIndexes.length / 2; i++) {
+                int temp = quizIndexes[i];
+                quizIndexes[i] = quizIndexes[quizIndexes.length - i - 1];
+                quizIndexes[quizIndexes.length - i - 1] = temp;
+            }
+        }
+
+        // Move all the quizzes
+        for(int i : quizIndexes)
+            Collections.swap(this.quizzes, i, i + move);
+
+        // Return the result
+        return true;
     }
 
     /**
