@@ -145,7 +145,7 @@ public class App {
 
         // Add the first question
         this.mainQuiz.addQuestion(new Question(
-                "<b>Welk volgende types zijn geldig in Java?</b>",
+                "<b>1. Welk volgende types zijn geldig in Java?</b>",
                 new String[]{
                         "int, string, Double, Boolean",
                         "boolean, int, String, double",
@@ -154,7 +154,7 @@ public class App {
                 },
                 1));
         this.mainQuiz.addQuestion(new Question(
-                "<b>Wat is de waarde van <i>a</i>?</b><br />" +
+                "<b>2. Wat is de waarde van <i>a</i>?</b><br />" +
                         "<br />" +
                         StringUtils.indentHtmlSpaces(4) + "int a = (int) 19.6",
                 new String[]{
@@ -165,7 +165,7 @@ public class App {
                 },
                 0));
         this.mainQuiz.addQuestion(new Question(
-                "<b>Wat komt hier uit?</b><br />" +
+                "<b>3. Wat komt hier uit?</b><br />" +
                         "<br />" +
                         StringUtils.indentHtmlSpaces(4) + "(int) (24.768 * 100) / 100",
                 new String[]{
@@ -176,7 +176,7 @@ public class App {
                 },
                 2));
         this.mainQuiz.addQuestion(new Question(
-                "<b>Wat komt hier uit?</b><br />" +
+                "<b>4. Wat komt hier uit?</b><br />" +
                         "<br />" +
                         StringUtils.indentHtmlSpaces(4) + "42.5 % 2.1",
                 new String[]{
@@ -187,7 +187,7 @@ public class App {
                 },
                 0));
         this.mainQuiz.addQuestion(new Question(
-                "<b>Wat komt hier uit?</b><br />" +
+                "<b>5. Wat komt hier uit?</b><br />" +
                         "<br />" +
                         StringUtils.indentHtmlSpaces(4) + "for(int i = 1; i < 10; i += 2) {<br />" +
                         StringUtils.indentHtmlSpaces(8) + "System.out.printf(\"%1d\", i);<br />" +
@@ -202,12 +202,44 @@ public class App {
         this.mainQuiz.addQuestion(new Question(
                 "<b>Wat is de uitkomst van de som: " + StringUtils.createHtmlFraction(1, 5) + " x " + StringUtils.createHtmlFraction(1, 3) + " x " + StringUtils.createHtmlFraction(1, 4) + "? </b><br />",
                 new String[]{
+                        StringUtils.createHtmlFraction(3, 60),
+                        "60",
+                        StringUtils.createHtmlFraction(47,60),
                         StringUtils.createHtmlFraction(1, 60),
-                        "",
-                        "",
-                        ""
                 },
-                1));
+                3));
+        this.mainQuiz.addQuestion(new Question(
+                "<b>7. Welk van de volgende declaraties is juist? </b><br />",
+                new String[]{
+                        "boolean b=TRUE",
+                        "byte b =255",
+                        "String s =\"null\"",
+                        "int i=new Interger(\"56')",
+                },
+                2));
+        this.mainQuiz.addQuestion(new Question(
+                "<b>8. Wat komt hier uit? </b><br />" +
+                "<br />" +
+                        StringUtils.indentHtmlSpaces(4) + "import java.util.*;<br />" +
+                        StringUtils.indentHtmlSpaces(4) + "public class Primes {<br />" +
+                        StringUtils.indentHtmlSpaces(8) + "public static void main(String[] args) {<br />" +
+                        StringUtils.indentHtmlSpaces(12) + "List p = new ArrayList();<br />" +
+                        StringUtils.indentHtmlSpaces(12) + "p.add(7)<br />" +
+                        StringUtils.indentHtmlSpaces(12) + "p.add(2)<br />" +
+                        StringUtils.indentHtmlSpaces(12) + "p.add(5)<br />" +
+                        StringUtils.indentHtmlSpaces(12) + "p.add(2)<br />" +
+                        StringUtils.indentHtmlSpaces(12) + "p.sort()<br />" +
+                        StringUtils.indentHtmlSpaces(12) + "System.out.println(p);<br />" +
+                        StringUtils.indentHtmlSpaces(8) + "}<br />" +
+                        StringUtils.indentHtmlSpaces(4) + "}",
+                new String[]{
+                        "[2, 2, 5, 7]",
+                        "[7, 2, 5, 2]",
+                        "[7, 5, 2, 2]",
+                        "<i>Het systeem geeft error aan</i>",
+
+                },
+                3));
     }
 
     /**
