@@ -96,10 +96,8 @@ public class QuizManagerForm extends JDialog {
         // Create the form UI
         createUIComponents();
 
-        // Do not close the window when pressing the red cross
+        // Do not close the window when pressing the red cross, execute the close method instead
         this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-
-        // Create a window listener
         this.addWindowListener(new WindowListener() {
             @Override
             public void windowOpened(WindowEvent e) { }

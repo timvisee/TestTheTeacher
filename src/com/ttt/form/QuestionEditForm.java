@@ -15,6 +15,8 @@ import com.ttt.question.Question;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 public class QuestionEditForm extends JDialog {
 
@@ -60,9 +62,32 @@ public class QuestionEditForm extends JDialog {
         // Set the question
         refreshQuestion(this.question);
 
-        // Close application when closing form
-        // TODO: Should we keep this?
-        //this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        // Do not close the window when pressing the red cross, execute the close method instead
+        this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent e) { }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                closeFrame();
+            }
+
+            @Override
+            public void windowClosed(WindowEvent e) { }
+
+            @Override
+            public void windowIconified(WindowEvent e) { }
+
+            @Override
+            public void windowDeiconified(WindowEvent e) { }
+
+            @Override
+            public void windowActivated(WindowEvent e) { }
+
+            @Override
+            public void windowDeactivated(WindowEvent e) { }
+        });
 
         // Set the frame sizes
         this.setMinimumSize(new Dimension(350, 290));
@@ -329,16 +354,38 @@ public class QuestionEditForm extends JDialog {
      * Close the frame. Ask whether the user wants to save the changes.
      */
     public void closeFrame() {
-        // Ask whether the user wants to save the questions
-        switch(JOptionPane.showConfirmDialog(this, "Wilt u deze vraag opslaan?", "Vraag", JOptionPane.YES_NO_CANCEL_OPTION)) {
-            case JOptionPane.YES_OPTION:
-                // Save the changes
-                applyQuestion();
+        // Only ask to save if there are any unsaved changes
+        if(hasUnsavedChanges()) {
+            // Ask whether the user wants to save the questions
+            switch(JOptionPane.showConfirmDialog(this, "Wilt u deze vraag opslaan?", "Vraag", JOptionPane.YES_NO_CANCEL_OPTION)) {
+                case JOptionPane.YES_OPTION:
+                    // Save the changes
+                    applyQuestion();
 
-            case JOptionPane.NO_OPTION:
-                // Dispose the frame
-                this.dispose();
-                break;
-        }
+                case JOptionPane.NO_OPTION:
+                    // Dispose the frame
+                    this.dispose();
+                    break;
+            }
+        } else
+            this.dispose();
+    }
+
+    /**
+     * Check whether this question has unsaved changes.
+     *
+     * @return True if this question has unsaved changes, false if not.
+     */
+    public boolean hasUnsavedChanges() {
+        // TODO: Check whether the question is changed!
+
+        // Check whether the correct answer is different
+        if(!this.question.isCorrectAnswerIndex(getCorrectAnswer()))
+            return true;
+
+        // TODO: Check whether the answers are changed!
+
+        // No unsaved changes detected, return false
+        return false;
     }
 }
