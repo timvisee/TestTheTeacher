@@ -107,7 +107,6 @@ public class QuizManagerForm extends JFrame {
      * @return Panel with the list.
      */
     public JComponent createQuizList() {
-
         // Create a list model for the quizzes
         // TODO: Dynamically add all quizzes!
         DefaultListModel<Question> questionModel = new DefaultListModel<>();
@@ -119,10 +118,7 @@ public class QuizManagerForm extends JFrame {
         // Create the list
         JList<Question> quizList = new JList<>(questionModel);
 
-        // Create a panel for the list and set the layout
-        JScrollPane scrolLPane = new JScrollPane(quizList);
-
-        // Return the panel
-        return scrolLPane;
+        // Create a scroll pane with the quiz list and return it
+        return new JScrollPane(quizList);
     }
 }
