@@ -15,6 +15,7 @@ import com.ttt.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class QuizManager {
 
@@ -105,15 +106,7 @@ public class QuizManager {
      * @return Cloned quizzes.
      */
     public List<Quiz> getQuizzesClone() {
-        // Create a list to put the clones in
-        List<Quiz> clones = new ArrayList<>();
-
-        // Put a clone of all quizzes in the list
-        for(Quiz quiz : this.quizzes)
-            clones.add(quiz.copy());
-
-        // Return the clones
-        return clones;
+        return createQuizListCopy(this.quizzes);
     }
 
     /**
@@ -134,5 +127,23 @@ public class QuizManager {
      */
     public int getQuizCount() {
         return this.quizzes.size();
+    }
+
+    /**
+     * Copy a quiz list.
+     *
+     * @param quizzes Quizzes to copy.
+     *
+     * @return Copy of quizzes.
+     */
+    public static List<Quiz> createQuizListCopy(List<Quiz> quizzes) {
+        // Create a list to put the clones in
+        List<Quiz> clones = new ArrayList<>();
+
+        // Put a clone of all quizzes in the list
+        clones.addAll(quizzes.stream().map(Quiz::copy).collect(Collectors.toList()));
+
+        // Return the clones
+        return clones;
     }
 }

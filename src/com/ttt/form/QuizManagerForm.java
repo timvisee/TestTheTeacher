@@ -562,8 +562,8 @@ public class QuizManagerForm extends JDialog {
      * Apply and save the quizzes.
      */
     public void applyQuizzes() {
-        // Store the quizzes
-        this.app.getQuizManager().setQuizzes(this.quizzes);
+        // Store a copy of the quizzes
+        this.app.getQuizManager().setQuizzes(QuizManager.createQuizListCopy(this.quizzes));
 
         // TODO: Save the quizzes to a file?
     }
