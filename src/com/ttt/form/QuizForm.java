@@ -531,14 +531,14 @@ public class QuizForm extends JDialog {
     public void closeFrame() {
         // Ask whether the user wants to save the questions
         switch(JOptionPane.showConfirmDialog(this, "Wilt u de vragen opslaan?", "Quiz", JOptionPane.YES_NO_CANCEL_OPTION)) {
-            case JOptionPane.YES_OPTION:
-                // Save the changes
-                applyQuestions();
+        case JOptionPane.YES_OPTION:
+            // Save the changes
+            applyQuestions();
 
-            case JOptionPane.NO_OPTION:
-                // Dispose the frame
-                this.dispose();
-                break;
+        case JOptionPane.NO_OPTION:
+            // Dispose the frame
+            this.dispose();
+            break;
         }
     }
 }

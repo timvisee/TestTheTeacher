@@ -521,14 +521,14 @@ public class QuizManagerForm extends JDialog {
     public void closeFrame() {
         // Ask whether the user wants to save the quizzes
         switch(JOptionPane.showConfirmDialog(this, "Wilt u uw quiz opslaan?", "Quiz manager", JOptionPane.YES_NO_CANCEL_OPTION)) {
-            case JOptionPane.YES_OPTION:
-                // Save the changes
-                applyQuizzes();
+        case JOptionPane.YES_OPTION:
+            // Save the changes
+            applyQuizzes();
 
-            case JOptionPane.NO_OPTION:
-                // Dispose the frame
-                this.dispose();
-                break;
+        case JOptionPane.NO_OPTION:
+            // Dispose the frame
+            this.dispose();
+            break;
         }
     }
 }
