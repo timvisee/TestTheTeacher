@@ -382,31 +382,18 @@ public class QuizForm extends JDialog {
      * Create a new question.
      */
     public void createQuestion() {
-        /* // Ask for the quiz name
-        String quizName = JOptionPane.showInputDialog(this, "Enter a name for the quiz:", "Create quiz", JOptionPane.INFORMATION_MESSAGE);
+        // Create an empty question
+        Question question = new Question();
 
-        // Make sure a name was entered
-        if(quizName == null)
-            return;
+        // Edit the question
+        new QuestionEditForm(this, this.app, question, true);
 
-        // Trim the name
-        quizName = quizName.trim();
-
-        // Make sure the name is valid
-        if(quizName.length() <= 0) {
-            JOptionPane.showMessageDialog(this, "The name you've entered is invalid!", "Invalid name", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        // Create the quiz
-        Question question = new Question(quizName);
-        question.setName(quizName);
-
-        // Add the quiz to the list
+        // Add the question
+        // TODO: Only add if the new question is valid!
         this.questions.add(question);
 
         // Refresh the list of questions
-        refreshList();*/
+        refreshList();
     }
 
     /**

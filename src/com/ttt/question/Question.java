@@ -28,6 +28,13 @@ public class Question {
 
     /**
      * Constructor.
+     */
+    public Question() {
+        this("<b>Vraag?</b>", new String[]{"Antwoord 1", "Antwoord 2", "Antwoord 3", "Antwoord 4"}, 0);
+    }
+
+    /**
+     * Constructor.
      *
      * @param question Question.
      * @param answers Four answers in a list.
