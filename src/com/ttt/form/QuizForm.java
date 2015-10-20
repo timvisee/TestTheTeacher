@@ -436,11 +436,11 @@ public class QuizForm extends JDialog {
             for(int i = 0; i < indices.length; i++)
                 indices[i]--;
 
-        // Set the selected indices
-        this.questionList.setSelectedIndices(indices);
-
         // Update the list
         refreshList();
+
+        // Set the selected indices
+        this.questionList.setSelectedIndices(indices);
     }
 
     /**
@@ -473,11 +473,11 @@ public class QuizForm extends JDialog {
             for(int i = 0; i < indices.length; i++)
                 indices[i]++;
 
-        // Set the selected indices
-        this.questionList.setSelectedIndices(indices);
-
         // Update the list
         refreshList();
+
+        // Set the selected indices
+        this.questionList.setSelectedIndices(indices);
     }
 
     /**

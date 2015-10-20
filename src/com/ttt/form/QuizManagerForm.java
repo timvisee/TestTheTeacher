@@ -238,10 +238,9 @@ public class QuizManagerForm extends JDialog {
         this.quizList.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 if (evt.getClickCount() == 2) {
-                 editQuiz();
+                    editQuiz();
                 }
             }
-
         });
 
         // Create a scroll pane with the quiz list and return it
@@ -411,11 +410,11 @@ public class QuizManagerForm extends JDialog {
             for(int i = 0; i < indices.length; i++)
                 indices[i]--;
 
-        // Set the selected indices
-        this.quizList.setSelectedIndices(indices);
-
         // Update the list
         refreshList();
+
+        // Set the selected indices
+        this.quizList.setSelectedIndices(indices);
     }
 
     /**
@@ -448,11 +447,11 @@ public class QuizManagerForm extends JDialog {
             for(int i = 0; i < indices.length; i++)
                 indices[i]++;
 
-        // Set the selected indices
-        this.quizList.setSelectedIndices(indices);
-
         // Update the list
         refreshList();
+
+        // Set the selected indices
+        this.quizList.setSelectedIndices(indices);
     }
 
     /**
