@@ -136,6 +136,10 @@ public class QuizForm extends JDialog {
             public void windowDeactivated(WindowEvent e) { }
         });
 
+        // Set the window location to the system's default
+        this.setLocationByPlatform(true);
+        this.setLocationRelativeTo(parent);
+
         // Show the form
         this.setVisible(show);
     }
@@ -151,7 +155,7 @@ public class QuizForm extends JDialog {
         this.setLayout(new GridBagLayout());
 
         // Set the frame size
-        this.setSize(325, 400);
+        this.setSize(600, 400);
 
         // Make the frame non-resizable
         this.setResizable(true);
@@ -211,10 +215,6 @@ public class QuizForm extends JDialog {
         c.weighty = 1.0;
         c.insets = new Insets(10, 10, 10, 10);
         this.add(pnlMain, c);
-
-        // Set the window location to the system's default
-        this.setLocationByPlatform(true);
-        this.setLocationRelativeTo(null);
 
         // Update the button panel
         updateButtons();

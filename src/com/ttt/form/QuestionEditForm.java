@@ -48,7 +48,7 @@ public class QuestionEditForm extends JDialog {
      */
     public QuestionEditForm(Window parent, App app, Question question, boolean show) {
         // Construct the form
-        super(parent, FORM_TITLE);
+        super(parent, FORM_TITLE, ModalityType.DOCUMENT_MODAL);
 
         // Store the app instance
         this.app = app;
@@ -63,6 +63,10 @@ public class QuestionEditForm extends JDialog {
         // Close application when closing form
         // TODO: Should we keep this?
         //this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        // Set the window location to the system's default
+        this.setLocationByPlatform(true);
+        this.setLocationRelativeTo(parent);
 
         // Show the form
         this.setVisible(show);
@@ -83,10 +87,6 @@ public class QuestionEditForm extends JDialog {
 
         // Make the frame non-resizable
         this.setResizable(true);
-
-        // Set the window location to the system's default
-        this.setLocationByPlatform(true);
-        this.setLocationRelativeTo(null);
 
         // Create the main panel, to put the question and answers in
         JPanel pnlMain = new JPanel();

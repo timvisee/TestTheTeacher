@@ -125,6 +125,10 @@ public class QuizManagerForm extends JDialog {
             public void windowDeactivated(WindowEvent e) { }
         });
 
+        // Set the window location to the system's default
+        this.setLocationByPlatform(true);
+        this.setLocationRelativeTo(app.getMainForm());
+
         // Show the form
         this.setVisible(show);
     }
@@ -200,10 +204,6 @@ public class QuizManagerForm extends JDialog {
         c.weighty = 1.0;
         c.insets = new Insets(10, 10, 10, 10);
         this.add(pnlMain, c);
-
-        // Set the window location to the system's default
-        this.setLocationByPlatform(true);
-        this.setLocationRelativeTo(null);
 
         // Update the button panel
         updateButtons();
