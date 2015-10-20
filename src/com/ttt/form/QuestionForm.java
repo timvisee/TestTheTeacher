@@ -100,7 +100,7 @@ public class QuestionForm extends JFrame {
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = 0;
-        c.insets = new Insets(3, 5, 15, 5);
+        c.insets = new Insets(0, 0, 16, 0);
         c.weightx = 1.0;
         questionLabel.setFixedWidth(350);
         questionLabel.setFixedHeight(55);
@@ -130,7 +130,7 @@ public class QuestionForm extends JFrame {
             // Configure the button placement
             c.gridx = 0;
             c.gridy = i;
-            c.insets = new Insets(3, 5, 3, 5);
+            c.insets = new Insets(3, 0, 3, 0);
             c.weightx = 0.0;
 
             // Add the button
