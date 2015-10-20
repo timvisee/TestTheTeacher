@@ -31,6 +31,11 @@ public class QuizManagerForm extends JDialog {
     private JLabel mainLabel = new JLabel("<html>Create, manage or delete a custom quiz using the buttons on the side.");
 
     /**
+     * Quiz list model instance.
+     */
+    private DefaultListModel<Quiz> quizListModel;
+
+    /**
      * Quiz list instance.
      */
     private JList quizList;
@@ -171,16 +176,14 @@ public class QuizManagerForm extends JDialog {
      * @return Scroll pane with list.
      */
     public JScrollPane createQuizList() {
-        // Create a list model for the quizzes
-        // TODO: Dynamically add all quizzes!
-        DefaultListModel<Quiz> quizModel = new DefaultListModel<>();
+        // Create the default list model
+        this.quizListModel = new DefaultListModel<>();
 
-        // Add all quizzes
-        for(int i = 0; i < this.app.getQuizManager().getQuizCount(); i++)
-            quizModel.addElement(this.app.getQuizManager().getQuiz(i));
+        // Refresh the list of quizzes to add them to the list model
+        refreshList();
 
         // Create the list and create an empty border
-        this.quizList = new JList<>(quizModel);
+        this.quizList = new JList<>(this.quizListModel);
         this.quizList.setBorder(new EmptyBorder(5, 5, 5, 5));
 
         // Update the button panel on selection change
@@ -188,6 +191,17 @@ public class QuizManagerForm extends JDialog {
 
         // Create a scroll pane with the quiz list and return it
         return new JScrollPane(this.quizList);
+    }
+
+    /**
+     * Refresh the list of quizzes.
+     */
+    public void refreshList() {
+        // Clear all current items
+        this.quizListModel.clear();
+
+        // Add the items
+        this.quizzes.forEach(this.quizListModel::addElement);
     }
 
     /**
@@ -214,6 +228,8 @@ public class QuizManagerForm extends JDialog {
         buttonPanel.add(moveDownButton);
         buttonPanel.add(deleteButton);
         createButton.addActionListener(e -> createQuiz());
+        editButton.addActionListener(e -> editQuiz());
+        deleteButton.addActionListener(e -> deleteQuizzes());
 
         // Return the button panel
         return buttonPanel;
@@ -245,7 +261,7 @@ public class QuizManagerForm extends JDialog {
      */
     public void updateButtons() {
         // Get the number of selected items
-        int selected = this.quizList.getSelectedValuesList().size();
+        int selected = getSelectedCount();
 
         // Enable the edit button if one item is selected
         editButton.setEnabled(selected == 1);
@@ -261,11 +277,20 @@ public class QuizManagerForm extends JDialog {
      */
     public void createQuiz() {
         // Ask for the quiz name
-        String quizName = JOptionPane.showInputDialog(this, "Enter a name for the quiz");
+        String quizName = JOptionPane.showInputDialog(this, "Enter a name for the quiz:", "Create quiz", JOptionPane.INFORMATION_MESSAGE);
 
         // Make sure a name was entered
         if(quizName == null)
             return;
+
+        // Trim the name
+        quizName = quizName.trim();
+
+        // Make sure the name is valid
+        if(quizName.length() <= 0) {
+            JOptionPane.showMessageDialog(this, "The name you've entered is invalid!", "Invalid name", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
         // Create the quiz
         Quiz quiz = new Quiz();
@@ -273,5 +298,57 @@ public class QuizManagerForm extends JDialog {
 
         // Add the quiz to the list
         this.quizzes.add(quiz);
+
+        // Refresh the list of quizzes
+        refreshList();
+    }
+
+    /**
+     * Edit the selected quiz.
+     */
+    public void editQuiz() {
+        // Make sure just one item is selected
+        if(getSelectedCount() != 1)
+            return;
+
+        // Get the selected quiz
+        Quiz selected = (Quiz) this.quizList.getSelectedValue();
+
+        // TODO: Edit quiz here!
+        JOptionPane.showMessageDialog(this, "Edit quiz: " + selected.getName());
+    }
+
+    /**
+     * Delete the selected quizzes.
+     */
+    public void deleteQuizzes() {
+        // Make sure at least one item is selected
+        if(getSelectedCount() <= 0)
+            return;
+
+        // Ask whether the user wants to delete the quizzes
+        switch(JOptionPane.showConfirmDialog(this, "Are you sure you want to delete the selected quizzes? This action can't be reverted.", "Delete quizzes", JOptionPane.YES_NO_OPTION)) {
+        case JOptionPane.NO_OPTION:
+        case JOptionPane.CANCEL_OPTION:
+        case JOptionPane.CLOSED_OPTION:
+            return;
+        }
+
+        // Delete the selected quizzes
+        for(Object quiz : this.quizList.getSelectedValuesList())
+            //noinspection RedundantCast
+            this.quizzes.remove((Quiz) quiz);
+
+        // Refresh the list
+        refreshList();
+    }
+
+    /**
+     * Get the number of selected items.
+     *
+     * @return Number of selected items.
+     */
+    public int getSelectedCount() {
+        return this.quizList.getSelectedValuesList().size();
     }
 }
