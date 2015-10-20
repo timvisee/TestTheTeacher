@@ -25,7 +25,7 @@ public class QuizManagerForm extends JFrame {
     private App app;
 
     /** The quiz manager label. */
-    private JLabel mainLabel = new JLabel("<html>Quiz manager.");
+    private JLabel mainLabel = new JLabel("<html>Quiz manager");
 
     /**
      * Constructor.
@@ -62,7 +62,7 @@ public class QuizManagerForm extends JFrame {
         this.setLayout(new GridBagLayout());
 
         // Set the frame size
-        this.setSize(400, 215);
+        this.setSize(325, 400);
 
         // Make the frame non-resizable
         this.setResizable(true);
