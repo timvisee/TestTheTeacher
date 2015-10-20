@@ -286,8 +286,8 @@ public class QuizManagerForm extends JDialog {
 
         // Create the buttons to add to the panel
         JButton okButton = new JButton("Ok");
-        JButton applyButton = new JButton("Apply");
-        JButton cancelButton = new JButton("Cancel");
+        JButton applyButton = new JButton("Toepassen");
+        JButton cancelButton = new JButton("Annuleren");
         okButton.addActionListener(e -> {
             // Save the quizzes
             applyQuizzes();
