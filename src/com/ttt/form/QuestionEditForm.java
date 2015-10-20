@@ -97,16 +97,19 @@ public class QuestionEditForm extends JDialog {
         pnlQuestion.setLayout(new GridBagLayout());
 
         // Configure the placement of the questions label, and add it to the questions panel
-        c.fill = GridBagConstraints.HORIZONTAL;
+        c.fill = GridBagConstraints.BOTH;
         c.gridx = 0;
         c.gridy = 0;
         c.insets = new Insets(0, 0, 16, 0);
         c.weightx = 1.0;
+        c.weighty = 1.0;
         pnlQuestion.add(new JScrollPane(this.questionField), c);
 
         // Configure the placement of the questions panel and add it to the main panel
         c.gridx = 0;
         c.gridy = 0;
+        c.weightx = 1.0;
+        c.weighty = 1.0;
         c.insets = new Insets(0, 0, 0, 0);
         pnlMain.add(pnlQuestion, c);
 
@@ -130,6 +133,7 @@ public class QuestionEditForm extends JDialog {
             c.gridy = i;
             c.insets = new Insets(3, 0, 3, 0);
             c.weightx = 0.0;
+            c.weighty = 0.0;
 
             // Add the button
             answersPnl.add(answerRadioButtons[i], c);
@@ -152,6 +156,7 @@ public class QuestionEditForm extends JDialog {
             c.gridy = i;
             c.insets = new Insets(0, 10, 0, 0);
             c.weightx = 1.0;
+            c.weighty = 0.0;
 
             // Add the answer label to the panel
             answersPnl.add(answerFields[i], c);
@@ -160,13 +165,19 @@ public class QuestionEditForm extends JDialog {
         // Configure the answers panel placement and add it to the main frame
         c.gridx = 0;
         c.gridy = 1;
+        c.weightx = 1.0;
+        c.weighty = 0.0;
         c.insets = new Insets(0, 0, 0, 0);
         pnlMain.add(answersPnl, c);
 
         // Configure the main panel placement and add it to the frame
+        c.fill = GridBagConstraints.BOTH;
         c.gridx = 0;
         c.gridy = 0;
+        c.weightx = 1.0;
+        c.weighty = 1.0;
         c.insets = new Insets(10, 10, 10, 10);
+        pnlMain.setBackground(Color.red);
         this.add(pnlMain, c);
     }
 
