@@ -67,30 +67,16 @@ public class QuizManagerForm extends JFrame {
         // Make the frame non-resizable
         this.setResizable(true);
 
-        // Set the window location to the system's default
-        this.setLocationByPlatform(true);
-        this.setLocationRelativeTo(null);
-
         // Create the main panel, to put the question and answers in
         JPanel pnlMain = new JPanel();
         pnlMain.setLayout(new GridBagLayout());
-
-        // Create the questions panel and set the layout
-        JPanel pnlQuestion = new JPanel();
-        pnlQuestion.setLayout(new GridBagLayout());
 
         // Configure the placement of the questions label, and add it to the questions panel
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = 0;
         c.insets = new Insets(0, 0, 10, 0);
-        pnlQuestion.add(mainLabel, c);
-
-        // Configure the placement of the questions panel and add it to the main panel
-        c.gridx = 0;
-        c.gridy = 0;
-        c.insets = new Insets(0, 0, 0, 0);
-        pnlMain.add(pnlQuestion, c);
+        pnlMain.add(mainLabel, c);
 
         // Create the quiz manager list and add it to the main panel
         JPanel quizList = createQuizList();
@@ -99,6 +85,8 @@ public class QuizManagerForm extends JFrame {
         c.gridy = 1;
         c.insets = new Insets(0, 5, 0, 5);
         c.weightx = 1.0;
+        c.weighty = 1.0;
+        quizList.setBackground(Color.red);
         pnlMain.add(quizList, c);
 
         // Configure the main panel placement and add it to the frame
@@ -106,6 +94,10 @@ public class QuizManagerForm extends JFrame {
         c.gridy = 0;
         c.insets = new Insets(10, 10, 10, 10);
         this.add(pnlMain, c);
+
+        // Set the window location to the system's default
+        this.setLocationByPlatform(true);
+        this.setLocationRelativeTo(null);
     }
 
     // TODO: Handle quizzes, instead of questions here!
