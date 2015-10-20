@@ -559,7 +559,7 @@ public class QuizForm extends JDialog {
             return;
 
         // Ask whether the user wants to delete the questions
-        switch(JOptionPane.showConfirmDialog(this, "Weet u zeker dat u de geselecteerde vragen wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.", "Verwijder vragen", JOptionPane.YES_NO_OPTION)) {
+        switch(JOptionPane.showConfirmDialog(this, "Weet u zeker dat u de geselecteerde vragen wilt verwijderen?", "Verwijder vragen", JOptionPane.YES_NO_OPTION)) {
             case JOptionPane.NO_OPTION:
             case JOptionPane.CANCEL_OPTION:
             case JOptionPane.CLOSED_OPTION:
