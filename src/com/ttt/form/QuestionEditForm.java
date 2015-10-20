@@ -162,13 +162,24 @@ public class QuestionEditForm extends JDialog {
             answersPnl.add(answerFields[i], c);
         }
 
-        // Configure the answers panel placement and add it to the main frame
+        // Configure the answers panel placement and add it to the main panel
         c.gridx = 0;
         c.gridy = 1;
         c.weightx = 1.0;
         c.weighty = 0.0;
         c.insets = new Insets(0, 0, 0, 0);
         pnlMain.add(answersPnl, c);
+
+        // Create the control button panel and add it to the main panel
+        JPanel controlsPanel = createControlButtonPanel();
+        c.fill = GridBagConstraints.VERTICAL;
+        c.gridx = 0;
+        c.gridy = 2;
+        c.weightx = 0.0;
+        c.weighty = 0.0;
+        c.insets = new Insets(10, 0, 0, 0);
+        c.anchor = GridBagConstraints.EAST;
+        pnlMain.add(controlsPanel, c);
 
         // Configure the main panel placement and add it to the frame
         c.fill = GridBagConstraints.BOTH;
@@ -177,8 +188,40 @@ public class QuestionEditForm extends JDialog {
         c.weightx = 1.0;
         c.weighty = 1.0;
         c.insets = new Insets(10, 10, 10, 10);
-        pnlMain.setBackground(Color.red);
         this.add(pnlMain, c);
+    }
+
+    /**
+     * Create the button panel to control the form.
+     *
+     * @return Button panel.
+     */
+    public JPanel createControlButtonPanel() {
+        // Create a panel to put the buttons in and set it's layout
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(1, 3, 10, 10));
+
+        // Create the buttons to add to the panel
+        JButton okButton = new JButton("Ok");
+        JButton applyButton = new JButton("Toepassen");
+        JButton cancelButton = new JButton("Annuleren");
+        /*okButton.addActionListener(e -> {
+            // Save the questions
+            applyQuestions();
+
+            // Close the frame
+            dispose();
+        });
+        applyButton.addActionListener(e -> applyQuestions());
+        cancelButton.addActionListener(e -> closeFrame());*/
+
+        // Add the buttons to the panel
+        buttonPanel.add(okButton);
+        buttonPanel.add(applyButton);
+        buttonPanel.add(cancelButton);
+
+        // Return the button panel
+        return buttonPanel;
     }
 
     /**
