@@ -49,6 +49,7 @@ public class App {
      */
     private int currentQuestion = 0;
 
+
     /**
      * The current score. Number of correct answers.
      */
@@ -78,6 +79,16 @@ public class App {
     /**
      * Initialize the application.
      */
+
+    public void resetQuiz (){
+        currentQuestion = 0;
+        score = 0;
+
+        // Update the question
+        this.questionForm.setQuestion(getCurrentQuestion());
+    }
+
+
     public void init() {
         // Application initializing, show a message
         System.out.println("Initializing " + App.APP_NAME + "...");
@@ -186,6 +197,15 @@ public class App {
                         "13579",
                         "2468",
                         "<i>Geen van de bovenstaande</i>"
+                },
+                1));
+        this.mainQuiz.addQuestion(new Question(
+                "<b>Wat is de uitkomst van de som: ⅕ x ⅓ x ¼? </b><br />",
+                new String[]{
+                        StringUtils.createHtmlFraction(1, 60),
+                        "",
+                        "",
+                        ""
                 },
                 1));
     }
@@ -379,6 +399,12 @@ public class App {
     public void showQuizManagerForm() {
         // show QuizManagerForm, hide other
         new QuizManagerForm(this, true);
+
+
+    }
+    public void startQuiz (){
+        resetQuiz();
+        showQuestionForm();
 
     }
 }

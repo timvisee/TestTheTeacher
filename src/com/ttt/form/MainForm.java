@@ -83,7 +83,7 @@ public class MainForm extends JFrame {
 
         // Add and configure the start quiz button
         mainPanel.add(startQuizButton);
-        startQuizButton.addActionListener(e -> app.showQuestionForm());
+        startQuizButton.addActionListener(e -> app.startQuiz());
 
         // Add and configure the create quiz button
         mainPanel.add(createQuizButton);
