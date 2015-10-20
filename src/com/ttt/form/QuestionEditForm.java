@@ -12,6 +12,7 @@ package com.ttt.form;
 
 import com.ttt.App;
 import com.ttt.question.Question;
+import com.ttt.util.StringUtils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -302,7 +303,7 @@ public class QuestionEditForm extends JDialog {
      */
     public void refreshQuestion(Question question) {
         // Set the question label
-        questionField.setText(question.getQuestion(false));
+        questionField.setText(StringUtils.decodeHtml(question.getQuestion(false)));
 
         // Set the labels
         for(int i = 0; i < ANSWER_COUNT; i++) {
@@ -310,7 +311,7 @@ public class QuestionEditForm extends JDialog {
             answerRadioButtons[i].setSelected(question.isCorrectAnswerIndex(i));
 
             // Put the answers in the answer fields
-            answerFields[i].setText(question.getAnswer(i, false));
+            answerFields[i].setText(StringUtils.decodeHtml(question.getAnswer(i, false)));
         }
 
         // Pack the frame
@@ -340,12 +341,14 @@ public class QuestionEditForm extends JDialog {
      */
     public void applyQuestion() {
         // Set the question
-        this.question.setQuestion(this.questionField.getText());
-
-        // TODO: Set the answers!
+        this.question.setQuestion(StringUtils.encodeHtml(this.questionField.getText()));
 
         // Set the correct answer
         this.question.setCorrectAnswerIndex(getCorrectAnswer());
+
+        // Save the answers
+        for(int i = 0; i < ANSWER_COUNT; i++)
+            this.question.setAnswer(i, StringUtils.encodeHtml(this.answerFields[i].getText()));
 
         // TODO: Save the questions to a file?
     }
@@ -358,15 +361,16 @@ public class QuestionEditForm extends JDialog {
         if(hasUnsavedChanges()) {
             // Ask whether the user wants to save the questions
             switch(JOptionPane.showConfirmDialog(this, "Wilt u deze vraag opslaan?", "Vraag", JOptionPane.YES_NO_CANCEL_OPTION)) {
-                case JOptionPane.YES_OPTION:
-                    // Save the changes
-                    applyQuestion();
+            case JOptionPane.YES_OPTION:
+                // Save the changes
+                applyQuestion();
 
-                case JOptionPane.NO_OPTION:
-                    // Dispose the frame
-                    this.dispose();
-                    break;
+            case JOptionPane.NO_OPTION:
+                // Dispose the frame
+                this.dispose();
+                break;
             }
+
         } else
             this.dispose();
     }
@@ -377,13 +381,18 @@ public class QuestionEditForm extends JDialog {
      * @return True if this question has unsaved changes, false if not.
      */
     public boolean hasUnsavedChanges() {
-        // TODO: Check whether the question is changed!
+        // Check whether the question has changed
+        if(!this.question.getQuestion(false).equals(StringUtils.encodeHtml(this.questionField.getText())))
+            return true;
 
         // Check whether the correct answer is different
         if(!this.question.isCorrectAnswerIndex(getCorrectAnswer()))
             return true;
 
-        // TODO: Check whether the answers are changed!
+        // Loop through all the answers to check whether they are changed
+        for(int i = 0; i < ANSWER_COUNT; i++)
+            if(!this.question.getAnswer(i, false).equals(StringUtils.encodeHtml(this.answerFields[i].getText())))
+                return true;
 
         // No unsaved changes detected, return false
         return false;

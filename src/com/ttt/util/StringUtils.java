@@ -55,7 +55,7 @@ public class StringUtils {
         text = text.replace(" ", "&nbsp;");
 
         // Replace the new lines
-        text = text.replace(getLineSeparator(), "<br />");
+        text = text.replace("\n", "<br />");
 
         // Return the encoded text
         return text;
@@ -73,7 +73,7 @@ public class StringUtils {
         html = html.replace("&nbsp;", " ");
 
         // Replace the new lines
-        html = html.replace("<br />", getLineSeparator());
+        html = html.replace("<br />", "\n");
 
         // Return the encoded text
         return html;
