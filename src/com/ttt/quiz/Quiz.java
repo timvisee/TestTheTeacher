@@ -122,14 +122,7 @@ public class Quiz {
      * @return Cloned questions.
      */
     public List<Question> getQuestionsClone() {
-        // Create a new list with questions
-        List<Question> clones = new ArrayList<>();
-
-        // Clone all questions
-        clones.addAll(this.questions.stream().map(Question::copy).collect(Collectors.toList()));
-
-        // Return the list of cloned questions
-        return clones;
+        return createQuestionListCopy(this.questions);
     }
 
     /**
@@ -173,5 +166,23 @@ public class Quiz {
      */
     public String toString() {
         return this.getName();
+    }
+
+    /**
+     * Create a copy of a questions list.
+     *
+     * @param questions Questions to copy.
+     *
+     * @return Copy of questions.
+     */
+    public static List<Question> createQuestionListCopy(List<Question> questions) {
+        // Create a new list with questions
+        List<Question> clones = new ArrayList<>();
+
+        // Clone all questions
+        clones.addAll(questions.stream().map(Question::copy).collect(Collectors.toList()));
+
+        // Return the list of cloned questions
+        return clones;
     }
 }

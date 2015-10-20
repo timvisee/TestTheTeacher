@@ -592,7 +592,7 @@ public class QuizForm extends JDialog {
         this.quiz.setName(this.quizNameField.getText());
 
         // Set the questions
-        this.quiz.setQuestions(this.questions);
+        this.quiz.setQuestions(Quiz.createQuestionListCopy(this.questions));
 
         // TODO: Save the questions to a file?
     }
