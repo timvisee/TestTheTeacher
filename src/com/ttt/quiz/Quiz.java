@@ -103,4 +103,13 @@ public class Quiz {
     public void clearQuestions() {
         this.questions.clear();
     }
+
+    /**
+     * Quiz to string.
+     *
+     * @return Quiz as a string.
+     */
+    public String toString() {
+        return this.getName();
+    }
 }
