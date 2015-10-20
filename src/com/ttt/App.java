@@ -75,49 +75,6 @@ public class App {
     }
 
     /**
-     * Get the current quiz.
-     *
-     * @return Current quiz, or null.
-     */
-    public Quiz getCurrentQuiz() {
-        return this.currentQuiz;
-    }
-
-    /**
-     * Set the current quiz.
-     *
-     * @param current The current quiz.
-     */
-    public void setCurrentQuiz(Quiz current) {
-        this.currentQuiz = current;
-    }
-
-    /**
-     * Get the current score.
-     *
-     * @return Score.
-     */
-    public int getScore() {
-        return score;
-    }
-
-    /**
-     * Set the current score.
-     *
-     * @param score Current score.
-     */
-    public void setScore(int score) {
-        this.score = score;
-    }
-
-    /**
-     * Increase the score by one.
-     */
-    public void addScore(){
-        this.score++;
-    }
-
-    /**
      * Initialize the application.
      */
     public void init() {
@@ -131,7 +88,7 @@ public class App {
         setCurrentQuiz(getMainQuiz());
 
         // Add all questions
-        addQuestions();
+        setUpMainQuiz();
 
         // Initialize the main form
         this.mainForm = new MainForm(this, false);
@@ -164,9 +121,9 @@ public class App {
     }
 
     /**
-     * Add all questions to the questions list.
+     * Set up the main quiz and add it's questions.
      */
-    public void addQuestions() {
+    public void setUpMainQuiz() {
         // Clear the main quiz
         this.mainQuiz.clearQuestions();
 
@@ -226,6 +183,49 @@ public class App {
                         "<i>Geen van de bovenstaande</i>"
                 },
                 1));
+    }
+
+    /**
+     * Get the current quiz.
+     *
+     * @return Current quiz, or null.
+     */
+    public Quiz getCurrentQuiz() {
+        return this.currentQuiz;
+    }
+
+    /**
+     * Set the current quiz.
+     *
+     * @param current The current quiz.
+     */
+    public void setCurrentQuiz(Quiz current) {
+        this.currentQuiz = current;
+    }
+
+    /**
+     * Get the current score.
+     *
+     * @return Score.
+     */
+    public int getScore() {
+        return score;
+    }
+
+    /**
+     * Set the current score.
+     *
+     * @param score Current score.
+     */
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    /**
+     * Increase the score by one.
+     */
+    public void addScore(){
+        this.score++;
     }
 
     /**
