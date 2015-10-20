@@ -79,7 +79,7 @@ public class QuizManagerForm extends JFrame {
         pnlMain.add(mainLabel, c);
 
         // Create the quiz manager list and add it to the main panel
-        JPanel quizList = createQuizList();
+        JComponent quizList = createQuizList();
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = 1;
@@ -106,10 +106,7 @@ public class QuizManagerForm extends JFrame {
      *
      * @return Panel with the list.
      */
-    public JPanel createQuizList() {
-        // Create a panel for the list and set the layout
-        JPanel listPnl = new JPanel();
-        listPnl.setLayout(new BorderLayout());
+    public JComponent createQuizList() {
 
         // Create a list model for the quizzes
         // TODO: Dynamically add all quizzes!
@@ -122,10 +119,10 @@ public class QuizManagerForm extends JFrame {
         // Create the list
         JList<Question> quizList = new JList<>(questionModel);
 
-        // Add the list to the panel
-        listPnl.add(quizList);
+        // Create a panel for the list and set the layout
+        JScrollPane scrolLPane = new JScrollPane(quizList);
 
         // Return the panel
-        return listPnl;
+        return scrolLPane;
     }
 }
