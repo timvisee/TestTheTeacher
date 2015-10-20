@@ -19,7 +19,6 @@ import com.ttt.util.StringUtils;
 import com.ttt.util.WindowUtils;
 
 import javax.swing.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class App {
@@ -30,6 +29,11 @@ public class App {
     public static final String APP_NAME = "Test The Teacher";
 
     /**
+     * This instance of the current quiz.
+     */
+    private Quiz currentQuiz = null;
+
+    /**
      * Main quiz instance.
      */
     private Quiz mainQuiz = new Quiz();
@@ -38,11 +42,6 @@ public class App {
      * Quiz manager instance.
      */
     private QuizManager quizManager = new QuizManager();
-
-    /**
-     * List of all questions.
-     */
-    private List<Question> questions = new ArrayList<>();
 
     /**
      * The current question.
@@ -73,6 +72,24 @@ public class App {
         // Initialize
         if (init)
             init();
+    }
+
+    /**
+     * Get the current quiz.
+     *
+     * @return Current quiz, or null.
+     */
+    public Quiz getCurrentQuiz() {
+        return this.currentQuiz;
+    }
+
+    /**
+     * Set the current quiz.
+     *
+     * @param current The current quiz.
+     */
+    public void setCurrentQuiz(Quiz current) {
+        this.currentQuiz = current;
     }
 
     /**
@@ -109,6 +126,9 @@ public class App {
 
         // Use the system's GUI look and feel, not the Java one
         WindowUtils.useNativeLookAndFeel();
+
+        // Set the current quiz
+        setCurrentQuiz(getMainQuiz());
 
         // Add all questions
         addQuestions();
@@ -147,11 +167,11 @@ public class App {
      * Add all questions to the questions list.
      */
     public void addQuestions() {
-        // Clear the list of questions
-        this.questions.clear();
+        // Clear the main quiz
+        this.mainQuiz.clearQuestions();
 
         // Add the first question
-        this.questions.add(new Question(
+        this.mainQuiz.addQuestion(new Question(
                 "<b>Welk volgende types zijn geldig in Java?</b>",
                 new String[]{
                         "int, string, Double, Boolean",
@@ -160,7 +180,7 @@ public class App {
                         "double, boolean, String, Int"
                 },
                 1));
-        this.questions.add(new Question(
+        this.mainQuiz.addQuestion(new Question(
                 "<b>Wat is de waarde van <i>a</i>?</b><br />" +
                         "<br />" +
                         StringUtils.indentHtmlSpaces(4) + "int a = (int) 19.6",
@@ -171,7 +191,7 @@ public class App {
                         "18"
                 },
                 0));
-        this.questions.add(new Question(
+        this.mainQuiz.addQuestion(new Question(
                 "<b>Wat komt hier uit?</b><br />" +
                         "<br />" +
                         StringUtils.indentHtmlSpaces(4) + "(int) (24.768 * 100) / 100",
@@ -182,7 +202,7 @@ public class App {
                         "24.7"
                 },
                 2));
-        this.questions.add(new Question(
+        this.mainQuiz.addQuestion(new Question(
                 "<b>Wat komt hier uit?</b><br />" +
                         "<br />" +
                         StringUtils.indentHtmlSpaces(4) + "42.5 % 2.1",
@@ -193,7 +213,7 @@ public class App {
                         "<i>Deze expressie geeft een error</i>"
                 },
                 0));
-        this.questions.add(new Question(
+        this.mainQuiz.addQuestion(new Question(
                 "<b>Wat komt hier uit?</b><br />" +
                         "<br />" +
                         StringUtils.indentHtmlSpaces(4) + "for(int i = 1; i < 10; i += 2) {<br />" +
@@ -209,6 +229,15 @@ public class App {
     }
 
     /**
+     * Get the main quiz instance.
+     *
+     * @return Main quiz.
+     */
+    public Quiz getMainQuiz() {
+        return this.mainQuiz;
+    }
+
+    /**
      * Get the quiz manager instance.
      *
      * @return Quiz manager instance.
@@ -218,22 +247,31 @@ public class App {
     }
 
     /**
-     * Get the questions.
+     * Get the questions of the current quiz.
      *
      * @return The list of questions.
      */
     public List<Question> getQuestions() {
-        return this.questions;
+        return getCurrentQuiz().getQuestions();
     }
 
     /**
-     * Get a specific question by index.
+     * Get the number of questions in the current quiz.
+     *
+     * @return Questions in the current quiz.
+     */
+    public int getQuestionCount() {
+        return getQuestions().size();
+    }
+
+    /**
+     * Get a specific question by index of the current quiz.
      *
      * @param i The index of the question.
-     * @return The question.
+     * @return Question.
      */
-    public Question getQuestionById(int i) {
-        return this.questions.get(i);
+    public Question getQuestion(int i) {
+        return getQuestions().get(i);
     }
 
     /**
@@ -246,12 +284,12 @@ public class App {
     }
 
     /**
-     * Get the current question.
+     * Get the current question of the current quiz.
      *
-     * @return Current question.
+     * @return Current question of the current quiz.
      */
     public Question getCurrentQuestion() {
-        return getQuestionById(getCurrentQuestionId());
+        return getQuestion(getCurrentQuestionId());
     }
 
     /**
@@ -259,7 +297,7 @@ public class App {
      */
     public void nextQuestion() {
         // Check whether the current question is the last
-        if(currentQuestion < questions.size() - 1) {
+        if(currentQuestion < getQuestionCount() - 1) {
             // Increase the current question index by one
             currentQuestion++;
 
