@@ -87,6 +87,7 @@ public class MainForm extends JFrame {
 
         // Add and configure the create quiz button
         mainPanel.add(createQuizButton);
+        createQuizButton.addActionListener(e -> JOptionPane.showMessageDialog(this, "This feature hasn't been implemented yet!"));
 
         // Add the main panel to the frame
         add(mainPanel);
