@@ -42,4 +42,49 @@ public class StringUtils {
     public static String createHtmlFraction(int numerator, int denominator) {
         return "<font size=-2><sup>" + numerator + "</sup><i>/</i><sub>" + denominator + "</sub><font size=0>";
     }
+
+    /**
+     * Encode text as HTML.
+     *
+     * @param text The text.
+     *
+     * @return Encoded text.
+     */
+    public static String encodeHtml(String text) {
+        // Replace the spaces
+        text = text.replace(" ", "&nbsp;");
+
+        // Replace the new lines
+        text = text.replace(getLineSeparator(), "<br />");
+
+        // Return the encoded text
+        return text;
+    }
+
+    /**
+     * Decode text from HTML.
+     *
+     * @param html The HTML.
+     *
+     * @return Decode text.
+     */
+    public static String decodeHtml(String html) {
+        // Replace the spaces
+        html = html.replace("&nbsp;", " ");
+
+        // Replace the new lines
+        html = html.replace("<br />", getLineSeparator());
+
+        // Return the encoded text
+        return html;
+    }
+
+    /**
+     * Get the line separator characters of the current platform.
+     *
+     * @return Line separator.
+     */
+    public static String getLineSeparator() {
+        return System.getProperty("line.separator");
+    }
 }
