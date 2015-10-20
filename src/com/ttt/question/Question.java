@@ -122,6 +122,31 @@ public class Question {
     }
 
     /**
+     * Check whether this question object equals another.
+     *
+     * @param other The other.
+     *
+     * @return True if both objects are equal, false if not.
+     */
+    public boolean equals(Question other) {
+        // Compare the question
+        if(!getQuestion(false).equals(other.getQuestion(false)))
+            return false;
+
+        // Compare the correct answer
+        if(!isCorrectAnswerIndex(other.getCorrectAnswerIndex()))
+            return false;
+
+        // Compare the answers
+        for(int i = 0; i < this.answers.size(); i++)
+            if(!getAnswer(i, false).equals(this.getAnswer(i, false)))
+                return false;
+
+        // Question looks equal, return result
+        return true;
+    }
+
+    /**
      * Get the question representation as a string.
      *
      * @return Question as a string.
