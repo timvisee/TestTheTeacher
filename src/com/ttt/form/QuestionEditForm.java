@@ -19,7 +19,7 @@ import java.awt.*;
 public class QuestionEditForm extends JDialog {
 
     /** Frame title. */
-    private static final String FORM_TITLE = App.APP_NAME + " - Edit question";
+    private static final String FORM_TITLE = App.APP_NAME + " - Vraag bewerken";
     /** Number of answers to show. */
     private static final int ANSWER_COUNT = 4;
 

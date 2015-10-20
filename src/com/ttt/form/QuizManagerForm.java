@@ -28,7 +28,7 @@ import java.util.List;
 public class QuizManagerForm extends JDialog {
 
     /** Frame title. */
-    private static final String FORM_TITLE = App.APP_NAME + " - Quiz Manager";
+    private static final String FORM_TITLE = App.APP_NAME + " - Quiz manager";
 
     /** App instance. */
     private App app;

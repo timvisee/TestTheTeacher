@@ -29,7 +29,7 @@ import java.util.List;
 public class QuizForm extends JDialog {
 
     /** Frame title. */
-    private static final String FORM_TITLE = App.APP_NAME + " - Quiz";
+    private static final String FORM_TITLE = App.APP_NAME + " - Quiz bewerken";
 
     /** App instance. */
     private App app;
