@@ -33,6 +33,17 @@ public class Quiz {
     public Quiz() { }
 
     /**
+     * Constructor.
+     *
+     * @param name Quiz name.
+     * @param questions Questions.
+     */
+    public Quiz(String name, List<Question> questions) {
+        this.name = name;
+        this.questions = questions;
+    }
+
+    /**
      * Get the quiz name.
      *
      * @return Quiz name.
@@ -102,6 +113,32 @@ public class Quiz {
      */
     public void clearQuestions() {
         this.questions.clear();
+    }
+
+    /**
+     * Clone the list of questions.
+     *
+     * @return Cloned questions.
+     */
+    public List<Question> getQuestionsClone() {
+        // Create a new list with questions
+        List<Question> questions = new ArrayList<>();
+
+        // Clone all questions
+        for(Question question : this.questions)
+            questions.add(question.copy());
+
+        // Return the list of cloned questions
+        return questions;
+    }
+
+    /**
+     * Make a copy of the quiz.
+     *
+     * @return Quiz copy.
+     */
+    public Quiz copy() {
+        return new Quiz(getName(), getQuestionsClone());
     }
 
     /**

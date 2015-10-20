@@ -129,6 +129,17 @@ public class Question {
     }
 
     /**
+     * Make a copy of this question.
+     *
+     * @return Question copy.
+     */
+    public Question copy() {
+        // TODO: Validate that this method works!
+        //noinspection unchecked
+        return new Question(getQuestion(false), (List<String>) ((ArrayList<String>) this.answers).clone(), getCorrectAnswerIndex());
+    }
+
+    /**
      * Check whether this question object equals another.
      *
      * @param other The other.
