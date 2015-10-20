@@ -125,9 +125,9 @@ public class QuizManagerForm extends JDialog {
         });
 
         // Set the frame sizes
-        this.setMinimumSize(new Dimension(275, 365));
-        this.setPreferredSize(new Dimension(325, 400));
-        this.setSize(new Dimension(325, 400));
+        this.setMinimumSize(new Dimension(300, 365));
+        this.setPreferredSize(new Dimension(350, 400));
+        this.setSize(new Dimension(350, 400));
 
         // Set the window location to the system's default
         this.setLocationByPlatform(true);
@@ -158,14 +158,22 @@ public class QuizManagerForm extends JDialog {
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = 0;
-        c.gridwidth = 2;
-        c.insets = new Insets(0, 0, 10, 0);
+        c.gridwidth = 3;
+        c.insets = new Insets(0, 0, 25, 0);
         pnlMain.add(mainLabel, c);
+
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 0;
+        c.gridy = 1;
+        c.gridwidth = 1;
+        c.gridheight = 2;
+        c.insets = new Insets(0, 0, 10, 10);
+        pnlMain.add(new JLabel("Quizzen:"), c);
 
         // Create the quiz manager list and add it to the main panel
         JScrollPane quizList = createQuizList();
         c.fill = GridBagConstraints.BOTH;
-        c.gridx = 0;
+        c.gridx = 1;
         c.gridy = 1;
         c.gridwidth = 1;
         c.gridheight = 2;
@@ -177,7 +185,7 @@ public class QuizManagerForm extends JDialog {
         // Create the manage button panel
         JPanel manageButtonPanel = createManageButtonPanel();
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.gridx = 1;
+        c.gridx = 2;
         c.gridy = 1;
         c.gridheight = 1;
         c.weightx = 0.0;
@@ -189,7 +197,7 @@ public class QuizManagerForm extends JDialog {
         // Create the control button panel
         JPanel controlButtonPanel = createControlButtonPanel();
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.gridx = 1;
+        c.gridx = 2;
         c.gridy = 2;
         c.weightx = 0.0;
         c.weighty = 0.0;
@@ -381,6 +389,9 @@ public class QuizManagerForm extends JDialog {
 
         // Show the quiz edit panel
         new QuizForm(this, this.app, selected, true);
+
+        // Refresh the list
+        refreshList();
     }
 
     /**

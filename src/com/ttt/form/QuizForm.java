@@ -38,6 +38,11 @@ public class QuizForm extends JDialog {
     private JLabel mainLabel = new JLabel("<html>Maak, wijzig of verwijder een vraag. Gebruik de knoppen aan de rechterzijde.");
 
     /**
+     * Quiz name field instance.
+     */
+    private JTextField quizNameField = new JTextField("Quiz name");
+
+    /**
      * Question list model instance.
      */
     private DefaultListModel<Question> questionListModel;
@@ -135,9 +140,9 @@ public class QuizForm extends JDialog {
         });
 
         // Set the frame sizes
-        this.setMinimumSize(new Dimension(275, 365));
-        this.setPreferredSize(new Dimension(600, 400));
-        this.setSize(new Dimension(600, 400));
+        this.setMinimumSize(new Dimension(325, 400));
+        this.setPreferredSize(new Dimension(600, 450));
+        this.setSize(new Dimension(600, 450));
 
         // Set the window location to the system's default
         this.setLocationByPlatform(true);
@@ -172,15 +177,39 @@ public class QuizForm extends JDialog {
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = 0;
-        c.gridwidth = 2;
-        c.insets = new Insets(0, 0, 10, 0);
+        c.gridwidth = 3;
+        c.insets = new Insets(0, 0, 25, 0);
         pnlMain.add(mainLabel, c);
+
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 0;
+        c.gridy = 1;
+        c.gridwidth = 1;
+        c.insets = new Insets(0, 0, 10, 10);
+        pnlMain.add(new JLabel("Naam:"), c);
+
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 0;
+        c.gridy = 2;
+        c.gridwidth = 1;
+        c.gridheight = 2;
+        c.insets = new Insets(0, 0, 10, 10);
+        pnlMain.add(new JLabel("Vragen:"), c);
+
+        this.quizNameField.setText(this.quiz.getName());
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 1;
+        c.gridy = 1;
+        c.gridwidth = 1;
+        c.gridheight = 1;
+        c.insets = new Insets(0, 0, 10, 0);
+        pnlMain.add(this.quizNameField, c);
 
         // Create the quiz manager list and add it to the main panel
         JScrollPane quizList = createQuestionList();
         c.fill = GridBagConstraints.BOTH;
-        c.gridx = 0;
-        c.gridy = 1;
+        c.gridx = 1;
+        c.gridy = 2;
         c.gridwidth = 1;
         c.gridheight = 2;
         c.weightx = 1.0;
@@ -191,8 +220,8 @@ public class QuizForm extends JDialog {
         // Create the manage button panel
         JPanel manageButtonPanel = createManageButtonPanel();
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.gridx = 1;
-        c.gridy = 1;
+        c.gridx = 2;
+        c.gridy = 2;
         c.gridheight = 1;
         c.weightx = 0.0;
         c.weighty = 0.0;
@@ -203,8 +232,8 @@ public class QuizForm extends JDialog {
         // Create the control button panel
         JPanel controlButtonPanel = createControlButtonPanel();
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.gridx = 1;
-        c.gridy = 2;
+        c.gridx = 2;
+        c.gridy = 3;
         c.weightx = 0.0;
         c.weighty = 0.0;
         c.insets = new Insets(10, 10, 0, 0);
@@ -525,7 +554,10 @@ public class QuizForm extends JDialog {
      * Apply and save the questions.
      */
     public void applyQuestions() {
-        // Store the questions
+        // Set the name
+        this.quiz.setName(this.quizNameField.getText());
+
+        // Set the questions
         this.quiz.setQuestions(this.questions);
 
         // TODO: Save the questions to a file?
@@ -560,8 +592,8 @@ public class QuizForm extends JDialog {
      */
     public boolean hasUnsavedChanges() {
         // Compare the quiz name
-        /*if(!this.quiz.getName().equals(NAME_FIELD_HERE))
-            return true;*/
+        if(!this.quiz.getName().equals(this.quizNameField.getText()))
+            return true;
 
         // Compare the number of questions
         if(this.quiz.getQuestionCount() != this.questions.size())
