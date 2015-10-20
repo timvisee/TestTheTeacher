@@ -105,6 +105,31 @@ public class Quiz {
     }
 
     /**
+     * Check whether this quiz equals another.
+     *
+     * @param other The other quiz.
+     *
+     * @return True if the quizzes are equal, false if not.
+     */
+    public boolean equals(Quiz other) {
+        // Compare the names
+        if(!getName().equals(other.getName()))
+            return false;
+
+        // Make sure the number of questions is the same
+        if(getQuestionCount() != other.getQuestionCount())
+            return false;
+
+        // Compare the questions
+        for(int i = 0; i < getQuestionCount(); i++)
+            if(!getQuestion(i).equals(other.getQuestion(i)))
+                return false;
+
+        // The quiz looks equal, return the result
+        return true;
+    }
+
+    /**
      * Quiz to string.
      *
      * @return Quiz as a string.
