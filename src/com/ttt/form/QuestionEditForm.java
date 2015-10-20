@@ -270,7 +270,8 @@ public class QuestionEditForm extends JDialog {
         JButton cancelButton = new JButton("Annuleren");
         okButton.addActionListener(e -> {
             // Save the questions
-            applyQuestion();
+            if(!applyQuestion())
+                return;
 
             // Close the frame
             dispose();
@@ -338,8 +339,16 @@ public class QuestionEditForm extends JDialog {
 
     /**
      * Apply and save the questions.
+     *
+     * @return True if save succeed, false otherwise.
      */
-    public void applyQuestion() {
+    public boolean applyQuestion() {
+        // Make sure the question is valid
+        if(this.questionField.getText().trim().length() <= 0) {
+            JOptionPane.showMessageDialog(this, "De vraag is ongeldig en kon niet opgeslagen worden.", "Ongeldige vraag", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
         // Set the question
         this.question.setQuestion(StringUtils.encodeHtml(this.questionField.getText()));
 
@@ -351,6 +360,9 @@ public class QuestionEditForm extends JDialog {
             this.question.setAnswer(i, StringUtils.encodeHtml(this.answerFields[i].getText()));
 
         // TODO: Save the questions to a file?
+
+        // Save succeed, return the result
+        return true;
     }
 
     /**
@@ -363,7 +375,8 @@ public class QuestionEditForm extends JDialog {
             switch(JOptionPane.showConfirmDialog(this, "Wilt u deze vraag opslaan?", "Vraag", JOptionPane.YES_NO_CANCEL_OPTION)) {
             case JOptionPane.YES_OPTION:
                 // Save the changes
-                applyQuestion();
+                if(!applyQuestion())
+                    break;
 
             case JOptionPane.NO_OPTION:
                 // Dispose the frame

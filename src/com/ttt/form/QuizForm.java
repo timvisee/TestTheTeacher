@@ -388,8 +388,13 @@ public class QuizForm extends JDialog {
         // Edit the question
         new QuestionEditForm(this, this.app, question, true);
 
+        // Make sure the question is valid
+        if(question.getQuestion(false).trim().length() <= 0) {
+            JOptionPane.showMessageDialog(this, "De vraag is ongeldig, en kon niet worden toegevoegd.", "Ongeldige vraag", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         // Add the question
-        // TODO: Only add if the new question is valid!
         this.questions.add(question);
 
         // Refresh the list of questions
