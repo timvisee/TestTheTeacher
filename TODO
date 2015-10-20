@@ -1,11 +1,11 @@
 TODO:
 
-[ ] Add more questions (at least 10 in total).
+[ ] Add more base questions (at least 10 in total).
 
-[ ] Welcome screen, when starting the app.
+[ ] Add more to the welcome screen. A logo, some information, or buttons to manage the quizzes.
 
-[ ] Score screen.
+[ ] Set custom quiz as current.
 
-Optional:
+[ ] Start custom quiz.
 
-[ ] Possibility to add your own questions?
+[ ] More detailed score screen.
