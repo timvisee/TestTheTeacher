@@ -347,6 +347,9 @@ public class QuizManagerForm extends JDialog {
         Quiz quiz = new Quiz();
         quiz.setName(quizName);
 
+        // Show the quiz edit panel
+        new QuizForm(this, this.app, quiz, true);
+
         // Add the quiz to the list
         this.quizzes.add(quiz);
 
