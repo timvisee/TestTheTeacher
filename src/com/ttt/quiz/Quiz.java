@@ -60,6 +60,17 @@ public class Quiz {
     }
 
     /**
+     * Get a question by it's ID.
+     *
+     * @param i Question ID.
+     *
+     * @return The question.
+     */
+    public Question getQuestion(int i) {
+        return this.questions.get(i);
+    }
+
+    /**
      * Get the quiz questions.
      *
      * @return Quiz questions.
@@ -84,5 +95,12 @@ public class Quiz {
      */
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
+    }
+
+    /**
+     * Clear the list of questions for this quiz.
+     */
+    public void clearQuestions() {
+        this.questions.clear();
     }
 }
