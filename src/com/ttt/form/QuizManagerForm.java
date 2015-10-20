@@ -11,7 +11,7 @@
 package com.ttt.form;
 
 import com.ttt.App;
-import com.ttt.question.Question;
+import com.ttt.quiz.Quiz;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,7 +25,7 @@ public class QuizManagerForm extends JFrame {
     private App app;
 
     /** The quiz manager label. */
-    private JLabel mainLabel = new JLabel("<html>Quiz manager");
+    private JLabel mainLabel = new JLabel("<html>Create, manage or delete a custom quiz using the buttons on the side.");
 
     /**
      * Constructor.
@@ -75,6 +75,7 @@ public class QuizManagerForm extends JFrame {
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = 0;
+        c.gridwidth = 2;
         c.insets = new Insets(0, 0, 10, 0);
         pnlMain.add(mainLabel, c);
 
@@ -83,21 +84,35 @@ public class QuizManagerForm extends JFrame {
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 0;
         c.gridy = 1;
+        c.gridwidth = 1;
+        c.gridheight = 2;
         c.weightx = 1.0;
         c.weighty = 1.0;
         c.insets = new Insets(0, 0, 0, 0);
         pnlMain.add(quizList, c);
 
-        // Create a button panel and add it to the list
-        JPanel buttonPanel = createButtonPanel();
-        c.fill = GridBagConstraints.NONE;
+        // Create the manage button panel
+        JPanel manageButtonPanel = createManageButtonPanel();
+        c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
         c.gridy = 1;
+        c.gridheight = 1;
         c.weightx = 0.0;
         c.weighty = 0.0;
         c.insets = new Insets(0, 10, 0, 0);
         c.anchor = GridBagConstraints.NORTH;
-        pnlMain.add(buttonPanel, c);
+        pnlMain.add(manageButtonPanel, c);
+
+        // Create the control button panel
+        JPanel controlButtonPanel = createControlButtonPanel();
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 1;
+        c.gridy = 2;
+        c.weightx = 0.0;
+        c.weighty = 0.0;
+        c.insets = new Insets(10, 10, 0, 0);
+        c.anchor = GridBagConstraints.SOUTH;
+        pnlMain.add(controlButtonPanel, c);
 
         // Configure the main panel placement and add it to the frame
         c.fill = GridBagConstraints.BOTH;
@@ -121,14 +136,14 @@ public class QuizManagerForm extends JFrame {
     public JScrollPane createQuizList() {
         // Create a list model for the quizzes
         // TODO: Dynamically add all quizzes!
-        DefaultListModel<Question> questionModel = new DefaultListModel<>();
+        DefaultListModel<Quiz> quizModel = new DefaultListModel<>();
 
         // Add all quizzes
-        for(int i = 0; i < this.app.getQuestionCount(); i++)
-            questionModel.addElement(this.app.getQuestion(i));
+        for(int i = 0; i < this.app.getQuizManager().getQuizCount(); i++)
+            quizModel.addElement(this.app.getQuizManager().getQuiz(i));
 
         // Create the list
-        JList<Question> quizList = new JList<>(questionModel);
+        JList<Quiz> quizList = new JList<>(quizModel);
 
         // Create a scroll pane with the quiz list and return it
         return new JScrollPane(quizList);
@@ -139,7 +154,7 @@ public class QuizManagerForm extends JFrame {
      *
      * @return Button panel.
      */
-    public JPanel createButtonPanel() {
+    public JPanel createManageButtonPanel() {
         // Create a panel to put the buttons in and set it's layout
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(5, 1, 10, 10));
@@ -157,6 +172,27 @@ public class QuizManagerForm extends JFrame {
         buttonPanel.add(moveUpButton);
         buttonPanel.add(moveDownButton);
         buttonPanel.add(deleteButton);
+
+        // Return the button panel
+        return buttonPanel;
+    }
+
+    /**
+     * Create the button panel to control the form.
+     *
+     * @return Button panel.
+     */
+    public JPanel createControlButtonPanel() {
+        // Create a panel to put the buttons in and set it's layout
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(1, 1, 10, 10));
+
+        // Create the buttons to add to the panel
+        JButton closeButton = new JButton("Close");
+        closeButton.addActionListener(e -> this.setVisible(false));
+
+        // Add the buttons to the panel
+        buttonPanel.add(closeButton);
 
         // Return the button panel
         return buttonPanel;

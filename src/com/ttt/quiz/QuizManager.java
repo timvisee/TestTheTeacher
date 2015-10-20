@@ -80,11 +80,31 @@ public class QuizManager {
     }
 
     /**
+     * Get a quiz by it's index.
+     *
+     * @param i Quiz index.
+     *
+     * @return Quiz.
+     */
+    public Quiz getQuiz(int i) {
+        return this.quizzes.get(i);
+    }
+
+    /**
      * Get all quizzes.
      *
      * @return Quizzes.
      */
     public List<Quiz> getQuizzes() {
         return this.quizzes;
+    }
+
+    /**
+     * Get the number of quizzes.
+     *
+     * @return Number of quizzes.
+     */
+    public int getQuizCount() {
+        return this.quizzes.size();
     }
 }

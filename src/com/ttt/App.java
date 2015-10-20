@@ -363,7 +363,7 @@ public class App {
         System.out.println("Showing the main form...");
 
         // Show the main form, hide the others
-        questionForm.setVisible(false);
         mainForm.setVisible(true);
+        questionForm.setVisible(false);
     }
 }
