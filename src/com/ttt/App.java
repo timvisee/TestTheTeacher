@@ -276,7 +276,7 @@ public class App {
      */
     public void selectedAnswer(int i) {
         // Print the answer in the console
-        System.out.println("Answered: " + getCurrentQuestion().getAnswer(i, true));
+        System.out.println("Answered: " + getCurrentQuestion().getAnswer(i, false));
 
         // Increase the score if answer is correct
         if(getCurrentQuestion().isCorrectAnswerIndex(i)) {
