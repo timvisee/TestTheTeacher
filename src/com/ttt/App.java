@@ -13,6 +13,7 @@ package com.ttt;
 import com.ttt.form.MainForm;
 import com.ttt.form.QuestionForm;
 import com.ttt.question.Question;
+import com.ttt.quiz.Quiz;
 import com.ttt.quiz.QuizManager;
 import com.ttt.util.StringUtils;
 import com.ttt.util.WindowUtils;
@@ -27,6 +28,11 @@ public class App {
      * App name.
      */
     public static final String APP_NAME = "Test The Teacher";
+
+    /**
+     * Main quiz instance.
+     */
+    private Quiz mainQuiz = new Quiz();
 
     /**
      * Quiz manager instance.
