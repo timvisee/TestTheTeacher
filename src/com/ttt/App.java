@@ -381,7 +381,7 @@ public class App {
      */
     public void selectedAnswer(int i) {
         // Print the answer in the console
-        System.out.println("Answered: " + getCurrentQuestion().getAnswer(i, false));
+        System.out.println("Antwoord: " + getCurrentQuestion().getAnswer(i, false));
 
         // Increase the score if answer is correct
         if (getCurrentQuestion().isCorrectAnswerIndex(i)) {
@@ -389,7 +389,7 @@ public class App {
         }
 
         // Show the current score
-        System.out.println("Current score: " + getScore());
+        System.out.println("Uw score: " + getScore());
 
         // Go to next question
         nextQuestion();

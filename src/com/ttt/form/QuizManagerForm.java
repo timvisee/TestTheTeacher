@@ -32,7 +32,7 @@ public class QuizManagerForm extends JDialog {
     private App app;
 
     /** The quiz manager label. */
-    private JLabel mainLabel = new JLabel("<html>Create, manage or delete a custom quiz using the buttons on the side.");
+    private JLabel mainLabel = new JLabel("<html>Maak, wijzig of verwijder een eigen quiz. Gebruik de knoppen aan de rechterzijde. ");
 
     /**
      * Quiz list model instance.
@@ -252,11 +252,11 @@ public class QuizManagerForm extends JDialog {
         buttonPanel.setLayout(new GridLayout(5, 1, 10, 10));
 
         // Create the buttons to add to the panel
-        this.createButton = new JButton("Create");
-        this.editButton = new JButton("Edit");
-        this.moveUpButton = new JButton("Move up");
-        this.moveDownButton = new JButton("Move down");
-        this.deleteButton = new JButton("Delete");
+        this.createButton = new JButton("Toevoegen");
+        this.editButton = new JButton("Wijzigen");
+        this.moveUpButton = new JButton("Omhoog");
+        this.moveDownButton = new JButton("Omlaag");
+        this.deleteButton = new JButton("Verwijder");
 
         // Add the buttons to the panel
         buttonPanel.add(createButton);
@@ -328,7 +328,7 @@ public class QuizManagerForm extends JDialog {
      */
     public void createQuiz() {
         // Ask for the quiz name
-        String quizName = JOptionPane.showInputDialog(this, "Enter a name for the quiz:", "Create quiz", JOptionPane.INFORMATION_MESSAGE);
+        String quizName = JOptionPane.showInputDialog(this, "Voer een naam in voor uw quiz:", "Voeg toe", JOptionPane.INFORMATION_MESSAGE);
 
         // Make sure a name was entered
         if(quizName == null)
@@ -339,7 +339,7 @@ public class QuizManagerForm extends JDialog {
 
         // Make sure the name is valid
         if(quizName.length() <= 0) {
-            JOptionPane.showMessageDialog(this, "The name you've entered is invalid!", "Invalid name", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Ongeldige naam.", "Ongeldig", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -470,7 +470,7 @@ public class QuizManagerForm extends JDialog {
             return;
 
         // Ask whether the user wants to delete the quizzes
-        switch(JOptionPane.showConfirmDialog(this, "Are you sure you want to delete the selected quizzes? This action can't be reverted.", "Delete quizzes", JOptionPane.YES_NO_OPTION)) {
+        switch(JOptionPane.showConfirmDialog(this, "Weet u zeker dat u het wilt verwijderen? De actie kan niet ongedaan worden gemaakt.", "Verwijderen", JOptionPane.YES_NO_OPTION)) {
         case JOptionPane.NO_OPTION:
         case JOptionPane.CANCEL_OPTION:
         case JOptionPane.CLOSED_OPTION:

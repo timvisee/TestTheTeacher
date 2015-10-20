@@ -19,13 +19,13 @@ import java.awt.*;
 public class MainForm extends JFrame {
 
     /** Frame title. */
-    private static final String FORM_TITLE = App.APP_NAME + " - Welcome";
+    private static final String FORM_TITLE = App.APP_NAME + " - Welkom";
 
     /** App instance. */
     private App app;
 
     /** The question label. */
-    private JLabel mainLabel = new JLabel("<html><b>Welcome to our awesome quiz app!</b>");
+    private JLabel mainLabel = new JLabel("<html><b>Welkom op onze quiz.</b>");
 
     /**
      * Start quiz button.
@@ -35,7 +35,7 @@ public class MainForm extends JFrame {
     /**
      * Create quiz button.
      */
-    private JButton createQuizButton = new JButton("Create quiz");
+    private JButton createQuizButton = new JButton("Creëer eigen quiz");
 
     /**
      * Constructor.
