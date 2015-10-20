@@ -30,4 +30,16 @@ public class StringUtils {
         // Return the result
         return builder.toString();
     }
+
+    /**
+     * Create a fraction as HTML to render.
+     *
+     * @param numerator The numerator.
+     * @param denominator The denominator.
+     *
+     * @return The fraction as HTML.
+     */
+    public static String createHtmlFraction(int numerator, int denominator) {
+        return "<sup>" + numerator + "</sup><font size=+1>/<font size=-1><sub>" + denominator + "</sub>";"
+    }
 }
