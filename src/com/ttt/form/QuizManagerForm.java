@@ -347,7 +347,7 @@ public class QuizManagerForm extends JDialog {
      */
     public void createQuiz() {
         // Ask for the quiz name
-        String quizName = JOptionPane.showInputDialog(this, "Voer een naam in voor uw quiz:", "Voeg toe", JOptionPane.INFORMATION_MESSAGE);
+        String quizName = JOptionPane.showInputDialog(this, "Voer een naam in voor uw quiz:", "Quiz toevoegen", JOptionPane.INFORMATION_MESSAGE);
 
         // Make sure a name was entered
         if(quizName == null)
