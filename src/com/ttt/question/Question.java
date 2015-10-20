@@ -62,6 +62,15 @@ public class Question {
     }
 
     /**
+     * Set the question.
+     *
+     * @param question The question.
+     */
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    /**
      * Get the answer by it's index.
      *
      * @param i Answer index.
@@ -71,6 +80,16 @@ public class Question {
      */
     public String getAnswer(int i, boolean html) {
         return (html ? HTML_PREFIX : "") + this.answers.get(i);
+    }
+
+    /**
+     * Set the answer by it's index.
+     *
+     * @param i Answer index.
+     * @param answer The answer.
+     */
+    public void setAnswer(int i, String answer) {
+        this.answers.set(i, answer);
     }
 
     /**
