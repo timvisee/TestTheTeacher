@@ -40,7 +40,7 @@ public class MainForm extends JFrame {
     /**
      * Start quiz button.
      */
-    private JButton startQuizButton = new JButton("Start quiz");
+    private JButton startQuizButton = new JButton("Start basis quiz");
 
     /**
      * About button.
