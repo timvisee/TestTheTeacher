@@ -264,23 +264,23 @@ public class App {
 
                 },
                 0));
-        this.mainQuiz.addQuestion(new Question(
-                "<b>10.  </b><br />" +
-                        "<br />" +
-                        StringUtils.indentHtmlSpaces(4) + "int []a = {1,2,3,4,5,6};<br />" +
-                        StringUtils.indentHtmlSpaces(4) + "int i = a.length - 1;<br />" + "<br />" +
-                        StringUtils.indentHtmlSpaces(4) + "while(i>=0){<br />" +
-                        StringUtils.indentHtmlSpaces(8) + "System.out.print(a[i]);#sthash.NhjUgVjX.dpuf<br />" +
-                        StringUtils.indentHtmlSpaces(8) + "i--;<br />" +
-                        StringUtils.indentHtmlSpaces(4) + "}<br />",
-                new String[]{
-                        "654321",
-                        "65432",
-                        "123456",
-                        "12345",
-
-                },
-                0));
+//        this.mainQuiz.addQuestion(new Question(
+//                "<b>10.  </b><br />" +
+//                        "<br />" +
+//                        StringUtils.indentHtmlSpaces(4) + "int []a = {1,2,3,4,5,6};<br />" +
+//                        StringUtils.indentHtmlSpaces(4) + "int i = a.length - 1;<br />" + "<br />" +
+//                        StringUtils.indentHtmlSpaces(4) + "while(i>=0){<br />" +
+//                        StringUtils.indentHtmlSpaces(8) + "System.out.print(a[i]);#sthash.NhjUgVjX.dpuf<br />" +
+//                        StringUtils.indentHtmlSpaces(8) + "i--;<br />" +
+//                        StringUtils.indentHtmlSpaces(4) + "}<br />",
+//                new String[]{
+//                        "654321",
+//                        "65432",
+//                        "123456",
+//                        "12345",
+//
+//                },
+//                0));
     }
 
     /**
