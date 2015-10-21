@@ -10,6 +10,8 @@
 
 package com.ttt.question;
 
+import com.timvisee.yamlwrapper.configuration.ConfigurationSection;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -195,5 +197,21 @@ public class Question {
      */
     public String toString() {
         return getQuestion(true);
+    }
+
+    /**
+     * Save the question in a configuration section.
+     *
+     * @param section The configuration section.
+     */
+    public void save(ConfigurationSection section) {
+        // Store the question
+        section.set("question", this.question);
+
+        // Store the answers
+        section.set("answers", this.answers);
+
+        // Store the correct answer
+        section.set("correct", this.correctAnswer);
     }
 }

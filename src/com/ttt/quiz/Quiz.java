@@ -10,6 +10,7 @@
 
 package com.ttt.quiz;
 
+import com.timvisee.yamlwrapper.configuration.ConfigurationSection;
 import com.ttt.question.Question;
 
 import java.util.ArrayList;
@@ -184,5 +185,27 @@ public class Quiz {
 
         // Return the list of cloned questions
         return clones;
+    }
+
+    /**
+     * Save the question in a configuration section.
+     *
+     * @param section The configuration section.
+     */
+    public void save(ConfigurationSection section) {
+        // Store the quiz name
+        section.set("name", this.name);
+
+        // Create a section for the questions
+        ConfigurationSection questionsSection = section.createSection("questions");
+
+        // Create a section for each question
+        for(int i = 0; i < this.questions.size(); i++) {
+            // Create a section for the question
+            ConfigurationSection questionSection = questionsSection.createSection(String.valueOf(i));
+
+            // Save the current question in the configuration section
+            getQuestion(i).save(questionSection);
+        }
     }
 }

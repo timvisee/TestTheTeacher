@@ -10,6 +10,8 @@
 
 package com.ttt;
 
+import com.timvisee.yamlwrapper.configuration.ConfigurationSection;
+import com.timvisee.yamlwrapper.configuration.YamlConfiguration;
 import com.ttt.form.MainForm;
 import com.ttt.form.QuestionForm;
 import com.ttt.form.QuizManagerForm;
@@ -20,6 +22,8 @@ import com.ttt.util.StringUtils;
 import com.ttt.util.WindowUtils;
 
 import javax.swing.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public class App {
@@ -459,21 +463,70 @@ public class App {
         questionForm.setVisible(false);
     }
 
+    /**
+     * Show the quiz manager form.
+     * Save all data afterwards.
+     */
     public void showQuizManagerForm() {
         // show QuizManagerForm, hide other
         new QuizManagerForm(this, true);
 
-        // TODO: For debugging only
-        setCurrentQuiz(getQuizManager().getQuiz(0));
+        // Save everything after editing questions
+        save();
     }
+
+    /**
+     * Show the about form.
+     */
     public void showAboutForm() {
         // show QuizManagerForm, hide other
         new AboutForm(this, true);
-
     }
-    public void startQuiz (){
+
+    /**
+     * Start the quiz.
+     */
+    public void startQuiz() {
         resetQuiz();
         showQuestionForm();
+    }
 
+    /**
+     * Get the data file.
+     *
+     * @return Data file.
+     */
+    public File getDataFile() {
+        // TODO: Use a proper data file here!
+        return new File("C:\\Users\\Tim\\Desktop\\ttt.data");
+    }
+
+    /**
+     * Save all data to a file.
+     */
+    public void save() {
+        // Get the file to save the data to
+        File dataFile = getDataFile();
+
+        // Create a configuration file to save the data in
+        YamlConfiguration configFile = new YamlConfiguration();
+
+        // Create a section for the quiz manager and store it's data
+        ConfigurationSection quizManagerSection = configFile.createSection("quizManager");
+        getQuizManager().save(quizManagerSection);
+
+        // Set the version number
+        // TODO: Implement this!
+        configFile.set("versionName", "0.1");
+        configFile.set("versionCode", 1);
+
+        // Save the file
+        try {
+            configFile.save(dataFile);
+        } catch(IOException e) {
+            // Show an error message
+            JOptionPane.showMessageDialog(getMainForm(), "Failed to save application data!", "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
     }
 }

@@ -10,6 +10,7 @@
 
 package com.ttt.quiz;
 
+import com.timvisee.yamlwrapper.configuration.ConfigurationSection;
 import com.ttt.question.Question;
 import com.ttt.util.StringUtils;
 
@@ -145,5 +146,24 @@ public class QuizManager {
 
         // Return the clones
         return clones;
+    }
+
+    /**
+     * Save the quizzes in a configuration section.
+     *
+     * @param section The configuration section.
+     */
+    public void save(ConfigurationSection section) {
+        // Create a section for the quizzes
+        ConfigurationSection quizzesSection = section.createSection("quizzes");
+
+        // Create a section for each question
+        for(int i = 0; i < this.quizzes.size(); i++) {
+            // Create a section for the quiz
+            ConfigurationSection quizSection = quizzesSection.createSection(String.valueOf(i));
+
+            // Save the current quiz in the configuration section
+            getQuiz(i).save(quizSection);
+        }
     }
 }
