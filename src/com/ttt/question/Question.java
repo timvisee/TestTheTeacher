@@ -39,6 +39,20 @@ public class Question {
     /**
      * Constructor.
      *
+     * @param section The configuration section to load what from.
+     */
+    public Question(ConfigurationSection section) {
+        // Construct the quiz
+        //noinspection unchecked
+        this(
+                section.getString("question", "<qusetion>"),
+                (List<String>) section.getList("answers", new ArrayList<>(Arrays.asList("<answer1>", "<answer2>", "<answer3>", "<answer4>"))),
+                section.getInt("correct", 0));
+    }
+
+    /**
+     * Constructor.
+     *
      * @param question Question.
      * @param answers Four answers in a list.
      * @param correctAnswer The index of the correct answer.

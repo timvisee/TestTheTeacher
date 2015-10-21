@@ -10,6 +10,7 @@
 
 package com.ttt.quiz;
 
+import com.timvisee.yamlwrapper.configuration.Configuration;
 import com.timvisee.yamlwrapper.configuration.ConfigurationSection;
 import com.ttt.question.Question;
 import com.ttt.util.StringUtils;
@@ -164,6 +165,20 @@ public class QuizManager {
 
             // Save the current quiz in the configuration section
             getQuiz(i).save(quizSection);
+        }
+    }
+
+    public void load(ConfigurationSection section) {
+        // Get the configuration section for quizzes
+        ConfigurationSection quizzesSection = section.getSection("quizzes");
+
+        // Get the quizzes sections and loop through them
+        for(String quizSectionKey : quizzesSection.getKeys("")) {
+            // Get the quiz section
+            ConfigurationSection quizSection = quizzesSection.getSection(quizSectionKey);
+
+            // Create and add a quiz for this section
+            addQuiz(new Quiz(quizSection));
         }
     }
 }

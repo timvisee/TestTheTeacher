@@ -132,6 +132,8 @@ public class App {
 
         // Show the main form
         this.mainForm.setVisible(true);
+
+        load();
     }
 
     /**
@@ -537,5 +539,24 @@ public class App {
             JOptionPane.showMessageDialog(getMainForm(), "Failed to save application data!", "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Load all data from a file.
+     */
+    public void load() {
+        // Get the file to save the data to
+        File dataFile = getDataFile();
+
+        // Make sure the file exists
+        if(!dataFile.isFile())
+            return;
+
+        // Create a configuration file to save the data in
+        YamlConfiguration configFile = YamlConfiguration.loadConfiguration(dataFile);
+
+        // Create a section for the quiz manager and store it's data
+        ConfigurationSection quizManagerSection = configFile.getSection("quizManager");
+        getQuizManager().load(quizManagerSection);
     }
 }

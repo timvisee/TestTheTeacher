@@ -10,6 +10,7 @@
 
 package com.ttt.quiz;
 
+import com.timvisee.yamlwrapper.configuration.Configuration;
 import com.timvisee.yamlwrapper.configuration.ConfigurationSection;
 import com.ttt.question.Question;
 
@@ -33,6 +34,28 @@ public class Quiz {
      * Constructor.
      */
     public Quiz() { }
+
+    /**
+     * Constructor.
+     *
+     * @param section Configuration section to load the quiz from.
+     */
+    public Quiz(ConfigurationSection section) {
+        // Load the quiz name
+        this.name = section.getString("name", "<quizname>");
+
+        // Get the questions section
+        ConfigurationSection questionsSection = section.getSection("questions");
+
+        // Loop through the questions
+        for(String questionSectionKey : questionsSection.getKeys("")) {
+            // Get the question section
+            ConfigurationSection questionSection = questionsSection.getSection(questionSectionKey);
+
+            // Load the question and add it to the quiz
+            addQuestion(new Question(questionSection));
+        }
+    }
 
     /**
      * Constructor.
