@@ -1,7 +1,11 @@
 package com.ttt;
 
+import com.ttt.util.StringUtils;
+
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
+import java.net.URI;
 
 /**
  * Created by mingli on 21-10-15.
@@ -15,12 +19,13 @@ public class AboutForm extends JFrame {
     private App app;
 
     /** The question label. */
-    private JLabel mainLabel = new JLabel("<html><b>Welkom op onze quiz.</b>");
-
-    /**
-     * Start quiz button.
-     */
-    private JButton mainForm = new JButton("Terug");
+    private JLabel mainLabel = new JLabel("<html><b>Test The Teacher </b> <br /><br />" +
+            "Developed by: <br />" +
+            StringUtils.indentHtmlSpaces(4) + "MingYan Li<br />" +
+            StringUtils.indentHtmlSpaces(4) + "Tim Vis&eacute;e<br /><br />" +
+            "Website: http://github.com/timvisee/TestTheTeacher<br /><br />" +
+            "Copyright &copy; MingYan Li, Tim Vis&eacute;e 2015.<br />" +
+            "All rights reserved.");
 
     /**
      * Constructor.
@@ -38,10 +43,6 @@ public class AboutForm extends JFrame {
         // Create the form UI
         createUIComponents();
 
-        // Close application when closing form
-        // TODO: Should we keep this?
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
         // Show the form
         this.setVisible(show);
     }
@@ -49,16 +50,19 @@ public class AboutForm extends JFrame {
     /**
      * Create all UI components for the frame.
      */
+
+
+
     private void createUIComponents() {
         // Create the main panel to put everything in
         JPanel mainPanel = new JPanel();
 
         // Set the frame layout
-        mainPanel.setLayout(new GridLayout(3, 1, 10, 10));
-        mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        mainPanel.setLayout(new GridLayout(1, 1, 10, 10));
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(15, 20, 20, 20));
 
         // Make the frame non-resizable
-        this.setResizable(true);
+        this.setResizable(false);
 
         // Set the window location to the system's default
         this.setLocationByPlatform(true);
