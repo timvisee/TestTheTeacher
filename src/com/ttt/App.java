@@ -18,6 +18,7 @@ import com.ttt.form.QuizManagerForm;
 import com.ttt.question.Question;
 import com.ttt.quiz.Quiz;
 import com.ttt.quiz.QuizManager;
+import com.ttt.util.DirectoryUtils;
 import com.ttt.util.StringUtils;
 import com.ttt.util.WindowUtils;
 
@@ -492,13 +493,21 @@ public class App {
     }
 
     /**
+     * Get the data directory.
+     *
+     * @return Data directory.
+     */
+    public File getDataDirectory() {
+        return new File(DirectoryUtils.getAppDataDirectory(), "TestTheTeacher");
+    }
+
+    /**
      * Get the data file.
      *
      * @return Data file.
      */
     public File getDataFile() {
-        // TODO: Use a proper data file here!
-        return new File("C:\\Users\\Tim\\Desktop\\ttt.data");
+        return new File(getDataDirectory(), "data.ttt");
     }
 
     /**
