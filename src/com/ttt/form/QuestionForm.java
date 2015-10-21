@@ -17,6 +17,8 @@ import com.ttt.quiz.Quiz;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 public class QuestionForm extends JFrame {
 
@@ -60,9 +62,39 @@ public class QuestionForm extends JFrame {
         // Create the form UI
         createUIComponents();
 
-        // Close application when closing form
-        // TODO: Should we keep this?
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        // Do not close the window when pressing the red cross, execute the close method instead
+        this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                setVisible(false);
+                app.showMainForm();
+            }
+
+            @Override
+            public void windowClosed(WindowEvent e) {
+            }
+
+            @Override
+            public void windowIconified(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeiconified(WindowEvent e) {
+            }
+
+            @Override
+            public void windowActivated(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+            }
+        });
 
         // Show the form
         this.setVisible(show);

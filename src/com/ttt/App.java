@@ -509,6 +509,8 @@ public class App {
      * @return Data file.
      */
     public File getDataFile() {
+        System.out.println("Data dir: " + getDataDirectory().getAbsolutePath());
+
         return new File(getDataDirectory(), "data.ttt");
     }
 
