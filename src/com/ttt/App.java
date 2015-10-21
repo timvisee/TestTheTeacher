@@ -60,6 +60,11 @@ public class App {
     private int score = 0;
 
     /**
+     * Set whether the user completed the quiz.
+     */
+    private boolean completedQuiz = false;
+
+    /**
      * The main form instance.
      */
     private MainForm mainForm;
@@ -101,11 +106,11 @@ public class App {
         // Use the system's GUI look and feel, not the Java one
         WindowUtils.useNativeLookAndFeel();
 
-        // TODO: Should we load here?
+        // Load the data
         load();
 
         // Add all questions
-        setUpMainQuiz();
+        setupMainQuiz();
 
         // Initialize the main form
         this.mainForm = new MainForm(this, false);
@@ -130,17 +135,14 @@ public class App {
         // Start the application
         System.out.println("Starting " + App.APP_NAME + "...");
 
-        // hide questionForm
-        this.questionForm.setVisible(false);
-
         // Show the main form
-        this.mainForm.setVisible(true);
+        showMainForm();
     }
 
     /**
      * Set up the main quiz and add it's questions.
      */
-    public void setUpMainQuiz() {
+    public void setupMainQuiz() {
         // Set the quiz name
         // TODO: Move this line to a better place, and think of a better name!
         this.mainQuiz.setName("Main quiz");
@@ -412,6 +414,21 @@ public class App {
             // Show the current score to the player
             JOptionPane.showMessageDialog(questionForm, "Uw score is: " + result + "%");
 
+            // Check whether the user has completed the quiz
+            if(!hasCompletedQuiz()) {
+                if(result >= 55) {
+                    // Set the completed flag
+                    this.completedQuiz = true;
+
+                    // Save the data
+                    save();
+
+                    // Show a status message
+                    JOptionPane.showMessageDialog(questionForm, "Je hebt een voldoende gehaald. Je kan nu een eigen quiz maken.", "Voldoende gehaald", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(questionForm, "U heeft een onvoldoende behaald. U dient een voldoende te halen om uw eigen quiz te maken.", "Onvoldoende gehaald", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
 
             // Show the main form, hide the quiz form
             showMainForm();
@@ -474,6 +491,9 @@ public class App {
         questionForm.setVisible(false);
         mainForm.setVisible(true);
 
+        // Refresh the main form
+        mainForm.refreshList();
+
         // Focus the question form
         mainForm.requestFocusInWindow();
     }
@@ -504,7 +524,10 @@ public class App {
      * Start the quiz.
      */
     public void startQuiz() {
+        // Reset the current quiz
         resetQuiz();
+
+        // Show the question form
         showQuestionForm();
     }
 
@@ -572,5 +595,17 @@ public class App {
         // Create a section for the quiz manager and store it's data
         ConfigurationSection quizManagerSection = configFile.getSection("quizManager");
         getQuizManager().load(quizManagerSection);
+
+        // Check whether the user had completed the quiz
+        this.completedQuiz = configFile.getBoolean("completedQuiz", false);
+    }
+
+    /**
+     * Check whether the user has completed the quiz.
+     *
+     * @return True if the user completed the quiz.
+     */
+    public boolean hasCompletedQuiz() {
+        return this.completedQuiz;
     }
 }

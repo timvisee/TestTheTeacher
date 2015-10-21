@@ -89,7 +89,6 @@ public class MainForm extends JFrame {
         createUIComponents();
 
         // Close application when closing form
-        // TODO: Should we keep this?
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         // Set the frame sizes
@@ -103,6 +102,9 @@ public class MainForm extends JFrame {
 
         // Show the form
         this.setVisible(show);
+
+        // Update the buttons
+        updateButtons();
     }
 
     /**
@@ -276,8 +278,11 @@ public class MainForm extends JFrame {
         // Get the number of selected items
         int selected = getSelectedCount();
 
-        // Enable the start button if one item is selected
-        startButton.setEnabled(selected == 1);
+        // Enable the buttons if the quiz is completed, enable the start button if a quiz is selected
+        this.startButton.setEnabled(this.app.hasCompletedQuiz() && selected == 1);
+        this.createButton.setEnabled(this.app.hasCompletedQuiz());
+        this.manageButton.setEnabled(this.app.hasCompletedQuiz());
+        this.quizList.setEnabled(this.app.hasCompletedQuiz());
     }
 
     /**
