@@ -216,7 +216,7 @@ public class App {
                 2));
         this.mainQuiz.addQuestion(new Question(
                 "<b>8. Wat komt hier uit? </b><br />" +
-                "<br />" +
+                        "<br />" +
                         StringUtils.indentHtmlSpaces(4) + "import java.util.*;<br />" +
                         StringUtils.indentHtmlSpaces(4) + "public class Primes {<br />" +
                         StringUtils.indentHtmlSpaces(8) + "public static void main(String[] args) {<br />" +
@@ -241,11 +241,11 @@ public class App {
                 "<b>9. Welk antwoord is goed? </b><br />" +
                         "<br />" +
                         StringUtils.indentHtmlSpaces(4) + "int []a = {1,2,3,4,5,6};<br />" +
-                        StringUtils.indentHtmlSpaces(4) + "int i = a.length - 1;<br />" + "<br />"+
+                        StringUtils.indentHtmlSpaces(4) + "int i = a.length - 1;<br />" + "<br />" +
                         StringUtils.indentHtmlSpaces(4) + "while(i>=0){<br />" +
                         StringUtils.indentHtmlSpaces(8) + "System.out.print(a[i]);#sthash.NhjUgVjX.dpuf<br />" +
                         StringUtils.indentHtmlSpaces(8) + "i--;<br />" +
-                        StringUtils.indentHtmlSpaces(4) + "}<br />" ,
+                        StringUtils.indentHtmlSpaces(4) + "}<br />",
                 new String[]{
                         "654321",
                         "65432",
@@ -258,11 +258,11 @@ public class App {
                 "<b>10.  </b><br />" +
                         "<br />" +
                         StringUtils.indentHtmlSpaces(4) + "int []a = {1,2,3,4,5,6};<br />" +
-                        StringUtils.indentHtmlSpaces(4) + "int i = a.length - 1;<br />" + "<br />"+
+                        StringUtils.indentHtmlSpaces(4) + "int i = a.length - 1;<br />" + "<br />" +
                         StringUtils.indentHtmlSpaces(4) + "while(i>=0){<br />" +
                         StringUtils.indentHtmlSpaces(8) + "System.out.print(a[i]);#sthash.NhjUgVjX.dpuf<br />" +
                         StringUtils.indentHtmlSpaces(8) + "i--;<br />" +
-                        StringUtils.indentHtmlSpaces(4) + "}<br />" ,
+                        StringUtils.indentHtmlSpaces(4) + "}<br />",
                 new String[]{
                         "654321",
                         "65432",
@@ -463,6 +463,12 @@ public class App {
         // show QuizManagerForm, hide other
         new QuizManagerForm(this, true);
 
+        // TODO: For debugging only
+        setCurrentQuiz(getQuizManager().getQuiz(0));
+    }
+    public void showAboutForm() {
+        // show QuizManagerForm, hide other
+        new AboutForm(this, true);
 
     }
     public void startQuiz (){
