@@ -47,7 +47,7 @@ public class QuizManagerForm extends JDialog {
      */
     private JList quizList;
 
-    private JButton startButton;
+    private JButton testButton;
 
     /**
      * Create button instance.
@@ -271,7 +271,7 @@ public class QuizManagerForm extends JDialog {
         buttonPanel.setLayout(new GridLayout(6, 1, 10, 10));
 
         // Create the buttons to add to the panel
-        this.startButton = new JButton("Start");
+        this.testButton = new JButton("Test");
         this.createButton = new JButton("Toevoegen");
         this.editButton = new JButton("Wijzigen");
         this.moveUpButton = new JButton("Omhoog");
@@ -279,13 +279,13 @@ public class QuizManagerForm extends JDialog {
         this.deleteButton = new JButton("Verwijder");
 
         // Add the buttons to the panel
-        buttonPanel.add(startButton);
+        buttonPanel.add(testButton);
         buttonPanel.add(createButton);
         buttonPanel.add(editButton);
         buttonPanel.add(moveUpButton);
         buttonPanel.add(moveDownButton);
         buttonPanel.add(deleteButton);
-        startButton.addActionListener(e -> startQuiz());
+        testButton.addActionListener(e -> startQuiz());
         createButton.addActionListener(e -> createQuiz());
         editButton.addActionListener(e -> editQuiz());
         moveUpButton.addActionListener(e -> moveQuizzesUp());
@@ -338,7 +338,7 @@ public class QuizManagerForm extends JDialog {
 
         // Enable the edit button if one item is selected
         editButton.setEnabled(selected == 1);
-        startButton.setEnabled(selected == 1);
+        testButton.setEnabled(selected == 1);
 
         // Enable the move buttons if at least one quiz is selected and if the quizzes can move in that direction
         moveUpButton.setEnabled(canMoveQuizzesUp());
