@@ -49,7 +49,6 @@ public class App {
      */
     private int currentQuestion = 0;
 
-
     /**
      * The current score. Number of correct answers.
      */
@@ -79,7 +78,6 @@ public class App {
     /**
      * Initialize the application.
      */
-
     public void resetQuiz (){
         currentQuestion = 0;
         score = 0;
@@ -88,7 +86,9 @@ public class App {
         this.questionForm.setQuestion(getCurrentQuestion());
     }
 
-
+    /**
+     * Initialize the app.
+     */
     public void init() {
         // Application initializing, show a message
         System.out.println("Initializing " + App.APP_NAME + "...");
