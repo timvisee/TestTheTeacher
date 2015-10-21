@@ -81,11 +81,11 @@ public class QuizManagerForm extends JDialog {
 
     /**
      * Constructor.
-     *
-     * @param app App instance.
+     *  @param app App instance.
      * @param show True to show the frame once it has been initialized.
+     * @param create Create one.
      */
-    public QuizManagerForm(App app, boolean show) {
+    public QuizManagerForm(App app, boolean show, boolean create) {
         // Construct the form
         super(app.getMainForm(), FORM_TITLE, true);
 
@@ -133,6 +133,10 @@ public class QuizManagerForm extends JDialog {
         // Set the window location to the system's default
         this.setLocationByPlatform(true);
         this.setLocationRelativeTo(app.getMainForm());
+
+        // Create a new quiz
+        if(create)
+            createQuiz();
 
         // Show the form
         this.setVisible(show);

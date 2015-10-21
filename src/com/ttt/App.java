@@ -101,6 +101,9 @@ public class App {
         // Use the system's GUI look and feel, not the Java one
         WindowUtils.useNativeLookAndFeel();
 
+        // TODO: Should we load here?
+        load();
+
         // Add all questions
         setUpMainQuiz();
 
@@ -132,8 +135,6 @@ public class App {
 
         // Show the main form
         this.mainForm.setVisible(true);
-
-        load();
     }
 
     /**
@@ -448,6 +449,9 @@ public class App {
         // Show the question form, hide the others
         mainForm.setVisible(false);
         questionForm.setVisible(true);
+
+        // Focus the question form
+        questionForm.requestFocusInWindow();
     }
 
     /**
@@ -469,15 +473,20 @@ public class App {
         // Show the main form, hide the others
         questionForm.setVisible(false);
         mainForm.setVisible(true);
+
+        // Focus the question form
+        mainForm.requestFocusInWindow();
     }
 
     /**
      * Show the quiz manager form.
      * Save all data afterwards.
+     *
+     * @param create True to create a quiz.
      */
-    public void showQuizManagerForm() {
+    public void showQuizManagerForm(boolean create) {
         // show QuizManagerForm, hide other
-        new QuizManagerForm(this, true);
+        new QuizManagerForm(this, true, create);
 
         // Save everything after editing questions
         save();
@@ -514,8 +523,6 @@ public class App {
      * @return Data file.
      */
     public File getDataFile() {
-        System.out.println("Data dir: " + getDataDirectory().getAbsolutePath());
-
         return new File(getDataDirectory(), "data.ttt");
     }
 
