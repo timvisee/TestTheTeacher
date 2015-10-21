@@ -495,7 +495,8 @@ public class App {
         mainForm.refreshList();
 
         // Focus the question form
-        mainForm.requestFocusInWindow();
+        mainForm.toFront();
+        mainForm.repaint();
     }
 
     /**
