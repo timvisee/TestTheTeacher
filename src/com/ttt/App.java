@@ -145,7 +145,7 @@ public class App {
     public void setupMainQuiz() {
         // Set the quiz name
         // TODO: Move this line to a better place, and think of a better name!
-        this.mainQuiz.setName("Main quiz");
+        this.mainQuiz.setName("Standaard quiz");
 
         // Clear the main quiz
         this.mainQuiz.clearQuestions();
