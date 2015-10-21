@@ -426,6 +426,9 @@ public class App {
                     // Show a status message
                     JOptionPane.showMessageDialog(questionForm, "U hebt een voldoende gehaald. U kan nu een eigen quiz maken.", "Voldoende gehaald", JOptionPane.INFORMATION_MESSAGE);
 
+                    // Update the main form
+                    getMainForm().updateButtons();
+
                 } else {
                     JOptionPane.showMessageDialog(questionForm, "U heeft een onvoldoende behaald. U dient een voldoende te halen om uw eigen quiz te maken.", "Onvoldoende gehaald", JOptionPane.INFORMATION_MESSAGE);
                 }
