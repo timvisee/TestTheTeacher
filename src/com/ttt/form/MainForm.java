@@ -67,6 +67,88 @@ public class MainForm extends JFrame {
      * Create all UI components for the frame.
      */
     private void createUIComponents() {
+//        // Construct a grid bag constraints object to specify the placement of all components
+//        GridBagConstraints c = new GridBagConstraints();
+//
+//        // Set the frame layout
+//        this.setLayout(new GridBagLayout());
+//
+//        // Make the frame non-resizable
+//        this.setResizable(true);
+//
+//        // Create the main panel, to put the question and answers in
+//        JPanel pnlMain = new JPanel();
+//        pnlMain.setLayout(new GridBagLayout());
+//
+//        // Configure the placement of the questions label, and add it to the questions panel
+//        c.fill = GridBagConstraints.HORIZONTAL;
+//        c.gridx = 0;
+//        c.gridy = 0;
+//        c.gridwidth = 3;
+//        c.insets = new Insets(0, 0, 25, 0);
+//        pnlMain.add(mainLabel, c);
+//
+//        c.fill = GridBagConstraints.HORIZONTAL;
+//        c.gridx = 0;
+//        c.gridy = 1;
+//        c.gridwidth = 1;
+//        c.gridheight = 2;
+//        c.insets = new Insets(0, 0, 10, 10);
+//        pnlMain.add(new JLabel("Quizzen:"), c);
+//
+//        // Create the quiz manager list and add it to the main panel
+//        JScrollPane quizList = createQuizList();
+//        c.fill = GridBagConstraints.BOTH;
+//        c.gridx = 1;
+//        c.gridy = 1;
+//        c.gridwidth = 1;
+//        c.gridheight = 2;
+//        c.weightx = 1.0;
+//        c.weighty = 1.0;
+//        c.insets = new Insets(0, 0, 0, 0);
+//        pnlMain.add(quizList, c);
+//
+//        // Create the manage button panel
+//        JPanel manageButtonPanel = createManageButtonPanel();
+//        c.fill = GridBagConstraints.HORIZONTAL;
+//        c.gridx = 2;
+//        c.gridy = 1;
+//        c.gridheight = 1;
+//        c.weightx = 0.0;
+//        c.weighty = 0.0;
+//        c.insets = new Insets(0, 10, 0, 0);
+//        c.anchor = GridBagConstraints.NORTH;
+//        pnlMain.add(manageButtonPanel, c);
+//
+//        // Create the control button panel
+//        JPanel controlButtonPanel = createControlButtonPanel();
+//        c.fill = GridBagConstraints.HORIZONTAL;
+//        c.gridx = 2;
+//        c.gridy = 2;
+//        c.weightx = 0.0;
+//        c.weighty = 0.0;
+//        c.insets = new Insets(10, 10, 0, 0);
+//        c.anchor = GridBagConstraints.SOUTH;
+//        pnlMain.add(controlButtonPanel, c);
+//
+//        // Configure the main panel placement and add it to the frame
+//        c.fill = GridBagConstraints.BOTH;
+//        c.gridx = 0;
+//        c.gridy = 0;
+//        c.weightx = 1.0;
+//        c.weighty = 1.0;
+//        c.insets = new Insets(10, 10, 10, 10);
+//        this.add(pnlMain, c);
+
+
+
+
+
+
+
+
+
+
         // Create the main panel to put everything in
         JPanel mainPanel = new JPanel();
 

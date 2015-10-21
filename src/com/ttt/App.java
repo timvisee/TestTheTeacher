@@ -441,8 +441,8 @@ public class App {
         System.out.println("Showing the question form...");
 
         // Show the question form, hide the others
-        questionForm.setVisible(true);
         mainForm.setVisible(false);
+        questionForm.setVisible(true);
     }
 
     /**
@@ -462,8 +462,8 @@ public class App {
         System.out.println("Showing the main form...");
 
         // Show the main form, hide the others
-        mainForm.setVisible(true);
         questionForm.setVisible(false);
+        mainForm.setVisible(true);
     }
 
     /**

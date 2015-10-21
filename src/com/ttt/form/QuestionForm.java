@@ -71,7 +71,6 @@ public class QuestionForm extends JFrame {
 
             @Override
             public void windowClosing(WindowEvent e) {
-                setVisible(false);
                 app.showMainForm();
             }
 
