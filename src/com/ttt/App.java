@@ -404,8 +404,13 @@ public class App {
             this.questionForm.setQuestion(getCurrentQuestion());
 
         } else {
+            double score = getScore();
+            double total = getQuestionCount();
+            int result = (int) (score / total * 100.0);
+
             // Show the current score to the player
-            JOptionPane.showMessageDialog(questionForm, "Uw score is: " + getScore());
+            JOptionPane.showMessageDialog(questionForm, "Uw score is: " + result + "%");
+
 
             // Show the main form, hide the quiz form
             showMainForm();
