@@ -33,7 +33,7 @@ public class MainForm extends JFrame {
             "<br />" +
             "Deze applicatie is ontwikkeld om jezelf te testen<br />en waarbij je je eigen quizzes kan maken.<br />" +
             "<br />" +
-            "Om je eignen quiz te maken, dien je eerst de<br />onderstaande quiz met ee nvoldoende te<br />behalen (55% of hoger).<br />" +
+            "Om je eignen quiz te maken, dien je eerst de<br />onderstaande quiz met een voldoende te<br />behalen (55% of hoger).<br />" +
             "<br />" +
             "Veel plezier!");
 
