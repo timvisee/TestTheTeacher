@@ -424,7 +424,8 @@ public class App {
                     save();
 
                     // Show a status message
-                    JOptionPane.showMessageDialog(questionForm, "Je hebt een voldoende gehaald. Je kan nu een eigen quiz maken.", "Voldoende gehaald", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(questionForm, "U hebt een voldoende gehaald. U kan nu een eigen quiz maken.", "Voldoende gehaald", JOptionPane.INFORMATION_MESSAGE);
+
                 } else {
                     JOptionPane.showMessageDialog(questionForm, "U heeft een onvoldoende behaald. U dient een voldoende te halen om uw eigen quiz te maken.", "Onvoldoende gehaald", JOptionPane.INFORMATION_MESSAGE);
                 }
@@ -563,6 +564,9 @@ public class App {
         // Create a section for the quiz manager and store it's data
         ConfigurationSection quizManagerSection = configFile.createSection("quizManager");
         getQuizManager().save(quizManagerSection);
+
+        // Set whether the user has completed the quiz
+        configFile.set("completedQuiz", this.completedQuiz);
 
         // Set the version number
         // TODO: Implement this!
