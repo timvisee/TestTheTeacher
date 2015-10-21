@@ -113,7 +113,7 @@ public class QuestionForm extends JFrame {
         this.setSize(400, 215);
 
         // Make the frame non-resizable
-        this.setResizable(true);
+        this.setResizable(false);
 
         // Set the window location to the system's default
         this.setLocationByPlatform(true);
