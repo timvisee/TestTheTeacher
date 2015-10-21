@@ -5,10 +5,7 @@ import com.ttt.util.StringUtils;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * Created by mingli on 21-10-15.
- */
-public class AboutForm extends JFrame {
+public class AboutForm extends JDialog {
 
     /** Frame title. */
     private static final String FORM_TITLE = App.APP_NAME + " - Over";
@@ -33,7 +30,7 @@ public class AboutForm extends JFrame {
      */
     public AboutForm(App app, boolean show) {
         // Construct the form
-        super(FORM_TITLE);
+        super(app.getMainForm(), FORM_TITLE, true);
 
         // Store the app instance
         this.app = app;
@@ -61,12 +58,10 @@ public class AboutForm extends JFrame {
         this.setResizable(false);
 
         // Set the window location to the system's default
-        this.setLocationByPlatform(true);
-        this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(app.getMainForm());
 
         // Configure the placement of the questions label, and add it to the questions panel
         mainPanel.add(mainLabel);
-
 
         // Add the main panel to the frame
         add(mainPanel);
