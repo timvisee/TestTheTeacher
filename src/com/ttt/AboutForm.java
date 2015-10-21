@@ -4,8 +4,6 @@ import com.ttt.util.StringUtils;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
-import java.net.URI;
 
 /**
  * Created by mingli on 21-10-15.
@@ -50,8 +48,6 @@ public class AboutForm extends JFrame {
     /**
      * Create all UI components for the frame.
      */
-
-
 
     private void createUIComponents() {
         // Create the main panel to put everything in

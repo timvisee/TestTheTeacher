@@ -199,9 +199,6 @@ public class QuestionEditForm extends JDialog {
             // Add the button
             answersPnl.add(answerRadioButtons[i], c);
 
-            // Create an action listener for the button
-            answerRadioButtons[i].addActionListener(e -> app.selectedAnswer(iFinal));
-
             // Set the button group
             group.add(answerRadioButtons[i]);
         }
