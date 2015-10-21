@@ -10,10 +10,7 @@
 
 package com.ttt.quiz;
 
-import com.timvisee.yamlwrapper.configuration.Configuration;
 import com.timvisee.yamlwrapper.configuration.ConfigurationSection;
-import com.ttt.question.Question;
-import com.ttt.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,49 +26,7 @@ public class QuizManager {
     /**
      * Constructor.
      */
-    public QuizManager() {
-        // TODO: Remove this, this is debug code!
-        Quiz quizOne = new Quiz();
-        quizOne.setName("Eerste quiz");
-        quizOne.addQuestion(new Question(
-                StringUtils.encodeHtml("<b>Welk volgende types zijn geldig in Java?</b>"),
-                new String[] {
-                        StringUtils.encodeHtml("int, string, Double, Boolean"),
-                        StringUtils.encodeHtml("boolean, int, String, double"),
-                        StringUtils.encodeHtml("String, Int, double, boolean"),
-                        StringUtils.encodeHtml("double, boolean, String, Int")
-                },
-                1));
-        quizOne.addQuestion(new Question(
-                StringUtils.encodeHtml("<b>Wat is de waarde van <i>a</i>?</b><br />" +
-                        "<br />" +
-                        StringUtils.indentHtmlSpaces(4) + "int a = (int) 19.6"),
-                new String[] {
-                        StringUtils.encodeHtml("19"),
-                        StringUtils.encodeHtml("19.6"),
-                        StringUtils.encodeHtml("20"),
-                        StringUtils.encodeHtml("18")
-                },
-                0));
-
-        Quiz quizTwo = new Quiz();
-        quizTwo.setName("Een andere quiz");
-        quizTwo.addQuestion(new Question(
-                StringUtils.encodeHtml("<b>Wat komt hier uit?</b><br />" +
-                        "<br />" +
-                        StringUtils.indentHtmlSpaces(4) + "(int) (24.768 * 100) / 100"),
-                new String[] {
-                        StringUtils.encodeHtml("25"),
-                        StringUtils.encodeHtml("24.76"),
-                        StringUtils.encodeHtml("24"),
-                        StringUtils.encodeHtml("24.7")
-                },
-                2));
-
-        // Add both quizzes
-        this.addQuiz(quizOne);
-        this.addQuiz(quizTwo);
-    }
+    public QuizManager() { }
 
     /**
      * Add a quiz.
