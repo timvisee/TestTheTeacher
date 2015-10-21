@@ -110,7 +110,7 @@ public class App {
         load();
 
         // Add all questions
-        setupMainQuiz();
+        initMainQuiz();
 
         // Initialize the main form
         this.mainForm = new MainForm(this, false);
@@ -142,9 +142,8 @@ public class App {
     /**
      * Set up the main quiz and add it's questions.
      */
-    public void setupMainQuiz() {
+    public void initMainQuiz() {
         // Set the quiz name
-        // TODO: Move this line to a better place, and think of a better name!
         this.mainQuiz.setName("Standaard quiz");
 
         // Clear the main quiz
