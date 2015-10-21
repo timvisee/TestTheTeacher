@@ -207,7 +207,7 @@ public class App {
                 },
                 1));
         this.mainQuiz.addQuestion(new Question(
-                "<b>Wat is de uitkomst van de som: " + StringUtils.createHtmlFraction(1, 5) + " x " + StringUtils.createHtmlFraction(1, 3) + " x " + StringUtils.createHtmlFraction(1, 4) + "? </b><br />",
+                "<b>6. Wat is de uitkomst van de som: " + StringUtils.createHtmlFraction(1, 5) + " x " + StringUtils.createHtmlFraction(1, 3) + " x " + StringUtils.createHtmlFraction(1, 4) + "? </b><br />",
                 new String[]{
                         StringUtils.createHtmlFraction(3, 60),
                         "60",
