@@ -253,7 +253,7 @@ public class App {
                         StringUtils.indentHtmlSpaces(4) + "int []a = {1,2,3,4,5,6};<br />" +
                         StringUtils.indentHtmlSpaces(4) + "int i = a.length - 1;<br />" + "<br />" +
                         StringUtils.indentHtmlSpaces(4) + "while(i>=0){<br />" +
-                        StringUtils.indentHtmlSpaces(8) + "System.out.print(a[i]);#sthash.NhjUgVjX.dpuf<br />" +
+                        StringUtils.indentHtmlSpaces(8) + "System.out.print(a[i]);<br />" +
                         StringUtils.indentHtmlSpaces(8) + "i--;<br />" +
                         StringUtils.indentHtmlSpaces(4) + "}<br />",
                 new String[]{
