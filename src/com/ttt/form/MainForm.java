@@ -28,14 +28,24 @@ public class MainForm extends JFrame {
     private App app;
 
     /** The question label. */
-    private JLabel mainLabel = new JLabel("<html><b>Welkom op onze quiz. Dit is een random intro tekst, bla bla bla bla bla.</b>");
+    private JLabel mainLabel = new JLabel(
+            "<html><b>Welkom bij Test The Teacher.</b><br />" +
+            "<br />" +
+            "Deze applicatie is ontwikkeld om jezelf te testen<br />en waarbij je je eigen quizzes kan maken.<br />" +
+            "<br />" +
+            "Om je eignen quiz te maken, dien je eerst de<br />onderstaande quiz met ee nvoldoende te<br />behalen (55% of hoger).<br />" +
+            "<br />" +
+            "Veel plezier!");
 
     /**
      * Start quiz button.
      */
     private JButton startQuizButton = new JButton("Start quiz");
 
-    private JButton aboutForm = new JButton("Over");
+    /**
+     * About button.
+     */
+    private JButton aboutButton = new JButton("Over");
 
     /**
      * Quiz list model instance.
@@ -47,6 +57,9 @@ public class MainForm extends JFrame {
      */
     private JList quizList;
 
+    /**
+     * Start button instance
+     */
     private JButton startButton;
 
     /**
@@ -80,9 +93,9 @@ public class MainForm extends JFrame {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         // Set the frame sizes
-        this.setMinimumSize(new Dimension(375, 200));
-        this.setPreferredSize(new Dimension(425, 225));
-        this.setSize(new Dimension(425, 225));
+        this.setMinimumSize(new Dimension(500, 315));
+        this.setPreferredSize(new Dimension(610, 315));
+        this.setSize(new Dimension(610, 315));
 
         // Set the window location to the system's default
         this.setLocationByPlatform(true);
@@ -165,42 +178,6 @@ public class MainForm extends JFrame {
 
         // Pack the frame
         pack();
-
-
-
-//        // Create the main panel to put everything in
-//        JPanel mainPanel = new JPanel();
-//
-//        // Set the frame layout
-//        mainPanel.setLayout(new GridLayout(4, 1, 10, 10));
-//        mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-//
-//        // Make the frame non-resizable
-//        this.setResizable(true);
-//
-//        // Set the window location to the system's default
-//        this.setLocationByPlatform(true);
-//        this.setLocationRelativeTo(null);
-//
-//        // Configure the placement of the questions label, and add it to the questions panel
-//        mainPanel.add(mainLabel);
-//
-//        // Add and configure the start quiz button
-//        mainPanel.add(startQuizButton);
-//        startQuizButton.addActionListener(e -> app.startQuiz());
-//
-//        // Add and configure the create quiz button
-//        mainPanel.add(createQuizButton);
-//        createQuizButton.addActionListener(e -> app.showQuizManagerForm());
-//
-//        mainPanel.add(aboutForm);
-//        aboutForm.addActionListener(e -> app.showAboutForm());
-//
-//        // Add the main panel to the frame
-//        add(mainPanel);
-//
-//        // Pack the frame
-//        pack();
     }
 
     /**
@@ -274,8 +251,8 @@ public class MainForm extends JFrame {
         buttonPanel.add(startQuizButton);
         startQuizButton.addActionListener(e -> app.startQuiz());
 
-        buttonPanel.add(aboutForm);
-        aboutForm.addActionListener(e -> app.showAboutForm());
+        buttonPanel.add(aboutButton);
+        aboutButton.addActionListener(e -> app.showAboutForm());
 
         // Return the button panel
         return buttonPanel;
