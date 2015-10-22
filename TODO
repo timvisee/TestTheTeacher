@@ -1,7 +1,13 @@
 TODO:
 
-[ ] Add more base questions (at least 10 in total).
+Custom quiz list on main screen not always updating properly.
 
-[ ] More detailed score screen.
+Add more base questions (at least 10 in total).
 
-[ ] Tooltips on buttons (and maybe shortcuts)!
+More detailed score screen.
+
+Tooltips on buttons (and maybe shortcuts)!
+
+Main form showing weird stuff when the quiz list is empty (Windows 7).
+
+About form not spawning in the center of it's parent.
