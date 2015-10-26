@@ -38,6 +38,9 @@ public class AboutForm extends JDialog {
         // Create the form UI
         createUIComponents();
 
+        // Set the window location to the system's default
+        this.setLocationRelativeTo(app.getMainForm());
+
         // Show the form
         this.setVisible(show);
     }
@@ -56,9 +59,6 @@ public class AboutForm extends JDialog {
 
         // Make the frame non-resizable
         this.setResizable(false);
-
-        // Set the window location to the system's default
-        this.setLocationRelativeTo(app.getMainForm());
 
         // Configure the placement of the questions label, and add it to the questions panel
         mainPanel.add(mainLabel);
