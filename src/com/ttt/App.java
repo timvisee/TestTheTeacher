@@ -110,6 +110,9 @@ public class App {
      * Initialize the app.
      */
     public void init() {
+        // Show application name and version
+        System.out.println(App.APP_NAME + " v" + App.APP_VERSION_NAME + " (" + App.APP_VERSION_CODE + ")");
+
         // Application initializing, show a message
         System.out.println("Initializing " + App.APP_NAME + "...");
 
