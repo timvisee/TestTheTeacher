@@ -208,8 +208,12 @@ public class MainForm extends JFrame {
             }
         });
 
+        // Create a scroll pane and set the preferred size if no items are added
+        JScrollPane listScrollPane = new JScrollPane(this.quizList);
+        listScrollPane.setPreferredSize(new Dimension(1, 1));
+
         // Create a scroll pane with the quiz list and return it
-        return new JScrollPane(this.quizList);
+        return listScrollPane;
     }
 
     /**
