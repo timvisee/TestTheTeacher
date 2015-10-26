@@ -35,6 +35,16 @@ public class App {
     public static final String APP_NAME = "Test The Teacher";
 
     /**
+     * App version name.
+     */
+    public static final String APP_VERSION_NAME = "0.1";
+
+    /**
+     * App version code.
+     */
+    public static final int APP_VERSION_CODE = 1;
+
+    /**
      * This instance of the current quiz.
      */
     private Quiz currentQuiz = null;

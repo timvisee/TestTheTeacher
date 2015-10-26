@@ -14,7 +14,7 @@ public class AboutForm extends JDialog {
     private App app;
 
     /** The question label. */
-    private JLabel mainLabel = new JLabel("<html><b>Test The Teacher </b> <br /><br />" +
+    private JLabel mainLabel = new JLabel("<html><b>Test The Teacher v" + App.APP_VERSION_NAME + " (" + App.APP_VERSION_CODE + ")</b> <br /><br />" +
             "Developed by: <br />" +
             StringUtils.indentHtmlSpaces(4) + "MingYan Li<br />" +
             StringUtils.indentHtmlSpaces(4) + "Tim Vis&eacute;e<br /><br />" +
