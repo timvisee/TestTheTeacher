@@ -12,6 +12,7 @@ package com.ttt;
 
 import com.timvisee.yamlwrapper.configuration.ConfigurationSection;
 import com.timvisee.yamlwrapper.configuration.YamlConfiguration;
+import com.ttt.form.AboutForm;
 import com.ttt.form.MainForm;
 import com.ttt.form.QuestionForm;
 import com.ttt.form.QuizManagerForm;
