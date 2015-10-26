@@ -232,8 +232,22 @@ public class MainForm extends JFrame {
         buttonPanel.add(createButton);
         buttonPanel.add(manageButton);
         startButton.addActionListener(e -> startSelectedQuiz());
-        createButton.addActionListener(e -> app.showQuizManagerForm(true));
-        manageButton.addActionListener(e -> app.showQuizManagerForm(false));
+        createButton.addActionListener(e -> {
+            // Create the quiz
+            app.showQuizManagerForm(true);
+
+            // Refresh the list
+            refreshList();
+            updateButtons();
+        });
+        manageButton.addActionListener(e -> {
+            // Create the quiz
+            app.showQuizManagerForm(false);
+
+            // Refresh the list
+            refreshList();
+            updateButtons();
+        });
 
         // Return the button panel
         return buttonPanel;
