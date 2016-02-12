@@ -8,11 +8,10 @@
  * @license GNU GPL v3.0
  */
 
-package com.ttt.quiz;
+package me.ttt.quiz;
 
-import com.timvisee.yamlwrapper.configuration.Configuration;
 import com.timvisee.yamlwrapper.configuration.ConfigurationSection;
-import com.ttt.question.Question;
+import me.ttt.question.Question;
 
 import java.util.ArrayList;
 import java.util.List;

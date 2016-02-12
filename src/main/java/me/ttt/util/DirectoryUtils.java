@@ -1,4 +1,4 @@
-package com.ttt.util;
+package me.ttt.util;
 
 import java.io.File;
 

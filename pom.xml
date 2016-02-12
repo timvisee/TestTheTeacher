@@ -63,7 +63,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.ttt.Main</mainClass>
+                            <mainClass>me.ttt.Main</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

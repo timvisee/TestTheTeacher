@@ -8,11 +8,11 @@
  * @license GNU GPL v3.0
  */
 
-package com.ttt.form;
+package me.ttt.form;
 
-import com.ttt.App;
-import com.ttt.question.Question;
-import com.ttt.util.StringUtils;
+import me.ttt.App;
+import me.ttt.question.Question;
+import me.ttt.util.StringUtils;
 
 import javax.swing.*;
 import java.awt.*;

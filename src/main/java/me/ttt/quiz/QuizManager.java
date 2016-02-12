@@ -8,7 +8,7 @@
  * @license GNU GPL v3.0
  */
 
-package com.ttt.quiz;
+package me.ttt.quiz;
 
 import com.timvisee.yamlwrapper.configuration.ConfigurationSection;
 

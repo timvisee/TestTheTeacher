@@ -8,7 +8,7 @@
  * @license GNU GPL v3.0
  */
 
-package com.ttt.question;
+package me.ttt.question;
 
 import com.timvisee.yamlwrapper.configuration.ConfigurationSection;
 

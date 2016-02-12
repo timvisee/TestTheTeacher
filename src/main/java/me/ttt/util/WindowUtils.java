@@ -8,7 +8,7 @@
  * @license GNU GPL v3.0
  */
 
-package com.ttt.util;
+package me.ttt.util;
 
 import javax.swing.UIManager;
 

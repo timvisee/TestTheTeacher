@@ -8,12 +8,12 @@
  * @license GNU GPL v3.0
  */
 
-package com.ttt.form;
+package me.ttt.form;
 
-import com.ttt.App;
-import com.ttt.question.Question;
-import com.ttt.form.component.TTTLabel;
-import com.ttt.quiz.Quiz;
+import me.ttt.App;
+import me.ttt.question.Question;
+import me.ttt.form.component.TTTLabel;
+import me.ttt.quiz.Quiz;
 
 import javax.swing.*;
 import java.awt.*;

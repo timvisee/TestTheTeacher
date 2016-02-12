@@ -8,20 +8,20 @@
  * @license GNU GPL v3.0
  */
 
-package com.ttt;
+package me.ttt;
 
 import com.timvisee.yamlwrapper.configuration.ConfigurationSection;
 import com.timvisee.yamlwrapper.configuration.YamlConfiguration;
-import com.ttt.form.AboutForm;
-import com.ttt.form.MainForm;
-import com.ttt.form.QuestionForm;
-import com.ttt.form.QuizManagerForm;
-import com.ttt.question.Question;
-import com.ttt.quiz.Quiz;
-import com.ttt.quiz.QuizManager;
-import com.ttt.util.DirectoryUtils;
-import com.ttt.util.StringUtils;
-import com.ttt.util.WindowUtils;
+import me.ttt.form.AboutForm;
+import me.ttt.form.MainForm;
+import me.ttt.form.QuestionForm;
+import me.ttt.form.QuizManagerForm;
+import me.ttt.question.Question;
+import me.ttt.quiz.Quiz;
+import me.ttt.quiz.QuizManager;
+import me.ttt.util.DirectoryUtils;
+import me.ttt.util.StringUtils;
+import me.ttt.util.WindowUtils;
 
 import javax.swing.*;
 import java.io.File;

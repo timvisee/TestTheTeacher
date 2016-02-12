@@ -8,10 +8,10 @@
  * @license GNU GPL v3.0
  */
 
-package com.ttt.form;
+package me.ttt.form;
 
-import com.ttt.App;
-import com.ttt.quiz.Quiz;
+import me.ttt.App;
+import me.ttt.quiz.Quiz;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

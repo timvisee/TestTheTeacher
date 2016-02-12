@@ -7,7 +7,7 @@ A project for a school of applied sciences.
 
 ####Running
 To run the project, start it using the main class after compiling.
-Main class: `com.ttt.Main`
+Main class: `me.ttt.Main`
 
 #####License
 GNU GPL v3.0

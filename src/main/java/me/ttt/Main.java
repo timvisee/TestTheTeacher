@@ -8,7 +8,7 @@
  * @license GNU GPL v3.0
  */
 
-package com.ttt;
+package me.ttt;
 
 public class Main {
 

@@ -8,7 +8,7 @@
  * @license GNU GPL v3.0
  */
 
-package com.ttt.form.component;
+package me.ttt.form.component;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,7 +1,7 @@
-package com.ttt.form;
+package me.ttt.form;
 
-import com.ttt.App;
-import com.ttt.util.StringUtils;
+import me.ttt.App;
+import me.ttt.util.StringUtils;
 
 import javax.swing.*;
 import java.awt.*;
